@@ -178,3 +178,10 @@ Run `npm audit` for details.
 
 // NOTE:
 Running audit fix will update some of the packages but not all their dependencies which can cause run time errors
+
+in the src directory you can have directories for pictures, styles (CSS), and others. This is a 
+file tree structure that is more about organization rather than Object Oriented. 
+This is done using a heirarchy file structure.
+
+Use this link for official guide (best guide honestly). Look at Selecting a template for the app.
+https://create-react-app.dev/docs/getting-started
