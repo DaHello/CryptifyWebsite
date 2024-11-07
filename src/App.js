@@ -14,7 +14,7 @@ function App() {
           This will appear in the GitHub Desktop app as a modified file from
           the respository on GitHub.
         </p>
-        <p>hello, this is camilo</p>
+        <p>hello, camilo</p>
         <a
           className="App-link"
           href="https://reactjs.org"
