@@ -185,3 +185,6 @@ This is done using a heirarchy file structure.
 
 Use this link for official guide (best guide honestly). Look at Selecting a template for the app.
 https://create-react-app.dev/docs/getting-started
+
+
+To install node modules in current directory type: npm install
