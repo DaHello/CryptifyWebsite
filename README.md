@@ -203,13 +203,15 @@ anything that relates to the HTML of our website and JSX.
 
 src folder in general has to do with our source code.
 
-Styles is for CSS styles files for formatring HTML in JSX files?
-By default webpack and other build tools will compile all CSS files into one, even if css was imported in separate JSX files. So you can't use different CSS files and expect you don't affect on another part of page.
+Styles is for CSS styles files for formatting HTML in JSX files?
 
-You have some options:
+Found info from Stack Overflow:
+  By default webpack and other build tools will compile all CSS files into one, even if css was imported in separate JSX files. So you can't use different CSS files and expect you don't affect on another part of page.
 
-    Use BEM for naming class names.
+  You have some options:
 
-    Use cssModules. In this case elements will have their own css class name and styles will not affect any other elements except if you use :global selector
+      Use BEM for naming class names.
+
+      Use cssModules. In this case elements will have their own css class name and styles will not affect any other elements except if you use :global selector
 
 More on CSS files: https://github.com/css-modules/css-modules
