@@ -188,3 +188,54 @@ https://create-react-app.dev/docs/getting-started
 
 
 To install node modules in current directory type: npm install
+
+JSX files:
+  These files are good for writing HTML-like structures within the JavaScript code.
+  This is where we'll use HTML tags to represent our UI elements.
+
+JS files:
+  Ideal for plain files that just contain logic, functions, and other non-UI parts
+  of your react components. Not directly related to component rendering, or external API's
+  that don't require JSX. (so can be js files that just have functions for JSX files to reference)
+
+The components directory is where all of the HTML and tag-related code will be,
+anything that relates to the HTML of our website and JSX.
+
+src folder in general has to do with our source code.
+
+Styles is for CSS styles files for formatting HTML in JSX files?
+
+Found info from Stack Overflow:
+  By default webpack and other build tools will compile all CSS files into one, even if css was imported in separate JSX files. So you can't use different CSS files and expect you don't affect on another part of page.
+
+  You have some options:
+
+      Use BEM for naming class names.
+
+      Use cssModules. In this case elements will have their own css class name and styles will not affect any other elements except if you use :global selector
+
+More on CSS files: https://github.com/css-modules/css-modules
+
+
+Index.html:
+From: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.geeksforgeeks.org/how-to-use-files-in-public-folder-in-reactjs/&ved=2ahUKEwjCj8Dyg8yJAxU_mIQIHTY8CHUQFnoECBYQAw&usg=AOvVaw2Jy1oSjb7gdbVmtkQ3iGyW
+
+In React, the files stored in the "public" folder contains static files such as "index.html", javascript library files, images, and other assets, etc. which you don't want to be processed by Webpack. Files in this folder are copied and pasted as they are directly into the build folder.
+
+NOTE: I don't think all images should be in the public folder, will look into this
+
+Recommended file structure by Gemini (Google):
+
+  components/: Reusable UI components.
+
+      Organize by feature or component type (e.g., Buttons/, Forms/, Layout/).
+      Each component can have its own folder for related files (e.g., Button.jsx, Button.css, Button.test.jsx). 
+
+  pages/ or views/: Top-level components representing different routes or sections of your application.
+  hooks/: Custom React hooks for reusable logic.
+  services/ or api/: Code for interacting with APIs or external services.
+  utils/: Helper functions, utility modules.
+  context/: Context providers and consumers for global state management.
+  store/: If using Redux, store configuration and reducers.
+  styles/: Global stylesheets or CSS modules.
+  assets/: Project-specific assets (e.g., images, fonts).
