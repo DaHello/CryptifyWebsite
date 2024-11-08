@@ -220,4 +220,6 @@ More on CSS files: https://github.com/css-modules/css-modules
 Index.html:
 From: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.geeksforgeeks.org/how-to-use-files-in-public-folder-in-reactjs/&ved=2ahUKEwjCj8Dyg8yJAxU_mIQIHTY8CHUQFnoECBYQAw&usg=AOvVaw2Jy1oSjb7gdbVmtkQ3iGyW
 
-In React the files stored in the public folder contains static files such as index. html, javascript library files, images, and other assets, etc. which you don't want to be processed by Webpack. Files in this folder are copied and pasted as they are directly into the build folder.
+In React, the files stored in the "public" folder contains static files such as "index.html", javascript library files, images, and other assets, etc. which you don't want to be processed by Webpack. Files in this folder are copied and pasted as they are directly into the build folder.
+
+NOTE: I don't think all images should be in the public folder, will look into this
