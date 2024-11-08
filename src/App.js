@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './Styles/App.css'; // this is the new direct path to App.css after modifying file structure
 
 function App() {
   return (
