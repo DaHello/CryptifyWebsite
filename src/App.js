@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './Images/logo.svg'; // Changed logo.svg to be in Images folder
 import './Styles/App.css'; // this is the new direct path to App.css after modifying file structure
 
 function App() {
