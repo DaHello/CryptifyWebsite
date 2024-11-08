@@ -223,3 +223,19 @@ From: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://
 In React, the files stored in the "public" folder contains static files such as "index.html", javascript library files, images, and other assets, etc. which you don't want to be processed by Webpack. Files in this folder are copied and pasted as they are directly into the build folder.
 
 NOTE: I don't think all images should be in the public folder, will look into this
+
+Recommended file structure by Gemini (Google):
+
+  components/: Reusable UI components.
+
+      Organize by feature or component type (e.g., Buttons/, Forms/, Layout/).
+      Each component can have its own folder for related files (e.g., Button.jsx, Button.css, Button.test.jsx). 
+
+  pages/ or views/: Top-level components representing different routes or sections of your application.
+  hooks/: Custom React hooks for reusable logic.
+  services/ or api/: Code for interacting with APIs or external services.
+  utils/: Helper functions, utility modules.
+  context/: Context providers and consumers for global state management.
+  store/: If using Redux, store configuration and reducers.
+  styles/: Global stylesheets or CSS modules.
+  assets/: Project-specific assets (e.g., images, fonts).

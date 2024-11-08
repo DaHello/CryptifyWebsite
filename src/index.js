@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './Styles/index.css';    // this is new path after putting CSS files into "Styles" folder
+import './styles/index.css';    // this is new path after putting CSS files into "styles" folder
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
