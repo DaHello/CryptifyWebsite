@@ -197,3 +197,10 @@ JS files:
   Ideal for plain files that just contain logic, functions, and other non-UI parts
   of your react components. Not related to component rendering, or external API's
   that don't require JSX.
+
+The components directory is where all of the HTML and tag-related code will be,
+anything that relates to the HTML of our website and JSX.
+
+src folder in general has to do with our source code.
+
+Styles is for CSS styles files for formatring HTML in JSX files?
