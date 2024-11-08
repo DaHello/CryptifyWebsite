@@ -188,3 +188,12 @@ https://create-react-app.dev/docs/getting-started
 
 
 To install node modules in current directory type: npm install
+
+JSX files:
+  These files are good for writing HTML-like structures within the JavaScript code.
+  This is where we'll use HTML tags to represent our UI elements.
+
+JS files:
+  Ideal for plain files that just contain logic, functions, and other non-UI parts
+  of your react components. Not related to component rendering, or external API's
+  that don't require JSX.
