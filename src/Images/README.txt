@@ -1,1 +1,0 @@
-This is a placeholder for images, could not commit folder for images without a file in it.
