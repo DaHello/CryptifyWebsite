@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginPage from './components/LoginPage/Login'; // ONLY need path to LoginPage directory 
+import LoginPage from './Components/LoginPage/Login'; // ONLY need path to LoginPage directory 
 
     // just import the components firectory and the styles directory, then we can use all files from each
 function App() {
