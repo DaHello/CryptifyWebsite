@@ -1,5 +1,5 @@
-import './components/LoginPage/Login.jsx'; // only need the file since you imported the directory with import LoginPage
-import './styles/App.css';                  // we are getting an error because the page has no code
+import LoginPage from './components/LoginPage';
+import './styles/App.css';        // we are getting an error because the page has no code
 
 function App() {
   return (
