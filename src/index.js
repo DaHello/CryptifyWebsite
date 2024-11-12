@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';    // this is new path after putting CSS files into "styles" folder
+import './Styles/index.css';  // this is new path after putting CSS files into "styles" folder
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -17,7 +17,11 @@ import reportWebVitals from './reportWebVitals';
 //we learn react we will figure things out.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<p>HELLO, this is a test</p>)
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
 //change the code aboce if you want to try it out and get an idea of how it works
 
