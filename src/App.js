@@ -1,16 +1,18 @@
-import LoginPage from './components/LoginPage'; // ONLY need path to LoginPage directory 
-import './styles/App.css';        // we are getting an error because the page has no code
+//import LoginPage from './components/LoginPage.Login'; // ONLY need path to LoginPage directory
+import components from './components'; // imported only one directory or
+//import LoginPage from './components/LoginPage';
+import './styles/App.css';
 
-    // just import the components firectory and the styles directory, then we can use all files from each
+// each function should be based on what button is clicked on html
 function App() {
-  return (
+  return ( // this returns the LoginPage directory that is inside the components directory
     <div>
-      <LoginPage />
+      <components.LoginPage.Login />  
     </div>
   )
 }
 
-export default LoginPage;
+export default components.LoginPage.Login;
 
 // old code (keep for reference):
 /*
