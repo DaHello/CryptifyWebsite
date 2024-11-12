@@ -4,6 +4,11 @@ import './Styles/index.css';  // this is new path after putting CSS files into "
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// have html, where all pages start.
+// so we should not have any html files
+// index.html is just the sample code
+// load the css into pages when program runs
+
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
 //   <React.StrictMode>

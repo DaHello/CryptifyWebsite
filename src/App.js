@@ -1,16 +1,16 @@
-import React from 'react';
-import LoginPage from "./components/LoginPage/Login"; // ONLY need path to LoginPage directory 
+import LoginPage from './components/LoginPage'; // ONLY need path to LoginPage directory 
+import './styles/App.css';        // we are getting an error because the page has no code
 
     // just import the components firectory and the styles directory, then we can use all files from each
 function App() {
-  return (
+  return ( // this returns the LoginPage directory that is inside the components directory
     <div>
-      <LoginPage />
+      <components.LoginPage.Login />  
     </div>
   );
 }
 
-export default App;
+export default LoginPage;
 
 // old code (keep for reference):
 /*
