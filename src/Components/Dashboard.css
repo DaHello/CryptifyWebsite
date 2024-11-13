@@ -1,0 +1,17 @@
+.dashboard {
+    background-color: white; /* Set background to white */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box; /* Ensures padding is included within width/height */
+    overflow: hidden; /* Prevents any unintended scrolling */
+}
+
+.dashboard-header {
+    font-size: 2.5rem; /* Increase font size further if needed */
+    color: #075f3d;
+    margin: 0;
+}
