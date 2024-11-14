@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';  // this is new path after putting CSS files into "styles" folder
-import App from './App';
+
+import App from './App';  // component from App.js, function called App()
 import reportWebVitals from './reportWebVitals';
 
 // have html, where all pages start.
@@ -21,6 +22,11 @@ import reportWebVitals from './reportWebVitals';
 ///I'm assuming that you can also do that with entire files, like in the code above, but as 
 //we learn react we will figure things out.
 
+
+/*
+This code brings all the pieces together and injects the final product 
+into index.html in the public folder
+*/
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
