@@ -1,7 +1,7 @@
 // src/components/Dashboard.jsx
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './Dashboard.css';
+import './styles/Dashboard.css';
 
 const Dashboard = () => {
     const location = useLocation();

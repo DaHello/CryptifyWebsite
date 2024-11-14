@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import './Login.css';
+import './styles/Login.css';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
