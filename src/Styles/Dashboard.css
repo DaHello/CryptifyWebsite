@@ -1,0 +1,21 @@
+/* src/components/Dashboard.css */
+.dashboard {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: flex-start; /* Align items to the left */
+    box-sizing: border-box;
+}
+
+.dashboard-header {
+    font-size: 2.5rem;
+    color: #075f3d;
+    margin: 0;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
