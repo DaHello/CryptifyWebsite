@@ -11,9 +11,19 @@ export default function LoginPage() {
 
     const navigate = useNavigate(); // Hook for navigating
 
-    const toggleFormType = () => setIsLogin(!isLogin); // Toggle between login and register form
-    const openForm = () => setShowForm(true); // Show form
-    const closeForm = () => setShowForm(false); // Hide form
+    function toggleFormType() {
+        return setIsLogin(!isLogin);
+    } 
+    
+    // Toggle between login and register form
+    function openForm() {
+        return setShowForm(true);
+    } 
+    
+    // Show form
+    function closeForm() {
+        return setShowForm(false);
+    } // Hide form
 
     function handleLogin(e) {
         e.preventDefault(); // Prevent default form submission
