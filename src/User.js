@@ -61,11 +61,13 @@ function removeUser(username) {
 /**
  * Search for a user by username.
  * @param {string} username - The username to search for.
- * @returns {Object|null} - Returns user object if found, else null.
+ * @ returns {Object|null} - Returns user object if found, else null.
+ * @returns {Boolean} - true if user is found.
  */
 function searchUser(username) {
     const users = loadUsers();
-    return users.find(user => user.username === username) || null;
+    return users.some(user => user.username === username);
+    //return users.find(user => user.username === username) || null;
 }
 
 module.exports = {
