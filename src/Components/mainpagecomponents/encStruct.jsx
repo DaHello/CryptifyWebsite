@@ -12,7 +12,7 @@ export const EncForm = () =>{
     const [outPutT, setOPT] = useState('');
     
 
-    const handleSubmit = (e) =>{
+    function handleSubmit(e){
         //doesnt allow the page to reset
         e.preventDefault();
         
@@ -21,7 +21,7 @@ export const EncForm = () =>{
         const text_key = {text,key};
         //get data from json to encrypt
         getTextEnc(text_key.text, text_key.key)
-
+        
 
 
     }
