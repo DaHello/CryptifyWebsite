@@ -9,12 +9,27 @@ export function  getTextEnc(textBuffer, userKey){
 
     const pKey = userKey;
 
-    crypto.subtle.importKey("raw", pKey, 
-        {   
-            name: "RSA-PSS",
-            hash: {name: "SHA-256"}
-        }
-        ,true,["encrypt","decrypt"])
+    async function encoderFunction(textbuffer, userkey){
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode(textbuffer);
+
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+
+    const encryptedData = await crypto.subtle.encrypt(
+        {
+            name: "AES-GCM",
+            iv: iv,
+        },
+        userkey,
+        data
+    );
+
+    return { encryptedData, iv };
+
+}
+
+    
 
 
     
