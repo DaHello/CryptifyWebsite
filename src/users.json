@@ -1,13 +1,10 @@
-// src/users.json
-{
-    "users": [
-      {
-        "username": "user1",
-        "password": "password123"
-      },
-      {
-        "username": "user2",
-        "password": "password456"
-      }
-    ]
+[
+  {
+    "username": "john_doe",
+    "password": "password123"
+  },
+  {
+    "username": "jane_doe",
+    "password": "securePassword"
   }
+]

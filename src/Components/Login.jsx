@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 import '../styles/Login.css';
 
-export default function LoginPage() {
+export default function LoginPage() { // this is the login page component, since it returns html
     const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
     const [showForm, setShowForm] = useState(false); // State to show/hide form
     const [username, setUsername] = useState(''); // Store username input
@@ -11,21 +11,31 @@ export default function LoginPage() {
 
     const navigate = useNavigate(); // Hook for navigating
 
-    function toggleFormType() {
+    // functions:
+    function toggleFormType() {     // Toggle between login and register for
         return setIsLogin(!isLogin);
     } 
     
-    // Toggle between login and register form
-    function openForm() {
+    function openForm() {  // Show form
         return setShowForm(true);
     } 
     
-    // Show form
-    function closeForm() {
+    function closeForm() {  // Prevent default form submission
         return setShowForm(false);
     } // Hide form
 
     function handleLogin(e) {
+        e.preventDefault(); 
+        //call function from user.js to verify
+        if (username && password) {
+            // Assuming successful login
+            navigate('/dashboard', { state: { username } });
+        } else {
+            alert('Please enter both username and password');
+        }
+    }
+
+    function handleRegister(e) { // function
         e.preventDefault(); // Prevent default form submission
         if (username && password) {
             // Assuming successful login
