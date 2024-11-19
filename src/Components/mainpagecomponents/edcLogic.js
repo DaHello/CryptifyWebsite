@@ -6,7 +6,7 @@
 export function  getTextEnc(textBuffer, userKey){
 
 
-
+    //array
     //array of bytes buff
 
     const encoder = new TextEncoder
