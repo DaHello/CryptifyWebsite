@@ -5,9 +5,12 @@ import "../styles/mainPage.css"
 export const MainPage = () => {
     return(
         <div className="container">
-     
-            <EncForm></EncForm>  
+
+            <EncForm></EncForm>
             <DecForm></DecForm>
+
+     
+
              
         </div>
     );

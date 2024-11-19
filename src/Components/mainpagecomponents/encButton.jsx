@@ -1,5 +1,5 @@
 export const EncSubmit = () =>{
     return (
-        <button type= "submit"> Encrypt</button>
+        <button type="button" className="fButton" > Encrypt</button>
     );
 }

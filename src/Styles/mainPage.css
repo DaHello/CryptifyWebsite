@@ -1,19 +1,101 @@
 .container{
-    padding: 4em;
+
+    width: 100%;
+    padding: 8em;
     display:flex;
     justify-content: space-around;
-    background-color: rgb(212, 95, 95);
+    background-color: rgb(234, 234, 234);
+
+
 
 }
 
 
 
 .genForm{
-    color: rgb(0, 0, 0);
-    background-color: rgb(17, 112, 255);
-    padding: 5em;
+    border: 4px #f2f2f2 solid;
+    color: hwb(0 0% 100%);
+    background-color: #ffffff;
+    padding: 4rem;
+    width: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    transition: 1s ease-in-out;
 
+
+
+}
+
+.genForm:hover{
+    animation: epicHo 3s;
+
+}
+
+@keyframes epicHo{
+    0% {border-right-color: rgb(128, 251, 229);}
+    25% {border-top-color: rgb(128, 251, 229);}
+    75% {border-left-color:rgb(128, 251, 229);}
+    100% {border-bottom-color:rgb(128, 251, 229);}
+
+}
+
+
+.genForm label{
+    margin:1rem;
+}
+
+
+.genForm .keyBox{
+
+
+    margin: 1rem;
+    transition: 0.3 ease-in-out;
+}
+
+.genForm .keyBox:focus{
+    
+    animation: epicHoo 3s;
+}
+
+@keyframes epicHoo {
+    0% {outline: 2px rgb(252, 69, 19) solid;}
+    100% {outline: 2px rgb(0, 0, 0) solid;}
+    
+}
+.genForm .ioBox{
+    outline: none;
+    margin:1rem;
+    width:100%;
+    height: 6em;
+    padding: 3%;
+    font-size: 1rem;
+
+    resize: none;
+    box-sizing: border-box;
+
+}
+
+.genForm .fButton{
+    margin: 1rem;
+    border-radius: 2px;
+    color: black;
+    font-size: 1em;
+    box-shadow: none;
+    background-color: rgb(246, 246, 246);
+    border:2px black solid;
+
+}
+
+.genForm .fButton:hover{
+    background-color:rgb(128, 251, 229) ;
+    color: white;
+    box-shadow: none;
+    border:2px black solid;
+}
+
+
+.genForm .fButton:focus{
+    color: white;
+    background-color: rgb(255, 218, 6);
+    border-color: rgb(249, 230, 155);
 }

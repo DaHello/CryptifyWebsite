@@ -5,9 +5,17 @@ export const EncForm = () =>{
     return (
         <form className="genForm">
             <label hmtlfor = "non-defined2">Place holder for Encryption</label>
-            <input id = "non-defined2" type="text"></input>
-            <label hmtlfor = "maybe-output2">Place holder for output</label>
-            <input  type="text" id ="maybe-output2"></input>
+ 
+            <textarea id = "non-defined2" type="text"  className="ioBox"></textarea>
+
+            <label htmlfor ="key">key</label>
+
+            <input id = "key" type="text"  className="keyBox"></input>
+
+            <label hmtlfor = "maybe-output2"  >Place holder for output</label>
+
+            <textarea type="text" id ="maybe-output2" className="ioBox"></textarea>
+            
             <EncSubmit></EncSubmit>
         </form>
     );
