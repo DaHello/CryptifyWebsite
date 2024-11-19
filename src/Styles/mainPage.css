@@ -47,21 +47,13 @@
 
 .genForm .keyBox{
 
-
+    padding: 1em;
     margin: 1rem;
-    transition: 0.3 ease-in-out;
+    outline: none;
+
 }
 
-.genForm .keyBox:focus{
-    
-    animation: epicHoo 3s;
-}
 
-@keyframes epicHoo {
-    0% {outline: 2px rgb(252, 69, 19) solid;}
-    100% {outline: 2px rgb(0, 0, 0) solid;}
-    
-}
 .genForm .ioBox{
     outline: none;
     margin:1rem;
@@ -73,6 +65,10 @@
     resize: none;
     box-sizing: border-box;
 
+}
+
+.genForm .keyBox:focus{
+    outline: 2px solid rgb(128, 251, 229);
 }
 
 .genForm .fButton{
