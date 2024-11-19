@@ -4,9 +4,11 @@ import "../styles/mainPage.css"
 
 export const MainPage = () => {
     return(
-        <div class="containerMainPage">
+        <div className="container">
+     
+            <EncForm></EncForm>  
             <DecForm></DecForm>
-            <EncForm></EncForm>
+             
         </div>
     );
 

@@ -7,12 +7,12 @@ import { MainPage } from './components/mainpage';
 
 export default function App() {
     return (
-        // <Router>
-        //     <Routes>
-        //         <Route path="/" element={<LoginPage />} />
-        //         <Route path="/dashboard" element={<Dashboard />} />
-        //     </Routes>
-        // </Router>
-        <MainPage></MainPage>
+        <Router>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </Router>
+        // <MainPage></MainPage>
     );
 }

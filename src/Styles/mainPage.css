@@ -1,12 +1,19 @@
-.containerMainPage{
-    padding: 10em;
+.container{
+    padding: 4em;
     display:flex;
-    align-content: space-between;
-    background-color: red;
+    justify-content: space-around;
+    background-color: rgb(212, 95, 95);
+
 }
 
+
+
 .genForm{
-    padding: 4em;
+    color: rgb(0, 0, 0);
+    background-color: rgb(17, 112, 255);
+    padding: 5em;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
