@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     transition: 1s ease-in-out;
+    
 
 
 
@@ -28,6 +29,7 @@
 
 .genForm:hover{
     animation: epicHo 3s;
+    animation-iteration-count: infinite;
 
 }
 
@@ -67,18 +69,23 @@
 
 }
 
+.genForm .ioBox:focus{
+    outline: 2px solid rgb(128, 251, 229);
+}
+
+
 .genForm .keyBox:focus{
     outline: 2px solid rgb(128, 251, 229);
 }
 
 .genForm .fButton{
     margin: 1rem;
-    border-radius: 2px;
-    color: black;
+    border-radius: 1px;
+    color: rgb(68, 68, 68);
     font-size: 1em;
     box-shadow: none;
     background-color: rgb(246, 246, 246);
-    border:2px black solid;
+    border:1px rgb(71, 71, 71) solid;
 
 }
 

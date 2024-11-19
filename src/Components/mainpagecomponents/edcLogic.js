@@ -1,11 +1,16 @@
-export function getTextEnc(text){
+import { json } from "react-router-dom"
 
 
 
-    /* */
-    console.log(text)
-    crypto.subtle.encrypt({name:"RSA-OAEP",},
-        publicKe,
-        TextEvent,
-    )
+
+export function  getTextEnc(text){
+
+    JSON.parse(JSON.stringify(text))
+    //const toEnc = JSON.parse(text)
+    
+    
+
+    
+    
+
 }
