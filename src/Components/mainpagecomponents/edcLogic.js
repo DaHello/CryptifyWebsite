@@ -1,9 +1,11 @@
-function keyInput(){
-    /*if no key on input box do not let the user encrypt the data  */
-    /*if no key on input box do not let the user decrypt the data */
-}
+export function getTextEnc(text){
 
 
-function encText(algo, key, data){
 
+    /* */
+    console.log(text)
+    crypto.subtle.encrypt({name:"RSA-OAEP",},
+        publicKe,
+        TextEvent,
+    )
 }
