@@ -16,9 +16,13 @@ export const EncForm = () =>{
         //doesnt allow the page to reset
         e.preventDefault();
         
+
+        
         const text_key = {text,key};
-        console.log(text_key)
-        getTextEnc(text_key)
+        //get data from json to encrypt
+        getTextEnc(text_key.text, text_key.key)
+
+
 
     }
 

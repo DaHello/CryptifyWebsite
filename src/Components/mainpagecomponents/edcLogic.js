@@ -1,16 +1,25 @@
-import { json } from "react-router-dom"
 
 
 
 
-export function  getTextEnc(text){
 
-    JSON.parse(JSON.stringify(text))
-    //const toEnc = JSON.parse(text)
+export function  getTextEnc(textBuffer, userKey){
+    //array of bytes buff
+
+
+    const pKey = userKey;
+
+    crypto.subtle.importKey("raw", pKey, 
+        {   
+            name: "RSA-PSS",
+            hash: {name: "SHA-256"}
+        }
+        ,true,["encrypt","decrypt"])
+
+
+    
+
     
     
 
-    
-    
-
-}
+}   
