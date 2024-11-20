@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';  // this is new path after putting CSS files into "styles" folder
 
-import App from './App';  // component from App.js, function called App()
+import Webpage from './App';  // component from App.js, function called Webpage()
 import reportWebVitals from './reportWebVitals';
 
 // have html, where all pages start.
@@ -25,12 +25,12 @@ import reportWebVitals from './reportWebVitals';
 
 /*
 This code brings all the pieces together and injects the final product 
-into index.html in the public folder
+into index.html in the public folder, App is a react
 */
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Webpage />
   </React.StrictMode>
 );
 

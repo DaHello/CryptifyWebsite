@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-//import { searchUser } from '../User.js'; if having users stored on client-side
-import '../styles/Login.css';
+/* import { searchUser, addUser } from '../User.js'; */
+import styles from '../styles/Login.css';
 
 export default function LoginPage() { // this is the login page component, since it returns html
     const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
     const [showForm, setShowForm] = useState(false); // State to show/hide form
     const [username, setUsername] = useState(''); // Store username input
     const [password, setPassword] = useState(''); // Store password input
+    const [users, setUsers] = useState('');
 
+    useEffect(() => {
+        fetch('http://localhost:3000/users')
+        .then(res => res.json())
+        .then(data => setUsers(data));
+    },[])
+
+    console.log(users);
     const navigate = useNavigate(); // Hook for navigating
 
-    // functions:
+    // functions (do not return html react):
     function toggleFormType() {     // Toggle between login and register for
         return setIsLogin(!isLogin);
     } 
@@ -29,14 +37,14 @@ export default function LoginPage() { // this is the login page component, since
         e.preventDefault(); // ensure it is not empty
 
         //call function from user.js to verify
-        if ( !searchUser(e) ) { // if the user does not exist (function returns false))
+        /* if ( !searchUser(e) ) { // if the user does not exist (function returns false))
             alert('User not found, create a new user');
-        }
+        } */
         
-        if ( username && password ) {
+        if ( !username && !password ) { // if no username AND no password
             alert('Please enter both username and password');
         }
-
+        // navigate to the dashboard URL and show username
         navigate('/dashboard', { state: { username } });
 
         // old code
@@ -48,14 +56,29 @@ export default function LoginPage() { // this is the login page component, since
         // }
     }
 
-    function handleRegister(e) { // function
+    function addUser() { // have these functions here instead of in file Users.js
+
+    }
+    function searchuser() {
+
+    }
+    function removeUser() {
+
+    }
+
+    function handleRegister(e) {
         e.preventDefault(); // Prevent default form submission
-        if (username && password) {
-            // Assuming successful login
-            navigate('/dashboard', { state: { username } });
-        } else {
+
+        // call function from user.js to create new user
+        /* addUser(e); 
+        console.log("New user created: " + e); */
+
+        if (!username && !password) {
             alert('Please enter both username and password');
         }
+
+        // navigate to the dashboard URL and show username
+        navigate('/dashboard', { state: { username } });
     }
 
     return (
