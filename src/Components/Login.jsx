@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
+//import { searchUser } from '../User.js'; if having users stored on client-side
 import '../styles/Login.css';
 
 export default function LoginPage() { // this is the login page component, since it returns html
@@ -25,14 +26,26 @@ export default function LoginPage() { // this is the login page component, since
     } // Hide form
 
     function handleLogin(e) {
-        e.preventDefault(); 
+        e.preventDefault(); // ensure it is not empty
+
         //call function from user.js to verify
-        if (username && password) {
-            // Assuming successful login
-            navigate('/dashboard', { state: { username } });
-        } else {
+        if ( !searchUser(e) ) { // if the user does not exist (function returns false))
+            alert('User not found, create a new user');
+        }
+        
+        if ( username && password ) {
             alert('Please enter both username and password');
         }
+
+        navigate('/dashboard', { state: { username } });
+
+        // old code
+        // if (username && password) {
+        //     // Assuming successful login
+        //     navigate('/dashboard', { state: { username } });
+        // } else {
+        //     alert('Please enter both username and password');
+        // }
     }
 
     function handleRegister(e) { // function

@@ -1,7 +1,9 @@
 // this file is used to access and modify the user.json
 import userData from '../users.json';
 
-const fs = require('fs'); // File system module for file manipulation
+const users = new File('../users.json');
+
+//const fs = require('fs'); // File system module for file manipulation
 
 /**
  * Load users from the JSON file.
@@ -30,7 +32,7 @@ function saveUsers(users) {
  * @param {string} username - The username of the user.
  * @param {string} password - The password of the user.
  */
-function addUser(username, password) {
+export function addUser(username, password) {
     const users = loadUsers();
     
     // Check if the user already exists
@@ -49,7 +51,7 @@ function addUser(username, password) {
  * Remove a user from the users JSON file.
  * @param {string} username - The username of the user to be removed.
  */
-function removeUser(username) {
+export function removeUser(username) {
     let users = loadUsers();
 
     // Filter out the user by username
@@ -64,14 +66,14 @@ function removeUser(username) {
  * @ returns {Object|null} - Returns user object if found, else null.
  * @returns {Boolean} - true if user is found.
  */
-function searchUser(username) {
+export function searchUser(username) {
     const users = loadUsers();
     return users.some(user => user.username === username);
     //return users.find(user => user.username === username) || null;
 }
 
-module.exports = {
-    addUser,
-    removeUser,
-    searchUser
-};
+// module.exports = {
+//     addUser,
+//     removeUser,
+//     searchUser
+// };
