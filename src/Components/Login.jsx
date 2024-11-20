@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 /* import { searchUser, addUser } from '../User.js'; */
-import styles from '../styles/Login.css';
+import '../styles/Login.css';
+
+// old package.json file start script:
+// "start": "PORT=3000 react-scripts start",
+// new is the three lines of start to run both json server and react app at same time
 
 export default function LoginPage() { // this is the login page component, since it returns html
     const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
@@ -12,7 +16,7 @@ export default function LoginPage() { // this is the login page component, since
     const [users, setUsers] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('http://localhost:4000/users') // fetch the data from users.json file server on port 4000
         .then(res => res.json())
         .then(data => setUsers(data));
     },[])

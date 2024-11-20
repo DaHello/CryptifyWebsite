@@ -1,0 +1,3 @@
+{
+  "users" : [{"username":"john_doe","password":"password123"},{"username":"jane_doe","password":"securePassword"},{"username":"Egor123","password":"5678abc"}]
+}
