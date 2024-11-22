@@ -116,7 +116,7 @@ export const EncForm = () => {
     <form className="genForm" onSubmit={handleSubmit}>
       <label htmlFor="non-defined2">Encryption</label>
       <textarea
-        placeholder="Type encrypted text here..."
+        placeholder="Text to be encrypted goes here..."
         type="text"
         className="ioBox"
         required
