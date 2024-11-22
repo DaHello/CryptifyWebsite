@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 //import NavBar from "./components/NavBar"; // navigation bar
 //import Home from "./components/Home"; // about us and other info
-import { BrowserRouter as Router, Routes, Route, Link, Navlink, NavLink } from "react-router-dom";
+import { createBrowserRouter,  Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
@@ -10,6 +10,12 @@ import { MainPageText } from "./components/mainpagetext";
 import "./styles/Login.css"
 import { MainPageFile } from "./components/mainpagefile";
 import "./styles/GlobalHeader.css"
+
+
+//layout
+import { MainPages } from "./RootLayout";
+
+
 // import {MainPage} from "./components/mainpage";
 // import "./styles/App.css";
 
@@ -42,26 +48,34 @@ inside of the <MainPage {var/object} /> for example.
   // to -> path (must be the same)
   //element = component that you want to use
 
+
+  //tree of routes
+  const router = createBrowserRouter(
+    //similar to <routes>?
+    createRoutesFromElements(
+      <Route path="mainpagetext" exact element={<MainPages/>}>
+        <Route path="mainpagetext" element={<MainPageText />}></Route>
+        <Route path="mainpagefile" element={<MainPageFile />}></Route>
+      </Route>
+    )
+  );
+
   export default function App() {
     return (
-      <Router>
-        <header className="globalHeader">
-          <h1>Change scene</h1>
-          <nav>
-            <NavLink to="mainpagetext">Text Encryption</NavLink>
-            <NavLink to="mainpagefile">File Encryption</NavLink>
-            {/* active class */}
-          </nav>
-        </header>
 
-        <main>
-          <Routes>
-            <Route path="mainpagetext" element={<MainPageText />}></Route>
-            <Route path="mainpagefile" element={<MainPageFile />}></Route>
-          </Routes>
-        </main>
-      </Router>
 
+      <RouterProvider router={router}/>
+      //provides the router that we created using the above function
+
+
+      
+      
+      
+      
+      
+      
+      
+      
       /* <rt>
           <Router>
             <div className="App">

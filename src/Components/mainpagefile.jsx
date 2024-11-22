@@ -3,7 +3,9 @@ import { EncFileBox } from "./mainpagecomponents/fileEncSection";
 
 
 export const MainPageFile =()=>{
-    return(
+    return (
+      <div className="containerFile">
         <EncFileBox></EncFileBox>
+      </div>
     );
 }
