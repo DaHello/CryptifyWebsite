@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navlink, NavLink } from "
 import { MainPageText } from "./components/mainpagetext";
 import "./styles/Login.css"
 import { MainPageFile } from "./components/mainpagefile";
+import "./styles/GlobalHeader.css"
 // import {MainPage} from "./components/mainpage";
 // import "./styles/App.css";
 
@@ -45,10 +46,11 @@ inside of the <MainPage {var/object} /> for example.
     return (
       <Router>
         <header className="globalHeader">
+          <h1>Change scene</h1>
           <nav>
-            <h1>Change scene</h1>
-            <Link to="mainpagetext">Text Encryption</Link>
+            <NavLink to="mainpagetext">Text Encryption</NavLink>
             <NavLink to="mainpagefile">File Encryption</NavLink>
+            {/* active class */}
           </nav>
         </header>
 

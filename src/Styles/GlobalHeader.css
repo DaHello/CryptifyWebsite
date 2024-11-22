@@ -1,0 +1,26 @@
+.globalHeader {
+
+  background-color: blue;
+  padding: 2em;
+ 
+  flex-direction: row;
+  display: flex;
+  gap: 10em;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+
+.globalHeader nav{
+    display: flex;
+    gap: 10em;
+    justify-content: end;
+}
+
+.globalHeader nav a{
+    color: white;
+    text-decoration: none;
+}
