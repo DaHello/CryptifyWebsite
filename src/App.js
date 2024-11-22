@@ -2,11 +2,13 @@
 import React, { useState } from "react";
 //import NavBar from "./components/NavBar"; // navigation bar
 //import Home from "./components/Home"; // about us and other info
-//import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navlink, NavLink } from "react-router-dom";
+
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
-import { MainPage } from "./components/mainpage";
+import { MainPageText } from "./components/mainpagetext";
 import "./styles/Login.css"
+import { MainPageFile } from "./components/mainpagefile";
 // import {MainPage} from "./components/mainpage";
 // import "./styles/App.css";
 
@@ -33,12 +35,32 @@ inside of the <MainPage {var/object} /> for example.
 
   //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
+
+  //link = similar to <a> in HTML
+  //NavLink allow us to know wether our link is an active or pending state
+  // to -> path (must be the same)
+  //element = component that you want to use
+
   export default function App() {
     return (
-      <>
-        <MainPage />
+      <Router>
+        <header className="globalHeader">
+          <nav>
+            <h1>Change scene</h1>
+            <Link to="mainpagetext">Text Encryption</Link>
+            <NavLink to="mainpagefile">File Encryption</NavLink>
+          </nav>
+        </header>
 
-        {/* <rt>
+        <main>
+          <Routes>
+            <Route path="mainpagetext" element={<MainPageText />}></Route>
+            <Route path="mainpagefile" element={<MainPageFile />}></Route>
+          </Routes>
+        </main>
+      </Router>
+
+      /* <rt>
           <Router>
             <div className="App">
               <Link to="/mainpage">MainPage</Link>
@@ -50,8 +72,7 @@ inside of the <MainPage {var/object} /> for example.
               </Routes>
             </div>
           </Router>
-        </rt> */}
-      </>
+        </rt> */
     );
   }
 

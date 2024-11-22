@@ -7,13 +7,12 @@ import { EncFileBox } from "./mainpagecomponents/fileEncSection";
 import "../styles/mainPage.css";
 
 // main page is where all of the forms are going to be loaded
-export function MainPage() {
+export function MainPageText() {
   return (
     <div className="container">
       {/* <Header></Header> */}
       <EncForm>Encryption</EncForm>
       <DecForm>Decryption</DecForm>
-      <EncFileBox></EncFileBox>
     </div>
   );
 }
