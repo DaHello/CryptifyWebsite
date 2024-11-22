@@ -1,5 +1,5 @@
 export const DecSubmit = () =>{
     return (
-        <button type="button"  class="fButton"> Decrypt</button>
+        <button type="submit"  className="fButton"> Decrypt</button>
     );
 }

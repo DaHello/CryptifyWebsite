@@ -2,15 +2,15 @@ import { EncSubmit } from "./encButton";
 import "../../styles/mainPage.css";
 
 import React, { useState } from "react";
-import { getKey } from "./edcLogic.js";
+
 
 export const EncForm = () => {
   const [text, setText] = useState("");
   const [key, setKey] = useState("");
-  const [outPutT, setOPT] = useState(""); // this can be used to show the encrypted/decrypted output
+  const [outPutT, setOPT] = useState(""); 
 
-  const base64_to_buf = (b64) =>
-    Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  // const base64_to_buf = (b64) =>
+  //   Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
 
   const buff_to_base64 = (buff) =>
     btoa(
@@ -21,7 +21,7 @@ export const EncForm = () => {
     );
 
   const enc = new TextEncoder();
-  const dec = new TextDecoder();
+  //const dec = new TextDecoder();
 
   async function encryptData(secretData, password) {
     try {
@@ -53,28 +53,28 @@ export const EncForm = () => {
     }
   }
 
-  async function decryptData(encryptedData, password) {
-    try {
-      const encryptedDataBuff = base64_to_buf(encryptedData);
-      const salt = encryptedDataBuff.slice(0, 16);
-      const iv = encryptedDataBuff.slice(16, 16 + 12);
-      const data = encryptedDataBuff.slice(16 + 12);
-      const passwordKey = await getPasswordKey(password);
-      const aesKey = await deriveKey(passwordKey, salt, ["decrypt"]);
-      const decryptedContent = await window.crypto.subtle.decrypt(
-        {
-          name: "AES-GCM",
-          iv: iv,
-        },
-        aesKey,
-        data
-      );
-      return dec.decode(decryptedContent);
-    } catch (e) {
-      console.log(`Error - ${e}`);
-      return "";
-    }
-  }
+  // async function decryptData(encryptedData, password) {
+  //   try {
+  //     const encryptedDataBuff = base64_to_buf(encryptedData);
+  //     const salt = encryptedDataBuff.slice(0, 16);
+  //     const iv = encryptedDataBuff.slice(16, 16 + 12);
+  //     const data = encryptedDataBuff.slice(16 + 12);
+  //     const passwordKey = await getPasswordKey(password);
+  //     const aesKey = await deriveKey(passwordKey, salt, ["decrypt"]);
+  //     const decryptedContent = await window.crypto.subtle.decrypt(
+  //       {
+  //         name: "AES-GCM",
+  //         iv: iv,
+  //       },
+  //       aesKey,
+  //       data
+  //     );
+  //     return dec.decode(decryptedContent);
+  //   } catch (e) {
+  //     console.log(`Error - ${e}`);
+  //     return "";
+  //   }
+  // }
 
   const getPasswordKey = (password) =>
     window.crypto.subtle.importKey(
@@ -104,18 +104,19 @@ export const EncForm = () => {
 
     const text_key = { text, key };
     const encrypted = await encryptData(text_key.text, text_key.key);
-    setOPT(encrypted); // Set the encrypted output to state
+    setOPT(encrypted); 
 
-    // Optionally, you could decrypt right after encryption to verify
-    const decrypted = await decryptData(encrypted, text_key.key);
-    console.log("Decrypted Text: ", decrypted);
+
+    //const decrypted = await decryptData(encrypted, text_key.key);
+
   }
+  // e : short for event
 
   return (
     <form className="genForm" onSubmit={handleSubmit}>
-      <label htmlFor="non-defined2">Place holder for Encryption</label>
+      <label htmlFor="non-defined2">Encryption</label>
       <textarea
-        placeholder="type encrypted text here..."
+        placeholder="Type encrypted text here..."
         type="text"
         className="ioBox"
         required
@@ -123,8 +124,9 @@ export const EncForm = () => {
         onChange={(e) => setText(e.target.value)}
       ></textarea>
 
-      <label htmlFor="key">key</label>
+      <label htmlFor="key">Key</label>
       <input
+        placeholder="Key for encryption data..."
         type="text"
         className="keyBox"
         required
@@ -132,7 +134,7 @@ export const EncForm = () => {
         onChange={(e) => setKey(e.target.value)}
       ></input>
 
-      <label htmlFor="maybe-output2">Encrypted Output</label>
+      <label htmlFor="maybe-output2">Encrypted text</label>
       <textarea
         type="text"
         className="ioBox"
