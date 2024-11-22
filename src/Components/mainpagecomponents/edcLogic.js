@@ -1,26 +1,38 @@
+import { FaWineGlassEmpty } from "react-icons/fa6";
+
+const encoder = new TextEncoder();
 
 
 
 
 
-export function  getTextEnc(textBuffer, userKey){
+export function getKey(userKeyPassword, text){
+    crypto.subtle.importKey(
+        "raw",
+        encoder.encode(userKeyPassword),
+        {name : "PBKDF2"},
+        false,
+        ["deriveKey"]
+    );
+
+    console.log(userKeyPassword, text)
+}
+
+//PBKDF2 is also a key derivation function. It's designed to derive key material
+// from some relatively low-entropy input, such as a password.
 
 
-    //array
-    //array of bytes buff
-
-    const encoder = new TextEncoder
-    const view = encoder.encode(userKey)
-    console.log(view)
-
-    const rawKey = window.crypto.getRandomValues(new Uint8Array(16));
-
-
-
-    const encryptedText = crypto.subtle.importKey("raw",rawKey,
-        "AES-GCM",true,["encrypt","decrypt"]
+export function deriveKey (userKeyPassword, salt, keyUsage){
+    crypto.subtle.deriveKey(
+    {
+        name: "PDBKDF2",
+        salt: salt,
+        iterations: 250000,
+        hash : "SHA-256",
+    },
+    userKeyPassword,
+    {name: "AES-GCM", length: 256},
+    false,
+    ["encrypt","decrypt"]
     )
-    console.log(encryptedText)
-
-
 }

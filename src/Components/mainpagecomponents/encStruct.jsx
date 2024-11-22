@@ -2,7 +2,8 @@ import { EncSubmit } from "./encButton";
 import "../../styles/mainPage.css";
 
 import React, { useState } from "react";
-import  { getTextEnc } from './edcLogic.js';
+
+import { getKey } from "./edcLogic.js";
 
 
 export const EncForm = () =>{
@@ -20,13 +21,13 @@ export const EncForm = () =>{
         
         const text_key = {text,key};
         //get data from json to encrypt
-        getTextEnc(text_key.text, text_key.key)
+        getKey(text_key.key, text_key.text)
+
+
         
 
 
     }
-
-
     //onChange(the value you want to change)=>setText(current value. target is the current input, value is the current value in that input)
 
     return (
