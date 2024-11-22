@@ -23,7 +23,9 @@ import reportWebVitals from "./reportWebVitals";
 
 /*
 This code brings all the pieces together and injects the final product 
-into index.html in the public folder
+into index.html in the public folder. Gets the divider by name "root" and 
+uses that as the root. Renders the App component in App.js, which is where all
+our webPAGE components are.
 */
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
