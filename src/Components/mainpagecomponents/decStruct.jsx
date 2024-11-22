@@ -68,7 +68,7 @@ export const DecForm = () =>{
     e.preventDefault()
     const dectext_key = { textDec, keyDec };
     const decrypted = await decryptData(dectext_key.textDec, dectext_key.keyDec)
-    if(dectext_key.keyDec !=)
+
     setOutPutDec(decrypted)
 
     console.log(decrypted)
