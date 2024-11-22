@@ -15,7 +15,7 @@ this is where all react components that are web pages should be located
 each web page can have data sent from one to the other using {object/variable name}
 inside of the <MainPage {var/object} /> for example.
 */
-export default function App() {
+//export default function App() {
   //   const [activeTab, setActiveTab] = useState("home");
 
   //   const renderTabContent = () => {
@@ -33,7 +33,7 @@ export default function App() {
 
   //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-  function App() {
+  export default function App() {
     return (
       <>
         <MainPage />
@@ -68,4 +68,3 @@ export default function App() {
   //     </Routes>
   // </Router>
   // );
-}
