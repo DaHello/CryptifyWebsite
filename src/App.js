@@ -31,6 +31,21 @@ inside of the <MainPage {var/object} /> for example.
 //     }
 //  };
 
+
+
+//this is the header
+  // const router = createBrowserRouter(
+  //   //similar to <routes>?
+  //   createRoutesFromElements(
+  //     <Route path="mainpagetext" exact element={<MainPages />}>
+  //       <Route path="mainpagetext" element={<MainPageText />}></Route>
+  //       <Route path="mainpagefile" element={<MainPageFile />}></Route>
+  //     </Route>
+  //   )
+  // );
+
+
+
 //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 export default function App() {
