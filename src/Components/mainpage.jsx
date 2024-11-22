@@ -1,23 +1,12 @@
 import { DecForm } from "./mainpagecomponents/decStruct";
 import { EncForm } from "./mainpagecomponents/encStruct";
-import "../styles/mainPage.css"
+import "../styles/mainPage.css";
 
-
-
-
-
-export const MainPage = () => {
-    return(
-        <div className="container">
-
-            <EncForm></EncForm>
-            <DecForm></DecForm>
-
-     
-
-             
-        </div>
-    );
-
-
+export function MainPage() {
+  return (
+    <div className="container">
+      <EncForm>Encryption</EncForm>
+      <DecForm>Decryption</DecForm>
+    </div>
+  );
 }
