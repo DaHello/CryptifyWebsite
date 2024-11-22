@@ -7,8 +7,8 @@ import React, { useState } from "react";
 //import Dashboard from "./components/Dashboard";
 import { MainPage } from "./components/mainpage";
 import "./styles/Login.css"
-import {MainPage} from "./components/mainpage";
-import "./styles/App.css";
+// import {MainPage} from "./components/mainpage";
+// import "./styles/App.css";
 
 /* 
 this is where all react components that are web pages should be located 
