@@ -2,7 +2,6 @@ import { DecSubmit } from "./decButton";
 import "../../styles/mainPage.css";
 
 import React, { useState } from "react";
-import { FaPassport } from "react-icons/fa6";
 
 
 
@@ -78,7 +77,7 @@ export const DecForm = () =>{
       <label>Decryption</label>
 
       <textarea
-      placeholder="Type decrypted text here..."
+      placeholder="Encrypted text goes here..."
         type="text"
         className="ioBox"
         value={textDec}
