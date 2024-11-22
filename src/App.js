@@ -6,7 +6,7 @@ import React, { useState } from "react";
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
 import { MainPage } from "./components/mainpage";
-import "./styles/Login.css"
+import "./styles/Login.css";
 // import {MainPage} from "./components/mainpage";
 // import "./styles/App.css";
 
@@ -16,29 +16,36 @@ each web page can have data sent from one to the other using {object/variable na
 inside of the <MainPage {var/object} /> for example.
 */
 //export default function App() {
-  //   const [activeTab, setActiveTab] = useState("home");
+//   const [activeTab, setActiveTab] = useState("home");
 
-  //   const renderTabContent = () => {
-  //     switch (activeTab) {
-  //       case "home":
-  //         return <Home />;
-  //       case "encryptFiles":
-  //         return <EncryptFiles />;
-  //       case "encryptText":
-  //         return <EncryptText />;
-  //       default:
-  //         return <Home />;
-  //     }
-  //  };
+//   const renderTabContent = () => {
+//     switch (activeTab) {
+//       case "home":
+//         return <Home />;
+//       case "encryptFiles":
+//         return <EncryptFiles />;
+//       case "encryptText":
+//         return <EncryptText />;
+//       default:
+//         return <Home />;
+//     }
+//  };
 
-  //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+//import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-  export default function App() {
-    return (
-      <>
-        <MainPage />
+export default function App() {
+  // Load the header of the App (website), inject code for header
 
-        {/* <rt>
+  // Have the mainpage where all forms all located
+  // rename to mainPage
+
+  // Have the aboutUs.jsx
+
+  return (
+    <>
+      <MainPage />
+
+      {/* <rt>
           <Router>
             <div className="App">
               <Link to="/mainpage">MainPage</Link>
@@ -51,20 +58,20 @@ inside of the <MainPage {var/object} /> for example.
             </div>
           </Router>
         </rt> */}
-      </>
-    );
-  }
+    </>
+  );
+}
 
-  // old code...
-  // return (
-  //   <>
-  //     <MainPage />
-  //   </>
+// old code...
+// return (
+//   <>
+//     <MainPage />
+//   </>
 
-  // <Router>
-  //     <Routes>
-  //         <Route path="/" element={<LoginPage />} />
-  //         <Route path="/dashboard" element={<Dashboard />} />
-  //     </Routes>
-  // </Router>
-  // );
+// <Router>
+//     <Routes>
+//         <Route path="/" element={<LoginPage />} />
+//         <Route path="/dashboard" element={<Dashboard />} />
+//     </Routes>
+// </Router>
+// );
