@@ -1,4 +1,4 @@
-const fs = require('fs');
+import JSON from "src\\users.json";
 // // this file is used to access and modify the user.json
 // //import * as fs from 'node:fs/promises';
 // //import * as fs from 'fs';
@@ -23,7 +23,7 @@ const fs = require('fs');
 //         console.log("File: " + userData + " does not exist"); //log DNE for file
 //         return []; // return empty array
 //     }
-    
+
 //     const data = fs.readFileSync(userData, 'utf8');
 //     return JSON.parse(data);
 // }
@@ -43,7 +43,7 @@ const fs = require('fs');
 //  */
 // export function addUser(username, password) {
 //     const users = loadUsers();
-    
+
 //     // Check if the user already exists
 //     if (users.some(user => user.username === username)) {
 //         throw new Error('Username already exists');
@@ -87,28 +87,30 @@ const fs = require('fs');
 // //     searchUser
 // // };
 
-let users;
+const fs = require("fs");
 
-const getUser = () => {
-    const res = fs.readFileSync('C:\\Users\\rober\\Documents\\CSC214\\Group Project\\CryptifyWebsite\\src\\users.json', 'utf-8');
-    users = JSON.parse(res);
-    console.log(users);
+function getUsers() {
+  //const JSON = fs.readFileSync("src\\users.json", "utf-8"); //read the json file
+  const users = JSON.parse(JSON);
+  return users; // return since export default
 }
 
-const setUser = (user, pass) => {
-    const newUser = {
-        username: user,
-        password: pass
-    }
+function setUser(user, pass) {
+  // export to access from modules
+  const newUser = {
+    username: user,
+    password: pass,
+  };
 
-    users.push(newUser);
-    console.log(users);
-    users = JSON.stringify(users);
+  //users.push(newUser);
+  console.log(users);
+  users = JSON.stringify(users);
 
-    fs.writeFileSync('C:\\Users\\rober\\Documents\\CSC214\\Group Project\\CryptifyWebsite\\src\\users.json', users);
-    const res = fs.readFileSync('C:\\Users\\rober\\Documents\\CSC214\\Group Project\\CryptifyWebsite\\src\\users.json', 'utf-8');
-    console.log(res);
+  fs.writeFileSync("server\\users.json", users);
+  const res = fs.readFileSync("server\\users.json");
+  console.log(res);
+  JSON = user.stringify;
 }
 
-getUser();
-setUser('Egor123', '5678abc');
+getUsers(); // retreieves users object to write to
+setUser("Egor123", "5678abc"); // write to

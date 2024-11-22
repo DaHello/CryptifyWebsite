@@ -1,3 +1,8 @@
 {
-  "users" : [{"username":"john_doe","password":"password123"},{"username":"jane_doe","password":"securePassword"},{"username":"Egor123","password":"5678abc"}]
+  "users": [{ "username": "john_doe", "password": "password123" }]
 }
+
+
+When you read the json file using fs by parsing the file (turning into object called JSON)
+
+stringify the JSON object to a memory variable then save that using fs to a file
