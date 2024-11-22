@@ -1,5 +1,6 @@
 import { DecForm } from "./mainpagecomponents/decStruct";
 import { EncForm } from "./mainpagecomponents/encStruct";
+import { EncFileBox } from "./mainpagecomponents/fileEncSection";
 import "../styles/mainPage.css";
 
 //function genForm() {}
@@ -10,6 +11,7 @@ export function MainPage() {
     <div className="container">
       <EncForm>Encryption</EncForm>
       <DecForm>Decryption</DecForm>
+      <EncFileBox></EncFileBox>
     </div>
   );
 }

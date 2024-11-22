@@ -5,6 +5,7 @@ import React from "react";
 //import Dashboard from "./components/Dashboard";
 import { MainPage } from "./components/mainpage";
 import "./styles/Login.css"
+
 /* 
 this is where all react components that are web pages should be located 
 each web page can have data sent from one to the other using {object/variable name}
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <>
       <MainPage />
+
     </>
 
     // <Router>
