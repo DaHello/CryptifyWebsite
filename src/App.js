@@ -5,6 +5,8 @@ import React, { useState } from "react";
 //import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
+import { MainPage } from "./components/mainpage";
+import "./styles/Login.css"
 import {MainPage} from "./components/mainpage";
 import "./styles/App.css";
 

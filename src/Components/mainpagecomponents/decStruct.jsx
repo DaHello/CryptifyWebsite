@@ -75,16 +75,17 @@ export const DecForm = () =>{
   }
   return (
     <form className="genForm" onSubmit={handleSubmitDec}>
-      <label>Place holder for Decryption</label>
+      <label>Decryption</label>
 
       <textarea
+      placeholder="Type decrypted text here..."
         type="text"
         className="ioBox"
         value={textDec}
         onChange={(e) => setTextDec(e.target.value)}
       ></textarea>
 
-      <label>key</label>
+      <label>Key</label>
 
       <input
         type="textarea"
@@ -93,7 +94,7 @@ export const DecForm = () =>{
         onChange={(e) => setKeyDec(e.target.value)}
       ></input>
 
-      <label>Place holder for output</label>
+      <label>Decrypted Text</label>
 
       <textarea
         type="text"
