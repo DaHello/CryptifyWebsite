@@ -99,8 +99,19 @@
 
 /*file section styles goes here*/
 
+
 .trythis{
   color:white;
   background-color: red;
   padding: 3em;
 }
+
+
+.fileHandlerBox{
+  
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: rgb(0, 0, 0);
+}
+
+

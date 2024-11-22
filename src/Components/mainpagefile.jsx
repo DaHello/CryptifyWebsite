@@ -1,4 +1,5 @@
 import { EncFileBox } from "./mainpagecomponents/fileEncSection";
+import '../styles/mainPage.css'
 
 
 
