@@ -1,12 +1,11 @@
-import { EncFileBox } from "./mainpagecomponents/fileEncSection";
-import '../styles/mainPage.css'
+import { EncFileBox } from "./mainpagecomponents/EncFileBox";
+import "../styles/mainPage.css";
 
-
-
-export const MainPageFile =()=>{
-    return (
-      <div className="containerFile">
-        <EncFileBox></EncFileBox>
-      </div>
-    );
-}
+// This container holds all the boxes for file encryption and decryption
+export const MainPageFile = () => {
+  return (
+    <div className="container">
+      <EncFileBox></EncFileBox>
+    </div>
+  );
+};

@@ -1,10 +1,8 @@
 import { DecSubmit } from "./decButton";
 import "../../styles/mainPage.css";
-
 import React, { useState } from "react";
 
-
-
+// everything is nested inside of decForm, so this whole file is just the DecForm
 export const DecForm = () =>{
   const [textDec, setTextDec] = useState("");
   const [keyDec, setKeyDec] = useState("");
@@ -40,7 +38,6 @@ export const DecForm = () =>{
         keyUsage
       );
   
-
   async function decryptData(encryptedData, password) {
     try {
       const encryptedDataBuff = base64_to_buf(encryptedData);

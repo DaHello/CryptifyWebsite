@@ -1,12 +1,9 @@
-import { DecForm } from "./mainpagecomponents/decStruct";
-import { EncForm } from "./mainpagecomponents/encStruct";
-//import Header from "./Header";
-//import EncryptFiles from "./components/EncryptFiles"; // show forms for enc/dec files
-//import EncryptText from "./components/EncryptText"; // show forms for enc/dec text
-import { EncFileBox } from "./mainpagecomponents/fileEncSection";
+import { DecForm } from "./mainpagecomponents/decForm";
+import { EncForm } from "./mainpagecomponents/encForm";
+import { EncFileBox } from "./mainpagecomponents/EncFileBox";
 import "../styles/mainPage.css";
 
-// main page is where all of the forms are going to be loaded
+// This container holds all the forms for text encryption and decryption
 export function MainPageText() {
   return (
     <div className="container">

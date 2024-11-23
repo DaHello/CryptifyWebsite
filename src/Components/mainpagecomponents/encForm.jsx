@@ -3,7 +3,7 @@ import "../../styles/mainPage.css";
 
 import React, { useState } from "react";
 
-
+// everything is nested inside of EncForm, so this whole file is just the EncForm
 export const EncForm = () => {
   const [text, setText] = useState("");
   const [key, setKey] = useState("");
