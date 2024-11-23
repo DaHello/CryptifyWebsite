@@ -28,7 +28,7 @@ import "./styles/Login.css";
 //tree of routes
 //similar to <routes>?
 createRoutesFromElements(
-  <Route path="mainpagetext" exact element={<MainPages />}>
+  <Route path="/mainpagetext" exact element={<Header />}>
     <Route path="mainpagetext" element={<MainPageText />}></Route>
     <Route path="mainpagefile" element={<MainPageFile />}></Route>
   </Route>
