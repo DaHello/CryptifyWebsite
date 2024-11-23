@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 //the child routes within the page
 
 //allows nested routes to render their element content
-export const MainPages = () => {
+export const Header = () => {
   return (
     <div>
       <header className="globalHeader">
