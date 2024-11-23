@@ -53,7 +53,7 @@ inside of the <MainPage {var/object} /> for example.
   const router = createBrowserRouter(
     //similar to <routes>?
     createRoutesFromElements(
-      <Route path="mainpagetext" exact element={<MainPages/>}>
+      <Route path="/" element={<MainPages />}>
         <Route path="mainpagetext" element={<MainPageText />}></Route>
         <Route path="mainpagefile" element={<MainPageFile />}></Route>
       </Route>
