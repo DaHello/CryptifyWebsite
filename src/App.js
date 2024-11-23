@@ -1,7 +1,11 @@
 // src/App.js
 import React, { useState } from "react";
 //import Home from "./components/Home"; // about us and other info
-import { createBrowserRouter as router, Route, create } from "react-router-dom";
+import {
+  createBrowserRouter as router,
+  Route,
+  createRoutesFromElements,
+} from "react-router-dom";
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
 import { MainPage } from "./components/mainpage";
@@ -21,14 +25,12 @@ import "./styles/Login.css";
 //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 //tree of routes
-const router = createBrowserRouter(
-  //similar to <routes>?
-  createRoutesFromElements(
-    <Route path="mainpagetext" exact element={<MainPages />}>
-      <Route path="mainpagetext" element={<MainPageText />}></Route>
-      <Route path="mainpagefile" element={<MainPageFile />}></Route>
-    </Route>
-  )
+//similar to <routes>?
+createRoutesFromElements(
+  <Route path="mainpagetext" exact element={<MainPages />}>
+    <Route path="mainpagetext" element={<MainPageText />}></Route>
+    <Route path="mainpagefile" element={<MainPageFile />}></Route>
+  </Route>
 );
 
 export default function App() {
