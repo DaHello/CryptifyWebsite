@@ -1,7 +1,7 @@
 // src/App.js
 import React, { useState } from "react";
 //import Home from "./components/Home"; // about us and other info
-import { createBrowserRouter, Route, creat } from "react-router-dom";
+import { createBrowserRouter as router, Route, create } from "react-router-dom";
 //import LoginPage from "./components/Login";
 //import Dashboard from "./components/Dashboard";
 import { MainPage } from "./components/mainpage";
