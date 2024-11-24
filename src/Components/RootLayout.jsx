@@ -7,8 +7,8 @@ import { NavLink, Outlet } from "react-router-dom";
 export function MainPages() {
   return (
     <div>
-      <header className="globalHeader">
-        <h1>Change scene</h1>
+      <header className="globalHeader" >
+        <h1>Scriptify</h1>
         <nav>
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
