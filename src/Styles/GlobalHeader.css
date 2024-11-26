@@ -1,0 +1,27 @@
+.globalHeader {
+
+  background-color: rgb(15, 15, 15);
+  border-bottom: 2px solid #5a5a5a ;
+  padding: 2em;
+ 
+  flex-direction: row;
+  display: flex;
+  gap: 10em;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+
+.globalHeader nav{
+    display: flex;
+    gap: 10em;
+    justify-content: end;
+}
+
+.globalHeader nav a{
+    color: white;
+    text-decoration: none;
+}
