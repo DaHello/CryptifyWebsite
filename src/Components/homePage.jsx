@@ -20,25 +20,11 @@ export function HomePage() {
   function closeForm() { return setShowForm(false); }  // hide form
 
   function handleSubmit(e) {
-    
+
   }
 
   function handleLogin(e) {
     e.preventDefault(); // Prevent default form submission
-    const formData = new FormData(e.currentTarget)
-    const result = isLogin 
-      ? await handleLogin(formData)
-      : await handleRegister(formData)
-    
-    if (result.success) {
-      setMessage(result.message)
-      // In a real application, you might want to redirect the user or update the UI
-      // router.push('/dashboard')
-    } else {
-      setMessage("An error occurred. Please try again.")
-    }
-  }
-    
     
     if (username && password) {
       // Assuming successful login
