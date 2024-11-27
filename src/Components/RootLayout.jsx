@@ -8,8 +8,9 @@ export function MainPages() {
   return (
     <div>
       <header className="globalHeader" >
-        <h1>Criptify</h1>
+        <h1>Cryptify</h1>
         <nav>
+          <NavLink to="homepage">Home</NavLink>
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
           {/* active class */}

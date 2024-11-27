@@ -10,6 +10,7 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
+import { HomePage } from './components/homePage';
 
 //css
 import "./styles/GlobalHeader.css";
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
   //similar to <routes>?
   createRoutesFromElements(
     <Route path="/" element={<MainPages />}>
+      <Route path="homepage" element={<HomePage />}></Route>
       <Route path="mainpagetext" element={<MainPageText />}></Route>
       <Route path="mainpagefile" element={<MainPageFile />}></Route>
     </Route>

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import "../styles/Login.css";
 
+//How do I go about passing variables from client side to server side using react app
+
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
