@@ -5,7 +5,7 @@ import "../styles/Login.css";
 
 //How do I go about passing variables from client side to server side using react app
 
-export default function HomePage() {
+export const HomePage = () => {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
   const [username, setUsername] = useState(""); // Store username input
