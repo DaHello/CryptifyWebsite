@@ -3,33 +3,43 @@ import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import "../styles/Login.css";
 
-//How do I go about passing variables from client side to server side using react app
-
-export const HomePage = () => {
+// react jsx components start with capitol letter
+export function HomePage() {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
+  const [formState, setFormState] = useState({ username: "", password: "", email: "" })
   const [username, setUsername] = useState(""); // Store username input
   const [password, setPassword] = useState(""); // Store password input
 
   const navigate = useNavigate(); // Hook for navigating
 
-  // Toggle between login and register form
-  function toggleFormType() {
-    return setIsLogin(!isLogin);
-  }
+  function toggleFormType() { return setIsLogin(!isLogin); } // Toggle between login and register form
 
-  // show form
-  function openForm() {
-    return setShowForm(true);
-  }
+  function openForm() { return setShowForm(true); } // show form
 
-  // hide form
-  function closeForm() {
-    return setShowForm(false);
+  function closeForm() { return setShowForm(false); }  // hide form
+
+  function handleSubmit(e) {
+    
   }
 
   function handleLogin(e) {
     e.preventDefault(); // Prevent default form submission
+    const formData = new FormData(e.currentTarget)
+    const result = isLogin 
+      ? await handleLogin(formData)
+      : await handleRegister(formData)
+    
+    if (result.success) {
+      setMessage(result.message)
+      // In a real application, you might want to redirect the user or update the UI
+      // router.push('/dashboard')
+    } else {
+      setMessage("An error occurred. Please try again.")
+    }
+  }
+    
+    
     if (username && password) {
       // Assuming successful login
       navigate("/dashboard", { state: { username } });
@@ -38,23 +48,22 @@ export const HomePage = () => {
     }
   }
 
-//   if (showForm) {
-//     return;
-//   } else if (!isLogin) {
-//     return;
-//   } else if (isLogin) {
-//     return;
-//   }
-
+  //   if (showForm) {
+  //     return;
+  //   } else if (!isLogin) {
+  //     return;
+  //   } else if (isLogin) {
+  //     return;
+  //   }
   return (
     <div className="page-wrapper">
       <header className="top-bar">
-                <h1 className="logo">Cryptify</h1>
-                <nav className="nav-links">
-                    <a onClick={() => document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' })}>About</a>
-                    <a onClick={openForm}>Login</a>
-                </nav>
-            </header>
+        <h1 className="logo">Cryptify</h1>
+        <nav className="nav-links">
+          <a onClick={() => document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' })}>About</a>
+          <a onClick={openForm}>Login</a>
+        </nav>
+      </header>
 
       {showForm && (
         <div className="overlay" onClick={closeForm}>
@@ -67,28 +76,26 @@ export const HomePage = () => {
                     type="text"
                     placeholder={isLogin ? "Username" : "Username"}
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
+                    onChange={(e) => setFormState({...formState, password: e.target.value})}
+                    required />
                   <FaUser className="icon" />
                 </div>
-      {!isLogin && (
+                {!isLogin && (
                   <div className="input-box">
                     <input type="email" placeholder="Email" required />
                     <FaEnvelope className="icon" />
                   </div>
                 )}
-      <div className="input-box">
+                <div className="input-box">
                   <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                    required />
                   <FaLock className="icon" />
                 </div>
-      {isLogin && (
+                {isLogin && (
                   <div className="remember-forget">
                     <label className="Remember-me">
                       <input type="checkbox" />
@@ -97,9 +104,9 @@ export const HomePage = () => {
                     <a href="#">Forget Password?</a>
                   </div>
                 )}
-      <button type="submit">{isLogin ? "Login" : "Register"}</button>
+                <button type="submit">{isLogin ? "Login" : "Register"}</button>
                 <div className="register-link">
-      <p>
+                  <p>
                     {isLogin
                       ? "Don't have an account?"
                       : "Already have an account?"}{" "}
