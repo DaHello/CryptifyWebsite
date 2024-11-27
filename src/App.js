@@ -10,7 +10,7 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
-import { HomePage } from './components/homePage';
+import { HomePage } from "./components/HomePage";
 
 //css
 import "./styles/GlobalHeader.css";
