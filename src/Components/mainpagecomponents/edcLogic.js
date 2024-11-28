@@ -1,33 +1,38 @@
-// import { FaWineGlassEmpty } from "react-icons/fa6";
+import * as openpgp from 'openpgp'
 
-// const encoder = new TextEncoder();
+export const encryptFile = async (textFile) => {
+  // Define your PGP keys and passphrase
+  const publicKeyArmored = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+...
+-----END PGP PUBLIC KEY BLOCK-----`;
+  const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----
+...
+-----END PGP PRIVATE KEY BLOCK-----`;
+  const passphrase = "trythis";
 
-// export function getKey(userKeyPassword, text) {
-//   crypto.subtle.importKey(
-//     "raw",
-//     encoder.encode(userKeyPassword),
-//     { name: "PBKDF2" },
-//     false,
-//     ["deriveKey"]
-//   );
+  try {
+    // Load the public key
+    const publicKey = await openpgp.readKey({ armoredKey: publicKeyArmored });
 
-//   console.log(userKeyPassword, text);
-// }
+    // Decrypt and load the private key
+    const privateKey = await openpgp.decryptKey({
+      privateKey: await openpgp.readPrivateKey({
+        armoredKey: privateKeyArmored,
+      }),
+      passphrase,
+    });
 
-// //PBKDF2 is also a key derivation function. It's designed to derive key material
-// // from some relatively low-entropy input, such as a password.
+    // Encrypt the provided text
+    const encrypted = await openpgp.encrypt({
+      message: await openpgp.createMessage({ text: textFile }),
+      encryptionKeys: publicKey,
+      signingKeys: privateKey,
+    });
 
-// export function deriveKey(userKeyPassword, salt, keyUsage) {
-//   crypto.subtle.deriveKey(
-//     {
-//       name: "PDBKDF2",
-//       salt: salt,
-//       iterations: 250000,
-//       hash: "SHA-256",
-//     },
-//     userKeyPassword,
-//     { name: "AES-GCM", length: 256 },
-//     false,
-//     ["encrypt", "decrypt"]
-//   );
-// }
+    // Return the encrypted string
+    return encrypted;
+  } catch (error) {
+    console.error("Encryption failed:", error);
+    throw error; // Re-throw the error for further handling
+  }
+};
