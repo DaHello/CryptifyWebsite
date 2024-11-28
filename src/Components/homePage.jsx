@@ -1,5 +1,6 @@
 // src/components/HomePage.js
 import React from "react";
+import "../styles/HomePage.css";
 import "../styles/Login.css";
 
 export function HomePage() {
@@ -7,15 +8,12 @@ export function HomePage() {
     <PageWrapper>
       <HeroSection>
         <HomePageContents />
-      </HeroSection>
+             </HeroSection>
       <AboutSection />
     </PageWrapper>
   );
 }
 
-function Background() {
-
-}
 
 function PageWrapper({ children }) {
   // use the parameter as a placholder for where html is injected from other functions
@@ -24,7 +22,13 @@ function PageWrapper({ children }) {
 
 function HeroSection({ contents }) {
   // This parameter is a placeholder for the contents to be displayed in this section
-  return <section className="hero-section">{contents}</section>;
+  //return <section className="hero-section">{contents}</section>;
+  //
+  return (
+    <section className="hero-section">
+      <h1 className="hero-title">Welcome to Cryptify</h1>
+    </section>
+  );
 }
 
 //display when you click homepage up top
@@ -36,9 +40,9 @@ function HomePageContents() {
         <h2 className="text-3xl font-extrabold text-gray-900">
           Welcome to Cryptify
         </h2>
-        <p1 className="mt-4 text-xl text-gray-500">
+        <p className="mt-4 text-xl text-gray-500">
           Secure your digital life with ease.
-        </p1>
+        </p>
       </div>
     </section>
   );
