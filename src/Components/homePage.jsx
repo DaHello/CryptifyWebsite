@@ -1,5 +1,6 @@
 // src/components/HomePage.js
 import React from "react";
+import log1 from "../images/logo.svg";
 import "../styles/Login.css";
 
 export function HomePage() {
@@ -7,14 +8,14 @@ export function HomePage() {
     <PageWrapper>
       <HeroSection>
         <HomePageContents />
-      </HeroSection>
+             </HeroSection>
       <AboutSection />
     </PageWrapper>
   );
 }
 
-function Background() {
-
+function Picture({ picture }) {
+  <picture  >{picture}</picture>
 }
 
 function PageWrapper({ children }) {
