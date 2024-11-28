@@ -23,12 +23,8 @@ function PageWrapper({ children }) {
 }
 
 function HeroSection({ contents }) {
-  //
-  return (
-    <>
-      <section className="hero-section">{contents}</section>
-    </>
-  );
+  // This parameter is a placeholder for the contents to be displayed in this section
+  return <section className="hero-section">{contents}</section>;
 }
 
 //display when you click homepage up top

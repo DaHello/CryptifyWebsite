@@ -12,7 +12,7 @@ export function MainPages() {
         <header className="globalHeader" >
           <h1>Cryptify</h1>
           <nav>
-            <NavLink to="homepage">Home</NavLink>
+            <NavLink to="homepage" >Home</NavLink>
             <NavLink to="mainpagetext">Text Encryption</NavLink>
             <NavLink to="mainpagefile">File Encryption</NavLink>
             <NavLink to="login">Login/Signup</NavLink>

@@ -21,7 +21,7 @@ export function UseForm() {
         <label>Username</label>
         <input {...register("username", {required: true})} placeholder="username" />
         <label>Password(Required)</label>
-        <input {...register("password", { required: true, maxLength: 10 })} />
+        <input {...register("password", { required: true, maxLength: 10 })} placeholder="password"/>
         {errors.exampleRequired && <p>Password is required.</p>}
         <input type="submit" />
       </>
@@ -32,9 +32,9 @@ export function UseForm() {
     return (
       <>
         <label>Username</label>
-        <input {...register("username")} defaultValue="username" />
+        <input {...register("username")} placeholder="username" />
         <label>Password(Required)</label>
-        <input {...register("password", { required: true, maxLength: 10 })} />
+        <input {...register("password", { required: true, maxLength: 10 })} placeholder="password"/>
         {errors.exampleRequired && <p>Password is required.</p>}
         <input type="submit" />
       </>
