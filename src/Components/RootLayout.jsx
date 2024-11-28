@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
+// styles:
+import "../styles/Login.css";
+
 //Route : the outlet elements tells the route element where and when to render
 //the child routes within the page
 
@@ -8,14 +11,14 @@ import { NavLink, Outlet } from "react-router-dom";
 export function MainPages() { 
   
     return (
-      <div>
+      <div className="page-wrapper">
         <header className="globalHeader" >
-          <h1>Cryptify</h1>
-          <nav>
+          <h1 className="logo" >Cryptify</h1>
+          <nav className="nav-links">
             <NavLink to="homepage" >Home</NavLink>
             <NavLink to="mainpagetext">Text Encryption</NavLink>
             <NavLink to="mainpagefile">File Encryption</NavLink>
-            <NavLink to="login">Login/Signup</NavLink>
+            <NavLink onClick={openForm} to="login">Login/Signup</NavLink>
             {/* active class */}
           </nav>
         </header>
