@@ -3,33 +3,52 @@ import { useDropzone } from "react-dropzone";
 import { DropZoneArea } from "./dropZoneEnc";
 import { useState } from "react";
 import { EncSubmit } from "./encButton";
-import { encryptFile } from "./edcLogic";
+import { toEncryptFile, toDecryptFile} from "./SED";
+
 
 
 
 export const EncFileBox = (e) => {
   const [file, setFile] = useState(null);
   const [fileContents, setFileContent] = useState("");
+  const [key, setKey] = useState("");
+  const [encryptedFileUrl, setEncryptedFileUrl] =useState();
+  const [fileName,setFileName] = useState("")
   function readFile(e) {
-    e.preventDefault(); // Prevent form submission default behavior
+    
+    const uKey = key
+    e.preventDefault(); 
     if (file) {
       const reader = new FileReader();
       reader.onload = async (e) => {
-        // Split file contents by newlines or your desired delimiter
+       
         const contentArray = e.target.result.split(/\r?\n/);
 
-        setFileContent(contentArray); // Store the array in state
-        const encryptedContent =  await encryptFile(contentArray)
-        console.log(encryptedContent); // Log to verify
+        let text = ""
+        
+    
+        for(let i = 0 ; i < contentArray.length; i++ ){
+          text = text + contentArray[i] + "\n"
+        }
+
+        const fileEncrypted = await toEncryptFile(text, uKey)
+      
+        console.log(fileEncrypted)
+        const blob = new Blob([fileEncrypted], {type: file.type})
+        setFileName(file.name);
+
+        const url = URL.createObjectURL(blob)
+        setEncryptedFileUrl(url)
+      
+        setFileContent(contentArray); 
+        
+
       };
-      reader.readAsText(file); // Read file as text
+      reader.readAsText(file); 
     } else {
       alert("No file selected");
     }
   }
-
-
-
 
 
   return (
@@ -42,6 +61,21 @@ export const EncFileBox = (e) => {
             setFile(e.target.files[0]);
           }}
         ></input>
+        <input
+          type="text"
+          onChange={(e) => {
+            setKey(e.target.key);
+          }}
+          value={key}
+          required
+        ></input>
+
+          
+          <a href={encryptedFileUrl} download={fileName}>
+            Download Encrypted File
+          </a>
+      
+
         <DropZoneArea></DropZoneArea>
         <EncSubmit></EncSubmit>
       </form>

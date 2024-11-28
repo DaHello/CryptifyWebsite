@@ -1,17 +1,17 @@
 /* Apply to the entire page */
 body {
-    background-image: url('../images/cLogohome.png'); /* Path to your image */
-    background-size: cover; /* Ensures the image covers the entire page */
-    background-position: center top; /* Positions the image at the top center */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-attachment: fixed; /* Keeps the image in place while scrolling */
-    height: 100%; /* Makes sure the body fills the full page */
-    width: 100%; /* Ensures full width */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    background-image: url('../images/cLogohome.png'); 
+    background-size: cover; 
+    background-position: center top; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
   }
   
-  /* Wrapper for the page content */
+  Wrapper for the page content
   .page-wrapper {
     min-height: 100vh; /* Full screen height */
     width: 100%; /* Ensures full width */
