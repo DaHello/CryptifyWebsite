@@ -1,7 +1,13 @@
 import openpgp from "openpgp";
 import { useDropzone } from "react-dropzone";
+import { DropZoneArea } from "./dropZoneDec";
 
-// export const EncFileBox() => {
+export const EdcFileBox = () => {
 
-//     return;
-// }
+    return (
+      <div className="fileHandlerBox">
+        <input type="file"></input>
+        <DropZoneArea></DropZoneArea>
+      </div>
+    );
+}
