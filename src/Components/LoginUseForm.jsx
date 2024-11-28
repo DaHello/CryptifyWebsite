@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-
-// styles:
+import { useForm } from 'react-hook-form'; // Import useForm
 import '../styles/Login.css';
 
-
-export default function LoginPage() {
+export default function LoginUseForm() {
     const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
     const [showForm, setShowForm] = useState(false); // State to show/hide form
-    const [username, setUsername] = useState(''); // Store username input
-    const [password, setPassword] = useState(''); // Store password input
-    const [email, setEmail] = useState(''); // Store email input (for registration)
     const [users, setUsers] = useState([]); // Store fetched users
     const navigate = useNavigate(); // Hook for navigating
-    
+
+    // Initialize useForm hook
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
     useEffect(() => {
         // Simulate fetching users from a file (mocking it here)
         const fetchUsers = async () => {
-            const response = await fetch('http://localhost:8000/users'); // Replace with actual API call in a real app
+            const response = await fetch('/users.json'); // Replace with actual API call in a real app
             const data = await response.json();
             setUsers(data);
         };
@@ -65,10 +63,10 @@ export default function LoginPage() {
     // Simulate saving users to users.json
     const saveToUsersJson = async (updatedUsers) => {
         // In a real app, you'd make a POST request to save the updated users to a backend.
-        const response = await fetch('http://localhost:8000/users', {
+        const response = await fetch('/save-users', {
             method: 'POST',
             headers: {
-                'Content-Type': 'http://localhost:8000/users',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(updatedUsers),
         });
@@ -94,32 +92,51 @@ export default function LoginPage() {
                 <div className="overlay" onClick={closeForm}>
                     <div className="wrapper" onClick={(e) => e.stopPropagation()}>
                         <div className={`form-box ${isLogin ? 'login' : 'register'}`}>
-                            <form onSubmit={isLogin ? handleLogin : null}>
+                            <form onSubmit={handleSubmit(isLogin ? handleLogin : handleRegister)}>
                                 <h1>{isLogin ? 'Login' : 'Register'}</h1>
+
+                                {/* Username input */}
                                 <div className="input-box">
                                     <input
                                         type="text"
-                                        placeholder={isLogin ? 'Username' : 'Username'}
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        required />
+                                        placeholder="Username"
+                                        {...register('username', { required: 'Username is required' })}
+                                    />
                                     <FaUser className="icon" />
                                 </div>
+                                {errors.username && <p>{errors.username.message}</p>}
+
+                                {/* Email input (only for registration) */}
                                 {!isLogin && (
                                     <div className="input-box">
-                                        <input type="email" placeholder="Email" required />
+                                        <input
+                                            type="email"
+                                            placeholder="Email"
+                                            {...register('email', {
+                                                required: 'Email is required',
+                                                pattern: {
+                                                    value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
+                                                    message: 'Invalid email format',
+                                                },
+                                            })}
+                                        />
                                         <FaEnvelope className="icon" />
                                     </div>
                                 )}
+                                {errors.email && <p>{errors.email.message}</p>}
+
+                                {/* Password input */}
                                 <div className="input-box">
                                     <input
                                         type="password"
                                         placeholder="Password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required />
+                                        {...register('password', { required: 'Password is required' })}
+                                    />
                                     <FaLock className="icon" />
                                 </div>
+                                {errors.password && <p>{errors.password.message}</p>}
+
+                                {/* Remember me and forget password links for login */}
                                 {isLogin && (
                                     <div className="remember-forget">
                                         <label className="Remember-me">
@@ -129,7 +146,11 @@ export default function LoginPage() {
                                         <a href="#">Forget Password?</a>
                                     </div>
                                 )}
+
+                                {/* Submit button */}
                                 <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+
+                                {/* Switch form link */}
                                 <div className="register-link">
                                     <p>
                                         {isLogin ? "Don't have an account?" : "Already have an account?"}{' '}
@@ -143,7 +164,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             )}
-
         </div>
     );
 }
