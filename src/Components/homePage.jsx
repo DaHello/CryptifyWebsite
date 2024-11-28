@@ -1,6 +1,6 @@
 // src/components/HomePage.js
 import React from "react";
-import log1 from "../images/logo.svg";
+import "../styles/HomePage.css";
 import "../styles/Login.css";
 
 export function HomePage() {
@@ -14,9 +14,6 @@ export function HomePage() {
   );
 }
 
-function Picture({ picture }) {
-  <picture  >{picture}</picture>
-}
 
 function PageWrapper({ children }) {
   // use the parameter as a placholder for where html is injected from other functions
@@ -24,11 +21,13 @@ function PageWrapper({ children }) {
 }
 
 function HeroSection({ contents }) {
+  // This parameter is a placeholder for the contents to be displayed in this section
+  //return <section className="hero-section">{contents}</section>;
   //
   return (
-    <>
-      <section className="hero-section">{contents}</section>
-    </>
+    <section className="hero-section">
+      <h1 className="hero-title">Welcome to Cryptify</h1>
+    </section>
   );
 }
 
@@ -41,9 +40,9 @@ function HomePageContents() {
         <h2 className="text-3xl font-extrabold text-gray-900">
           Welcome to Cryptify
         </h2>
-        <p1 className="mt-4 text-xl text-gray-500">
+        <p className="mt-4 text-xl text-gray-500">
           Secure your digital life with ease.
-        </p1>
+        </p>
       </div>
     </section>
   );
@@ -56,7 +55,7 @@ function AboutSection() {
         <h2 className="text-3xl font-extrabold text-gray-900">
           About Cryptify
         </h2>
-        <p2 className="mt-4 text-xl text-gray-500">
+        <p className="mt-4 text-xl text-gray-500">
           Welcome to Cryptify, where protecting your personal information is our
           top priority. In a world where privacy feels harder to come by, we're
           here to make things simple. Cryptify is designed to be easy to use,
@@ -64,7 +63,7 @@ function AboutSection() {
           believe everyone deserves peace of mind online, and we're committed to
           helping you keep your digital life safe and private. Join us in taking
           control of your information, one secure step at a time.
-        </p2>
+        </p>
       </div>
     </section>
   );

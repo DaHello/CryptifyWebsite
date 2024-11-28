@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
-import { useForm } from "react-hook-form";
 
 // styles:
 import "../styles/Login.css";
@@ -13,15 +12,10 @@ import "../styles/Login.css";
 export function MainPages({ loginForm }) {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
+  const [username, setUsername] = useState(""); // Store username input
+  const [password, setPassword] = useState(""); // Store password input
+  const [email, setEmail] = useState(""); // Store email input (for registration)
   const [users, setUsers] = useState([]); // Store fetched users
-
-  // Initialize useForm hook
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
 
   useEffect(() => {
     // Simulate fetching users from a file (mocking it here)
@@ -52,28 +46,31 @@ export function MainPages({ loginForm }) {
     }
   };
 
-  const handleRegister = (data) => {
-    const { username, password, email } = data;
-    // Check if username or email already exists
-    const userExists = users.some(
-      (user) => user.username === username || user.email === email
-    );
-    if (userExists) {
-      alert("Username or email already exists");
-    } else {
-      // Create a new user object
-      const newUser = { username, email, password };
-      // Simulate adding the new user to the users array (mock saving to JSON)
-      const updatedUsers = [...users, newUser];
-      setUsers(updatedUsers);
+  function handleRegister(e) {
+    e.preventDefault(); // Prevent default form submission
+    if (username && password && email) {
+      // Check if username or email already exists
+      const userExists = users.some(
+        (user) => user.username === username || user.email === email
+      );
+      if (userExists) {
+        alert("Username or email already exists");
+      } else {
+        // Create a new user object
+        const newUser = { username, email, password };
+        // Simulate adding the new user to the users array (mock saving to JSON)
+        const updatedUsers = [...users, newUser];
+        setUsers(updatedUsers);
 
-      // Simulate saving the updated users to users.json
-      saveToUsersJson(updatedUsers);
-      alert("Account created successfully");
-      setShowForm(false); // Close the form after successful registration
-      reset(); // Reset form fields
+        // Simulate saving the updated users to users.json
+        saveToUsersJson(updatedUsers);
+        alert("Account created successfully");
+        setShowForm(false); // Close the form after successful registration
+      }
+    } else {
+      alert("Please fill in all fields");
     }
-  };
+  }
 
   // Simulate saving users to users.json
   const saveToUsersJson = async (updatedUsers) => {
@@ -81,7 +78,7 @@ export function MainPages({ loginForm }) {
     const response = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
-        users: "http://localhost:8000/users",
+        "users": "http://localhost:8000/users",
       },
       body: JSON.stringify(updatedUsers),
     });
@@ -103,9 +100,7 @@ export function MainPages({ loginForm }) {
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
           {/* <NavLink onClick={openForm} to="login">Login/Signup</NavLink> */}
-          <a type="button" href="#" onClick={openForm}>
-            Login or Signup
-          </a>
+          <a type="button" href="#" onClick={ openForm } >Login or Signup</a>
           {/* active class */}
         </nav>
       </header>
@@ -120,58 +115,34 @@ export function MainPages({ loginForm }) {
         <div className="overlay" onClick={closeForm}>
           <div className="wrapper" onClick={(e) => e.stopPropagation()}>
             <div className={`form-box ${isLogin ? "login" : "register"}`}>
-              <form
-                onSubmit={handleSubmit(isLogin ? handleLogin : handleRegister)}
-              >
+              <form onSubmit={isLogin ? handleLogin : handleRegister}>
                 <h1>{isLogin ? "Login" : "Register"}</h1>
-
-                {/* Username input */}
                 <div className="input-box">
                   <input
                     type="text"
-                    placeholder="Username"
-                    {...register("username", {
-                      required: "Username is required",
-                    })}
+                    placeholder={isLogin ? "Username" : "Username"}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                   <FaUser className="icon" />
                 </div>
-                {errors.username && <p>{errors.username.message}</p>}
-
-                {/* Email input (only for registration) */}
                 {!isLogin && (
                   <div className="input-box">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                          value:
-                            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
-                          message: "Invalid email format",
-                        },
-                      })}
-                    />
+                    <input type="email" placeholder="Email" required />
                     <FaEnvelope className="icon" />
                   </div>
                 )}
-                {errors.email && <p>{errors.email.message}</p>}
-
-                {/* Password input */}
                 <div className="input-box">
                   <input
                     type="password"
                     placeholder="Password"
-                    {...register("password", {
-                      required: "Password is required",
-                    })}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                   <FaLock className="icon" />
                 </div>
-                {errors.password && <p>{errors.password.message}</p>}
-
-                {/* Remember me and forget password links for login */}
                 {isLogin && (
                   <div className="remember-forget">
                     <label className="Remember-me">
@@ -181,17 +152,13 @@ export function MainPages({ loginForm }) {
                     <a href="#">Forget Password?</a>
                   </div>
                 )}
-
-                {/* Submit button */}
                 <button type="submit">{isLogin ? "Login" : "Register"}</button>
-
-                {/* Switch form link */}
                 <div className="register-link">
                   <p>
                     {isLogin
                       ? "Don't have an account?"
                       : "Already have an account?"}{" "}
-                    <a href="#" onClick={toggleFormType}>
+                    <a type="button" href="#" onClick={toggleFormType}>
                       {isLogin ? "Register" : "Login"}
                     </a>
                   </p>

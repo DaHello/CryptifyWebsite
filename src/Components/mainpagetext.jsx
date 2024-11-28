@@ -6,7 +6,7 @@ import "../styles/mainPage.css";
 // This container holds all the forms for text encryption and decryption
 export function MainPageText() {
   return (
-    <div className="container">
+    <div className="containerText">
       {/* <Header></Header> */}
       <EncForm>Encryption</EncForm>
       <DecForm>Decryption</DecForm>

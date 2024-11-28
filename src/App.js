@@ -10,8 +10,10 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
-import { UseForm } from "./components/mainpagecomponents/UseForm";
+//import { UseForm } from "./components/mainpagecomponents/UseForm";
 import { HomePage } from "./components/homePage";
+//import { AuthForm } from "./components/mainpagecomponents/AuthForm";
+//import { LoginUseForm } from "./components/LoginUseForm";
 
 //css
 import "./styles/GlobalHeader.css";
@@ -39,7 +41,7 @@ const router = createBrowserRouter(
       <Route path="homepage" element={<HomePage />}></Route>
       <Route path="mainpagetext" element={<MainPageText />}></Route>
       <Route path="mainpagefile" element={<MainPageFile />}></Route>
-      <Route path="login" element={<UseForm />}></Route>
+      {/* <Route path="login" element={<LoginUseForm />}></Route> */}
     </Route>
   )
 );
