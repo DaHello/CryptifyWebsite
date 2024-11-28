@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from "react";
+import React from "react";
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 //import NavBar from "./components/NavBar"; // navigation bar
 //import Home from "./components/Home"; // about us and other info
@@ -10,11 +10,13 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
-import { HomePage } from "./components/Test";
+import { UseForm } from "./components/mainpagecomponents/UseForm";
+import { HomePage } from "./components/HomePage";
 
 //css
 import "./styles/GlobalHeader.css";
 import "./styles/App.css";
+
 //import "./styles/Login.css";
 
 /* 
@@ -31,11 +33,13 @@ inside of the <MainPage {var/object} /> for example.
 //tree of routes
 const router = createBrowserRouter(
   //similar to <routes>?
+  // for homepage insert at top: <Route path="homepage" element={<HomePage />}></Route>
   createRoutesFromElements(
     <Route path="/" element={<MainPages />}>
       <Route path="homepage" element={<HomePage />}></Route>
       <Route path="mainpagetext" element={<MainPageText />}></Route>
       <Route path="mainpagefile" element={<MainPageFile />}></Route>
+      <Route path="login" element={<UseForm />}></Route>
     </Route>
   )
 );

@@ -1,7 +1,10 @@
 // src/components/HomePage.js
+//imports:
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+
+//styles
 import "../styles/Login.css";
 
 export function HomePage() {
@@ -39,7 +42,7 @@ export function HomePage() {
   );
 }
 
-function PageWrapper({ children }) {
+function PageWrapper({ children }) { // use the parameter as a placholder for where html is injected from other functions
   return <div className="page-wrapper">{children}</div>;
 }
 
@@ -145,7 +148,7 @@ function FormBox({ isLogin, formState, updateField, toggleFormType, submitHandle
           onChange={(e) => updateField("password", e.target.value)}
           icon={<FaLock />}
         />
-        {isLogin && <RememberForget />}
+        {isLogin}
         <button type="submit">{isLogin ? "Login" : "Register"}</button>
         <FormToggle isLogin={isLogin} toggleFormType={toggleFormType} />
       </form>
@@ -158,18 +161,6 @@ function InputField({ type, placeholder, value, onChange, icon }) {
     <div className="input-box">
       <input type={type} placeholder={placeholder} value={value} onChange={onChange} required />
       {icon}
-    </div>
-  );
-}
-
-function RememberForget() {
-  return (
-    <div className="remember-forget">
-      <label>
-        <input type="checkbox" />
-        Remember me
-      </label>
-      <a href="#">Forget Password?</a>
     </div>
   );
 }
@@ -188,20 +179,42 @@ function FormToggle({ isLogin, toggleFormType }) {
 }
 
 function HeroSection() {
-  return <section className="hero-section">{/* Hero content */}</section>;
+  return (
+  <section className="hero-section">
+    {
+    /* Hero content */
+  <HomePageContents />
+  }</section>
+);
+}
+
+//display when you click homepage up top
+function HomePageContents() { // this is what displays alongside AboutSection
+  return (
+    <section id="root" className="homepage-contents">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold text-gray-900">Welcome to Cryptify</h2>
+          <p className="mt-4 text-xl text-gray-500">Secure your digital life with ease.</p>
+        </div>
+    </section>
+  )
 }
 
 function AboutSection() {
   return (
     <section id="about-section" className="about-section">
-      <h2>About Cryptify</h2>
-      <p>
-        Welcome to Cryptify, where protecting your personal information is our
-        top priority. In a world where privacy feels harder to come by, we’re
-        here to make things simple. Cryptify is designed to be easy to use,
-        giving you powerful tools to secure your data without the hassle. Join
-        us in taking control of your information, one secure step at a time.
-      </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold text-gray-900">About Cryptify</h2>
+          <p className="mt-4 text-xl text-gray-500">
+            Welcome to Cryptify, where protecting your personal information is our
+            top priority. In a world where privacy feels harder to come by, we're
+            here to make things simple. Cryptify is designed to be easy to use,
+            giving you powerful tools to secure your data without the hassle. We
+            believe everyone deserves peace of mind online, and we're committed to
+            helping you keep your digital life safe and private. Join us in taking
+            control of your information, one secure step at a time.
+          </p>
+        </div>
     </section>
   );
 }
