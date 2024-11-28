@@ -1,0 +1,84 @@
+/* Apply to the entire page */
+body {
+    background-image: url('../images/cLogohome.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-position: center top; /* Positions the image at the top center */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Keeps the image in place while scrolling */
+    height: 100%; /* Makes sure the body fills the full page */
+    width: 100%; /* Ensures full width */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  
+  /* Wrapper for the page content */
+  .page-wrapper {
+    min-height: 100vh; /* Full screen height */
+    width: 100%; /* Ensures full width */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Hero section */
+  .hero-section {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-section h1,
+  .hero-section p {
+    color: white; /* Change text color to white for contrast */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .hero-section h1 {
+    font-size: 4rem; /* Increase the size of the main heading */
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Adds space below the title */
+  }
+  
+  .hero-section p {
+    font-size: 1.5rem; /* Smaller font size for the subtitle */
+    margin-top: 0; /* Removes default margin */
+    margin-bottom: 1rem; /* Adds space below the subtitle */
+    display: block; /* Ensures it's displayed on a new line */
+  }
+
+  .hero-title {
+    font-size: 4rem; /* Title size */
+    font-weight: bold;
+    margin-bottom: 1rem; /* Adds space between the title and subtitle */
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem; /* Subtitle size */
+    margin-top: 0; /* Removes any default margin */
+    margin-bottom: 1rem; /* Adds space below the subtitle */
+    display: block; /* Ensures it's displayed on a new line */
+  }
+  
+  
+  /* Glow effect for both title and subtitle */
+  .hero-section h1:hover,
+  .hero-section p:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.6); /* Glowing effect */
+  }
+  
+  /* Glow effect for About Section */
+  .about-section h2,
+  .about-section p {
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  /* Glow effect on hover */
+  .about-section h2:hover,
+  .about-section p:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.6); /* Glowing effect */
+  }
+  
+  /* About Section Styling */
+  #about-section {
+    padding: 4rem 2rem;
+    background-color: transparent; /* Ensure no unwanted background color */
+    color: white; /* Text color for about section */
+  }

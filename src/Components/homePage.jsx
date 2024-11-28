@@ -1,6 +1,6 @@
 // src/components/HomePage.js
 import React from "react";
-import log1 from "../images/logo.svg";
+import "../styles/HomePage.css";
 import "../styles/Login.css";
 
 export function HomePage() {
@@ -14,9 +14,6 @@ export function HomePage() {
   );
 }
 
-function Picture({ picture }) {
-  <picture  >{picture}</picture>
-}
 
 function PageWrapper({ children }) {
   // use the parameter as a placholder for where html is injected from other functions
@@ -26,9 +23,9 @@ function PageWrapper({ children }) {
 function HeroSection({ contents }) {
   //
   return (
-    <>
-      <section className="hero-section">{contents}</section>
-    </>
+    <section className="hero-section">
+      <h1 className="hero-title">Welcome to Cryptify</h1>
+    </section>
   );
 }
 
@@ -41,9 +38,9 @@ function HomePageContents() {
         <h2 className="text-3xl font-extrabold text-gray-900">
           Welcome to Cryptify
         </h2>
-        <p1 className="mt-4 text-xl text-gray-500">
+        <p className="mt-4 text-xl text-gray-500">
           Secure your digital life with ease.
-        </p1>
+        </p>
       </div>
     </section>
   );
