@@ -1,128 +1,71 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+// src/components/HomePage.js
+import React from "react";
+import log1 from "../images/logo.svg";
 import "../styles/Login.css";
 
-// react jsx components start with capitol letter
 export function HomePage() {
-  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
-  const [showForm, setShowForm] = useState(false); // State to show/hide form
-  const [formState, setFormState] = useState({ username: "", password: "", email: "" })
-  const [username, setUsername] = useState(""); // Store username input
-  const [password, setPassword] = useState(""); // Store password input
-
-  const navigate = useNavigate(); // Hook for navigating
-
-  function toggleFormType() { return setIsLogin(!isLogin); } // Toggle between login and register form
-
-  function openForm() { return setShowForm(true); } // show form
-
-  function closeForm() { return setShowForm(false); }  // hide form
-
-  function handleSubmit(e) {
-
-  }
-
-  function handleLogin(e) {
-    e.preventDefault(); // Prevent default form submission
-    
-    if (username && password) {
-      // Assuming successful login
-      navigate("/dashboard", { state: { username } });
-    } else {
-      alert("Please enter both username and password");
-    }
-  }
-
-  //   if (showForm) {
-  //     return;
-  //   } else if (!isLogin) {
-  //     return;
-  //   } else if (isLogin) {
-  //     return;
-  //   }
   return (
-    <div className="page-wrapper">
-      <header className="top-bar">
-        <h1 className="logo">Cryptify</h1>
-        <nav className="nav-links">
-          <a onClick={() => document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' })}>About</a>
-          <a onClick={openForm}>Login</a>
-        </nav>
-      </header>
+    <PageWrapper>
+      <HeroSection>
+        <HomePageContents />
+             </HeroSection>
+      <AboutSection />
+    </PageWrapper>
+  );
+}
 
-      {showForm && (
-        <div className="overlay" onClick={closeForm}>
-          <div className="wrapper" onClick={(e) => e.stopPropagation()}>
-            <div className={`form-box ${isLogin ? "login" : "register"}`}>
-              <form onSubmit={isLogin ? handleLogin : null}>
-                <h1>{isLogin ? "Login" : "Register"}</h1>
-                <div className="input-box">
-                  <input
-                    type="text"
-                    placeholder={isLogin ? "Username" : "Username"}
-                    value={username}
-                    onChange={(e) => setFormState({...formState, password: e.target.value})}
-                    required />
-                  <FaUser className="icon" />
-                </div>
-                {!isLogin && (
-                  <div className="input-box">
-                    <input type="email" placeholder="Email" required />
-                    <FaEnvelope className="icon" />
-                  </div>
-                )}
-                <div className="input-box">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required />
-                  <FaLock className="icon" />
-                </div>
-                {isLogin && (
-                  <div className="remember-forget">
-                    <label className="Remember-me">
-                      <input type="checkbox" />
-                      Remember me
-                    </label>
-                    <a href="#">Forget Password?</a>
-                  </div>
-                )}
-                <button type="submit">{isLogin ? "Login" : "Register"}</button>
-                <div className="register-link">
-                  <p>
-                    {isLogin
-                      ? "Don't have an account?"
-                      : "Already have an account?"}{" "}
-                    <a href="#" onClick={toggleFormType}>
-                      {isLogin ? "Register" : "Login"}
-                    </a>
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
+function Picture({ picture }) {
+  <picture  >{picture}</picture>
+}
 
-      <section className="hero-section">
-        {/* Content can be added here if needed */}
-      </section>
+function PageWrapper({ children }) {
+  // use the parameter as a placholder for where html is injected from other functions
+  return <div className="page-wrapper">{children}</div>;
+}
 
-      <section id="about-section" className="about-section">
-        <h2>About Cryptify</h2>
-        <p>
+function HeroSection({ contents }) {
+  //
+  return (
+    <>
+      <section className="hero-section">{contents}</section>
+    </>
+  );
+}
+
+//display when you click homepage up top
+function HomePageContents() {
+  // this is what displays alongside AboutSection
+  return (
+    <section className="homepage-contents">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-gray-900">
+          Welcome to Cryptify
+        </h2>
+        <p1 className="mt-4 text-xl text-gray-500">
+          Secure your digital life with ease.
+        </p1>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section id="about-section" className="about-section">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-gray-900">
+          About Cryptify
+        </h2>
+        <p2 className="mt-4 text-xl text-gray-500">
           Welcome to Cryptify, where protecting your personal information is our
-          top priority. In a world where privacy feels harder to come by, we’re
+          top priority. In a world where privacy feels harder to come by, we're
           here to make things simple. Cryptify is designed to be easy to use,
           giving you powerful tools to secure your data without the hassle. We
           believe everyone deserves peace of mind online, and we're committed to
           helping you keep your digital life safe and private. Join us in taking
           control of your information, one secure step at a time.
-        </p>
-      </section>
-    </div>
+        </p2>
+      </div>
+    </section>
   );
 }
