@@ -11,7 +11,7 @@ import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
 import { UseForm } from "./components/mainpagecomponents/UseForm";
-import { HomePage } from "./components/HomePage";
+import { HomePage } from "./components/homePage";
 
 //css
 import "./styles/GlobalHeader.css";
