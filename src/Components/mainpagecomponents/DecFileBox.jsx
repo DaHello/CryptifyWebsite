@@ -8,31 +8,23 @@ import sjcl from "sjcl";
 
 
 
-function arrayBufferToBase64(buffer) {
-  const bytes = new Uint8Array(buffer);
-  let binary = "";
-  bytes.forEach((byte) => {
-    binary += String.fromCharCode(byte);
-  });
-  return btoa(binary); // Base64 encode
-}
 
-
-function base64ToArrayBuffer(base64) {
-  const binaryString = atob(base64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
+function frombitArrayCodec(arr) { 
+  var out = [], bl = sjcl.bitArray.bitLength(arr), i, tmp;
+  for (i=0; i<bl/8; i++){
+    if((i&3)===0){
+      tmp = arr[i/4];
+    }
+    out.push(tmp>>>24);
+    tmp <<=8;
   }
-    return bytes.buffer; 
+  return out;
 }
-
 
 export const EdcFileBox = () => {
   
   const [file, setFile] = useState(null);
-  const [fileContents, setFileContent] = useState("");
+
   const [key, setKeyFileDec] = useState("");
   const [decryptedFileUrl, setDecryptedFileUrl] = useState();
   const [fileName, setFileName] = useState("");
@@ -62,16 +54,19 @@ export const EdcFileBox = () => {
         
        
         }else{
-          const base64Data = arrayBufferToBase64(decData)
-          console.log(JSON.parse(base64Data))
-          const f =JSON.parse(base64Data)
-          const dataDecrypted64 = sjcl.decrypt(key, f)
 
-          const dataDecrypted = base64ToArrayBuffer(dataDecrypted64)
+          
+          const dataDecrypted64 = sjcl.decrypt(key, decData)
+
+          const dataDecrypted = sjcl.codec.base64.toBits(dataDecrypted64)
+          const byteNumbers = frombitArrayCodec(dataDecrypted)
+          const byteArray = new Uint8Array(byteNumbers)
+          console.log(byteArray)
+
 
      
-          console.log(dataDecrypted);
-          const blob = new Blob([dataDecrypted], { decData: file.type });
+          console.log(byteArray);
+          const blob = new Blob([byteArray], { type : file.type });
           setFileName(file.name);
 
           const url = URL.createObjectURL(blob);
@@ -86,7 +81,8 @@ export const EdcFileBox = () => {
       if(file.type.startsWith('text')){
         reader.readAsText(file);
       }else{
-        reader.readAsArrayBuffer(file);
+        //reader.readAsArrayBuffer(file);
+        reader.readAsText(file)
       }
       
     } else {
