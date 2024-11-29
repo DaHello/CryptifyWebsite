@@ -4,40 +4,91 @@ import { useState } from "react";
 import { DropZoneArea } from "./dropZoneDec";
 import { DecSubmit } from "./decButton";
 import {toDecryptFile} from "./SED";
+import sjcl from "sjcl";
+
+
+
+function arrayBufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary); // Base64 encode
+}
+
+
+function base64ToArrayBuffer(base64) {
+  const binaryString = atob(base64);
+  const len = binaryString.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+  }
+    return bytes.buffer; 
+}
+
 
 export const EdcFileBox = () => {
   
   const [file, setFile] = useState(null);
   const [fileContents, setFileContent] = useState("");
-  const [key, setKey] = useState("");
+  const [key, setKeyFileDec] = useState("");
   const [decryptedFileUrl, setDecryptedFileUrl] = useState();
   const [fileName, setFileName] = useState("");
-  function readFile(e) {
-    const uKey = key;
+  function readsFile(e) {
+    
     e.preventDefault();
+    const password = {key}
     if (file) {
       const reader = new FileReader();
       reader.onload = async (e) => {
-        const contentArray = e.target.result.split(/\r?\n/);
-
-        let text = "";
-
-        for (let i = 0; i < contentArray.length; i++) {
-          text = text + contentArray[i] + "\n";
-        }
+        const decData = e.target.result;
+        console.log(password.key)
 
       
-        const fileDecrypted = await toDecryptFile(text, uKey);
-        console.log(fileDecrypted);
-        const blob = new Blob([fileDecrypted], { type: file.type });
-        setFileName(file.name);
 
-        const url = URL.createObjectURL(blob);
-        setDecryptedFileUrl(url);
-        console.log(fileDecrypted);
-        setFileContent(contentArray);
+  
+        console.log(decData, ": decData")
+
+        if(file.type.startsWith('text')){
+          const dataDecrypted = sjcl.decrypt(key, decData)
+          console.log(dataDecrypted);
+          const blob = new Blob([dataDecrypted], { decData: file.type });
+          setFileName(file.name);
+
+          const url = URL.createObjectURL(blob);
+          setDecryptedFileUrl(url);
+        
+       
+        }else{
+          const base64Data = arrayBufferToBase64(decData)
+          console.log(JSON.parse(base64Data))
+          const f =JSON.parse(base64Data)
+          const dataDecrypted64 = sjcl.decrypt(key, f)
+
+          const dataDecrypted = base64ToArrayBuffer(dataDecrypted64)
+
+     
+          console.log(dataDecrypted);
+          const blob = new Blob([dataDecrypted], { decData: file.type });
+          setFileName(file.name);
+
+          const url = URL.createObjectURL(blob);
+          setDecryptedFileUrl(url);
+        
+
+        }
+      
+      
+
       };
-      reader.readAsText(file);
+      if(file.type.startsWith('text')){
+        reader.readAsText(file);
+      }else{
+        reader.readAsArrayBuffer(file);
+      }
+      
     } else {
       alert("No file selected");
     }
@@ -46,21 +97,23 @@ export const EdcFileBox = () => {
 
   return (
       <div className="fileHandlerBox">
-        <form onSubmit={readFile}>
+        <form onSubmit={readsFile}>
           <input
             type="file"
-            hmtlFor="fileEnc"
+            hmtlFor="fileDec"
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
           ></input>
           <input
             type="text"
+                     required
+               value={key}
+   
             onChange={(e) => {
-              setKey(e.target.key);
+              setKeyFileDec(e.target.value);
             }}
-            value={key}
-            required
+         
           ></input>
 
           <a href={decryptedFileUrl} download={fileName}>

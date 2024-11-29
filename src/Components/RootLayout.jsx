@@ -99,7 +99,7 @@ export function MainPages({ loginForm }) {
       <header className="globalHeader">
         <h1 className="logo">Cryptify</h1>
         <nav className="nav-links">
-          <NavLink to="homepage">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
           {/* <NavLink onClick={openForm} to="login">Login/Signup</NavLink> */}

@@ -125,14 +125,8 @@ export const EncForm = () => {
       ></textarea>
 
       <label htmlFor="key">Key</label>
-      <input
-        placeholder="Key for encryption data..."
-        type="text"
-        className="keyBox"
-        required
-        value={key}
-        onChange={(e) => setKey(e.target.value)}
-      ></input>
+      <input placeholder="Key for encryption data..." type="text" className="keyBox"  
+      required value={key} onChange={(e) => setKey(e.target.value)} ></input>
 
       <label htmlFor="maybe-output2">Encrypted text</label>
       <textarea
