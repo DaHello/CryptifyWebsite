@@ -13,7 +13,11 @@ import "../styles/Login.css";
 export function MainPages() {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
-  const [user, setUser] = useState({}); // state is an object, can have anything inside it
+  const [currentUser, setCurrentUser] = useState(
+    //username:"",
+    //email:"",
+    //password:""
+  ); // state is an object, can have anything inside it
   const [data, setData] = useState([]); // Store fetched data as an array of objects
   //const [log, setLog] = useState([]); // Store fetched array of objects for logs for each user, 
                                       // each user object has an array of log objects inside it
@@ -31,6 +35,7 @@ export function MainPages() {
     const fetchData = async () => {
       const response = await fetch("http://localhost:8000/users"); // Replace with actual API call in a real app
       setData( await response.json() ); // data is an array of objects, gotten from the json file
+      
     };
 
     // const fetchLogs = async () => {
@@ -56,22 +61,22 @@ export function MainPages() {
       // Old code: navigate('/dashboard', { state: { username } });
       console.log(foundUser.username + " was found. Login successful.");
       closeForm(); // close the form
+
+      // redirect to the page with their name and no login feature or sign up option.
     } else {
       console.log(foundUser.username + " password or username incorrect or does not exist.")
       alert("Invalid username or password, or user does not exist.");
     }
   };
 
-  const handleRegister = (clientInfo) => { // pass data from json file
-    const { username, email, password } = clientInfo; // object patterm of user info entered by client
-    const userExists = data.some( // Check if username already exists in data object from json
-      (user) => { // boolean function to check if user exists with username, will return true if case
-        return user.username === username;
-      } 
-    );
-    const emailExists = data.some( // check if email exists 
-      (user) => user.email === email
-    );
+  const handleRegister = (clientInfo) => { // pass info entered by user
+    const { username, email, password } = clientInfo; // break userInfo into object pattern of client entered data
+    console.log(data); // AFTER running useEffect
+
+    // Check if username or email exists already in data object from json
+    const userExists = data.some( (user) => { return user.username === username; } );
+    const emailExists = data.some( (user) => { return user.email === email } ); // boolean function to check if user exists with username, will return true if case
+
     if (userExists ) { // if username is in use
       console.log(`${username} already exists.`);
       alert("Username already exists.");
@@ -79,17 +84,20 @@ export function MainPages() {
       console.log(`${email} already in use.`);
       alert("Email already in use.");
     } else {
-      // Create a new user object
-      const newUser = { username, email, password };
       
-      // Simulate adding the newUser to data (mock saving to JSON)
-      setUser(newUser);
+      // Set the current user as this user, this data can be found AFTER running this function
+      setCurrentUser( {username, email, password} );
 
-      // Simulate saving the updated users to users.json
-      saveToDbJson(newUser);
+      // Simulate saving the updated users to db.json
+      saveToDbJson( {username, email, password} );
+  
       alert("Account created successfully.");
       setShowForm(false); // Close the form after successful registration
-      reset(); // Reset form fields
+
+      // redirect to new RootLayoutPage after user is logged in:
+
+
+      reset(); // Reset form fields (MIGHT CAUSE ISSUES WITH getting currentUser name)
     }
   };
 

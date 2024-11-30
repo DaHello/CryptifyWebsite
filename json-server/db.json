@@ -5,18 +5,6 @@
       "username": "user1",
       "email": "user1@mail.com",
       "password": "password123"
-    },
-    {
-      "id": "2",
-      "username": "user2",
-      "email": "user2@mail.com",
-      "password": "password456"
-    },
-    {
-      "id": "3",
-      "username": "Bob",
-      "email": "Bob@gmail.com",
-      "password": "kjfjbdskjdbfebf7378r"
     }
   ],
   "logs": [
