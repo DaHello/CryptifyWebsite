@@ -1,9 +1,6 @@
-import openpgp from "openpgp";
-import { useDropzone } from "react-dropzone";
+
 import { useState } from "react";
-import { DropZoneArea } from "./dropZoneDec";
 import { DecSubmit } from "./decButton";
-import {toDecryptFile} from "./SED";
 import sjcl from "sjcl";
 
 
@@ -81,7 +78,7 @@ export const EdcFileBox = () => {
       if(file.type.startsWith('text')){
         reader.readAsText(file);
       }else{
-        //reader.readAsArrayBuffer(file);
+
         reader.readAsText(file)
       }
       
@@ -93,15 +90,21 @@ export const EdcFileBox = () => {
 
   return (
       <div className="fileHandlerBox">
-        <form onSubmit={readsFile}>
+        <form onSubmit={readsFile} className="formBox">
+          <h2>File Decryption</h2>
           <input
+            className="Browse"
             type="file"
             hmtlFor="fileDec"
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
           ></input>
+
+          <label for="inputKey">Key</label>
           <input
+          placeholder="Your password goes here..."
+            id ="inputKey" className="inputKey"
             type="text"
                      required
                value={key}
@@ -112,12 +115,14 @@ export const EdcFileBox = () => {
          
           ></input>
 
+
+          <DecSubmit></DecSubmit>
+
+          
           <a href={decryptedFileUrl} download={fileName}>
             Download Decrypted File
           </a>
 
-          <DropZoneArea></DropZoneArea>
-          <DecSubmit></DecSubmit>
         </form>
       </div>
   );

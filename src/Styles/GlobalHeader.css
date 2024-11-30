@@ -6,7 +6,7 @@
  
   flex-direction: row;
   display: flex;
-  gap: 10em;
+
   color: white;
   align-items: center;
   justify-content: space-between;
@@ -16,12 +16,23 @@
 
 
 .globalHeader nav{
-    display: flex;
-    gap: 10em;
-    justify-content: end;
+    overflow: hidden;
+
+
 }
 
 .globalHeader nav a{
+    float: left;
+    text-align: center;
     color: white;
     text-decoration: none;
+}
+
+
+@media  screen and (max-width: 870px) {
+  nav a{
+    float:none;
+    display: block;
+    text-align: left;
+  }
 }
