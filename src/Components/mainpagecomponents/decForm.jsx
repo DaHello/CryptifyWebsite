@@ -57,7 +57,8 @@ export const DecForm = () =>{
       );
       return dec.decode(decryptedContent);
     } catch (e) {
-      console.log(`Error - ${e}`);
+     
+      alert("Please, make sure you are using the correct password")
       return "";
     }
   }
@@ -68,7 +69,7 @@ export const DecForm = () =>{
 
     setOutPutDec(decrypted)
 
-    console.log(decrypted)
+ 
   }
   return (
     <form className="genForm" onSubmit={handleSubmitDec}>

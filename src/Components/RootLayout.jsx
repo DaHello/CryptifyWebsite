@@ -176,6 +176,11 @@ export function MainPages() {
       {/* to output page components, can pass variables through context */}
       <main>
         <Outlet context={currentUser.username} />
+      {/* to output page components */}
+      {/*Put your page if you want to */}
+        <footer>
+          <p>AR-CA-SA : <a href="https://github.com/AR-CA-SA">Github</a></p>
+          </footer>
       </main>
 
       {/* Login Form to be displayed throughout different pages */}

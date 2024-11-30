@@ -28,46 +28,55 @@ export const EdcFileBox = () => {
   function readsFile(e) {
     
     e.preventDefault();
-    const password = {key}
+
     if (file) {
       const reader = new FileReader();
       reader.onload = async (e) => {
         const decData = e.target.result;
-        console.log(password.key)
+
 
       
 
   
-        console.log(decData, ": decData")
+
 
         if(file.type.startsWith('text')){
-          const dataDecrypted = sjcl.decrypt(key, decData)
-          console.log(dataDecrypted);
-          const blob = new Blob([dataDecrypted], { decData: file.type });
-          setFileName(file.name);
+          try{
+            const dataDecrypted = sjcl.decrypt(key, decData)
+            console.log(dataDecrypted);
+            const blob = new Blob([dataDecrypted], { decData: file.type });
+            setFileName(file.name);
 
-          const url = URL.createObjectURL(blob);
-          setDecryptedFileUrl(url);
+            const url = URL.createObjectURL(blob);
+            setDecryptedFileUrl(url);
+          }catch(error){
+            alert("Please, make sure you are using the correct password")
+          }
+
         
        
         }else{
 
-          
+          try{
           const dataDecrypted64 = sjcl.decrypt(key, decData)
 
           const dataDecrypted = sjcl.codec.base64.toBits(dataDecrypted64)
           const byteNumbers = frombitArrayCodec(dataDecrypted)
           const byteArray = new Uint8Array(byteNumbers)
-          console.log(byteArray)
+   
 
 
      
-          console.log(byteArray);
+
           const blob = new Blob([byteArray], { type : file.type });
           setFileName(file.name);
 
           const url = URL.createObjectURL(blob);
           setDecryptedFileUrl(url);
+          }catch(error){
+            alert("Please, make sure you are using the correct password")
+          }
+
         
 
         }
@@ -119,11 +128,18 @@ export const EdcFileBox = () => {
           <DecSubmit></DecSubmit>
 
           
-          <a href={decryptedFileUrl} download={fileName}>
+          <a href={decryptedFileUrl} download={fileName} style={{color:decryptedFileUrl ? "black":"rgb(103, 103, 103)", textDecoration:decryptedFileUrl ? 
+          "none":"none", backgroundColor:decryptedFileUrl ? "rgb(231, 208, 63)":"rgb(46, 46, 46)",}}>
             Download Decrypted File
           </a>
 
         </form>
+
+          <div className="instructions">
+            <h2>Instructions for file Decryption</h2>
+            <p>Use the same password that you created when encrypting the file.</p>
+            <p>Files will be available to download after decryption; a password is required.</p>
+          </div>
       </div>
   );
 }

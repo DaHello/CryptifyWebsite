@@ -7,6 +7,7 @@ export const MainPageFile = () => {
   return (
     <div className="containerFile">
       <EncFileBox></EncFileBox>
+
       <EdcFileBox></EdcFileBox>
     </div>
   );

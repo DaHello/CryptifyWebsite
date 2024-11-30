@@ -45,7 +45,7 @@ export const EncFileBox = () => {
   const [fileName,setFileName] = useState("")
   function readFile(e) {
 
-    const password = {key}
+
     
 
     e.preventDefault(); 
@@ -58,8 +58,7 @@ export const EncFileBox = () => {
         
     
     
-        
-        console.log(password.key)
+
 
 
         if(file.type.startsWith('text')){
@@ -78,32 +77,18 @@ export const EncFileBox = () => {
   
 
         }else{
-          console.log(text, "when not text")
+
           const bytes = new Uint8Array(text)
           const bits = toBitArrayCodec(bytes)
           const base64Data = sjcl.codec.base64.fromBits(bits)
           const dataEncrypted = sjcl.encrypt(key,base64Data)
       
-          console.log(dataEncrypted)
-          // const dataDecrypted = sjcl.decrypt(key,dataEncrypted)
-          // console.log(dataDecrypted)
-
-
-
-
-          
-
-
           const blob = new Blob([dataEncrypted], {type: file.type})
           setFileName(file.name);
 
           const url = URL.createObjectURL(blob)
           setEncryptedFileUrl(url)
-      
-
-        }
-
-        
+        }   
 
       };
       if(file.type.startsWith('text')){
@@ -141,11 +126,21 @@ export const EncFileBox = () => {
 
         <EncSubmit></EncSubmit>
                 
-        <a href={encryptedFileUrl} download={fileName}>
+        <a href={encryptedFileUrl} download={fileName} style={{color:encryptedFileUrl ? "black":"rgb(103, 103, 103)", textDecoration:encryptedFileUrl ? 
+          "none":"none", backgroundColor:encryptedFileUrl ? "rgb(231, 208, 63)":"rgb(46, 46, 46)",}}>
             Download Encrypted File
         </a>
+
       
       </form>
+          <div className="instructions">
+            <h2>Instructions for file Encryption</h2>
+            <p>Please use a strong password when encrypting files.</p>
+            <p>Files will be available to download after encryption; a password is required.</p>
+            <p>Files bigger than 5MB may result in unexpected behavior.</p>
+            <p>Accepted file formats: JPG, PNG, TXT ...</p>
+            
+          </div>
     </div>
   );
 };
