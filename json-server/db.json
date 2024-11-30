@@ -5,6 +5,12 @@
       "username": "user1",
       "email": "user1@mail.com",
       "password": "password123"
+    },
+    {
+      "id": "2",
+      "username": "Bob",
+      "email": "Bob@gmail.com",
+      "password": "sbfs,b8384"
     }
   ],
   "logs": [

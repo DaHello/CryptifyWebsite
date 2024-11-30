@@ -1,19 +1,18 @@
 // src/components/HomePage.js
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 
 // styles:
 import "../styles/HomePage.css";
 import "../styles/Login.css";
-import { useOutletContext } from "react-router-dom";
+//import "../styles/Test.css";
 
 export function HomePage() {
   const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
 
   return (
     <PageWrapper>
-      <HeroSection currentUser={currentUsername} >
-        <HomePageContents />
-      </HeroSection>
+      <HeroSection currentUsername={currentUsername}></HeroSection>
       <AboutSection />
     </PageWrapper>
   );
@@ -24,13 +23,36 @@ function PageWrapper({ children }) {
   return <div className="page-wrapper">{children}</div>;
 }
 
-function HeroSection( {currentUser } ) {
-  // This parameter is a placeholder for the contents to be displayed in this section
-  //return <section className="hero-section">{contents}</section>;
-
+function HeroSection({ currentUsername }) {
+  // children is what goes inside of hero-section
   return (
+    // <section className="hero-section">
+    //   <h1 className="hero-title">{currentUsername? `Welcome, ${currentUsername}!`: "Welcome to Cryptify"}</h1>
+    // </section>
     <section className="hero-section">
-      <h1 className="hero-title">{currentUser? `Welcome to Cryptify ${currentUser}!`: "Welcome to Cryptify"}</h1>
+      <div className="container">
+        <h1 className="hero-title">
+          {currentUsername
+            ? `Welcome back, ${currentUsername}!`
+            : "Welcome to Cryptify"}
+        </h1>
+        <p>
+          {currentUsername
+            ? "Continue your journey to secure your digital life."
+            : "Your all-in-one platform for simple and secure encryption."}
+        </p>
+        {!currentUsername && (
+          <button
+            className=""
+            onClick={() => {
+              // Example action for login/signup
+              console.log("Sign Up or Log In clicked");
+            }}
+          >
+            Get Started
+          </button>
+        )}
+      </div>
     </section>
   );
 }
@@ -40,11 +62,11 @@ function HomePageContents() {
   // this is what displays alongside AboutSection
   return (
     <section className="homepage-contents">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-gray-900">
+      <div className="max-w-7xl">
+        <h2 className="text-3xl">
           Welcome to Cryptify
         </h2>
-        <p className="mt-4 text-xl text-gray-500">
+        <p>
           Secure your digital life with ease.
         </p>
       </div>
@@ -52,14 +74,51 @@ function HomePageContents() {
   );
 }
 
+function FeaturesSection() {
+  // Highlights Cryptify's core features
+  return (
+    <section className="features-section">
+      <div className="container">
+        <h2 className="text">
+          Why Choose Cryptify?
+        </h2>
+        <div className="grid">
+          <FeatureCard
+            title="Top-Notch Encryption"
+            description="Keep your files and communications secure with our cutting-edge encryption technology."
+          />
+          <FeatureCard
+            title="User-Friendly Interface"
+            description="Designed with simplicity in mind, making encryption accessible for everyone."
+          />
+          <FeatureCard
+            title="Cross-Platform Support"
+            description="Access your encrypted data from any device, anytime, anywhere."
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureCard({ title, description }) {
+  return (
+    <div className="feature-card">
+      <h3 className="text-xl">{title}</h3>
+      <p className="mt-4">{description}</p>
+    </div>
+  );
+}
+
+
 function AboutSection() {
   return (
     <section id="about-section" className="about-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-gray-900">
+      <div className="max-w-7xl">
+        <h2 className="text-3xl">
           About Cryptify
         </h2>
-        <p className="mt-4 text-xl text-gray-500">
+        <p className="mt-4">
           Welcome to Cryptify, where protecting your personal information is our
           top priority. In a world where privacy feels harder to come by, we're
           here to make things simple. Cryptify is designed to be easy to use,
