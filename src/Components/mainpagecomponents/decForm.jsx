@@ -2,6 +2,7 @@ import { DecSubmit } from "./decButton";
 import "../../styles/mainPage.css";
 import React, { useState } from "react";
 
+
 // everything is nested inside of decForm, so this whole file is just the DecForm
 export const DecForm = () =>{
   const [textDec, setTextDec] = useState("");
@@ -84,6 +85,7 @@ export const DecForm = () =>{
       <label>Key</label>
 
       <input
+      placeholder="Same key used for encryption..."
         type="textarea"
         className="keyBox"
         value={keyDec}
@@ -98,7 +100,7 @@ export const DecForm = () =>{
         value={outputDec}
         readOnly
       ></textarea>
-
+   
       <DecSubmit></DecSubmit>
     </form>
   );

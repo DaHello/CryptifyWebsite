@@ -1,12 +1,7 @@
-import * as openpgp from "openpgp";
-import { useDropzone } from "react-dropzone";
-import { DropZoneArea } from "./dropZoneEnc";
+
 import { useState } from "react";
 import { EncSubmit } from "./encButton";
-import { toEncryptFile, toDecryptFile} from "./SED";
-
 import sjcl from "sjcl";
-
 
 function toBitArrayCodec(bytes){
   var out = [], i, tmp=0;
@@ -42,7 +37,7 @@ function frombitArrayCodec(arr) {
 
 
 
-export const EncFileBox = (e) => {
+export const EncFileBox = () => {
   const [file, setFile] = useState(null);
 
   const [key, setKeyFile] = useState("");
@@ -127,24 +122,29 @@ export const EncFileBox = (e) => {
 
   return (
     <div className="fileHandlerBox">
-      <form onSubmit={readFile}>
+      <form onSubmit={readFile} className ="formBox">
+        <h2>File Encryption</h2>
+
         <input
+          className="Browse"
           type="file"
           hmtlFor="fileEnc"
           onChange={(e) => {
             setFile(e.target.files[0]);
           }}
         ></input>
-        <input type="text" required value={key} onChange={(e) =>  setKeyFile(e.target.value)} ></input>
+        <label for="inputKey">Key</label>
 
-          
-          <a href={encryptedFileUrl} download={fileName}>
-            Download Encrypted File
-          </a>
-      
+        <input  id="inputKey" placeholder="Your password goes here..." className="inputKey" type="text" required value={key} onChange={(e) =>  setKeyFile(e.target.value)} ></input>
 
-        <DropZoneArea></DropZoneArea>
+  
+
         <EncSubmit></EncSubmit>
+                
+        <a href={encryptedFileUrl} download={fileName}>
+            Download Encrypted File
+        </a>
+      
       </form>
     </div>
   );

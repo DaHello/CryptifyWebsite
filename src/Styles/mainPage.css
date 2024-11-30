@@ -107,32 +107,145 @@
   flex-direction: column;
   justify-content: center;
 
-  gap:4em;
+  gap:8em;
 }
 
 
 
 .fileHandlerBox {
-  margin-top: 3em;
+  margin-top: 2em;
   display: flex;
   justify-content: center;
-
+  border-top: 2px #5a5a5a solid;
+  border-bottom: 2px #5a5a5a solid;
   padding: 5em;
-  flex-direction: column-reverse;
-  background-color: rgb(67, 68, 163);
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(15, 15, 15);
+  transition: 1s ease-in-out;
+  margin-bottom: 6em;
+
+}
+
+.fileHandlerBox:hover{
+  animation: ConX 3s;
+  animation-iteration-count: infinite;
 }
 
 
-.trythis {
+@keyframes ConX {
+  0% {
+    border-right-color: rgb(0, 255, 204);
+  }
+  50%{
+    border-top-color: rgb(0, 255, 204);
+  }
+  100% {
+    border-bottom-color: rgb(0, 255, 204);
+  }
+
+}
+
+
+.inputKey{
+  background-color: rgb(21, 21, 21);
+  color: rgb(122, 120, 120);
+  padding: 1em;
+  margin: 1rem;
+  outline: none;
   
+}
+
+.formBox{
+  border: 2px #5a5a5a solid;
+  background-color: rgb(34, 34, 34);
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: 1s ease-in-out;
+}
+
+
+.formBox .fButton {
+  margin: 1rem;
+  border-radius: 1px;
+  color: rgb(97, 95, 95);
+  font-size: 1em;
+  box-shadow: none;
+  background-color: rgb(37, 36, 36);
+  border: 1px rgb(91, 90, 90) solid;
+}
+
+.formBox:hover{
+  animation: FormX 3s;
+  animation-iteration-count: infinite;
+  box-shadow: 0px 0em 2.5em #02a388;
+}
+
+.formBox .fButton:hover {
+  background-color: rgb(128, 251, 229);
   color: white;
-  margin: 4em;
-  width: 40%;
-  background-color: red;
-  padding: 7em;
+  box-shadow: none;
+  border: 2px black solid;
+}
+
+.formBox .fButton:focus {
+  color: white;
+  background-color: rgb(255, 218, 6);
+  border-color: rgb(249, 230, 155);
+}
+
+@keyframes FormX {
+  0% {
+    border-right-color: rgb(0, 255, 204);
+  }
+  25%{
+    border-top-color: rgb(0, 255, 204);
+  }
+  75% {
+    border-bottom-color: rgb(0, 255, 204);
+  }100%{
+    border-left-color: rgb(0, 255, 204);
+  }
 
 }
 
+
+
+
+
+.Browse{
+  padding: 1em;
+
+  color: white;
+  transition: 0.7s ease-in;
+}
+
+
+input[type="file"]::file-selector-button{
+  margin-left: 5em;
+  margin-right: 2em;
+  padding: 1em;
+  border:2px solid #717171;
+  border-radius: 2px;
+  color: white;
+  background-color: #3a3939;
+  transition: 0.7s ease-in;
+}
+
+.Browse:hover{
+
+  color: hsl(50, 100%, 52%);
+}
+
+
+input[type="file"]::file-selector-button:hover{
+
+  border:2px solid hsl(53, 100%, 52%);
+  color: hsl(57, 100%, 52%);
+
+}
 
 
 
