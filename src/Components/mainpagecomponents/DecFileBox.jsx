@@ -95,13 +95,13 @@ export const EdcFileBox = () => {
           <input
             className="Browse"
             type="file"
-            hmtlFor="fileDec"
+            htmlFor="fileDec"
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
           ></input>
 
-          <label for="inputKey">Key</label>
+          <label htmlfor="inputKey">Key</label>
           <input
           placeholder="Your password goes here..."
             id ="inputKey" className="inputKey"

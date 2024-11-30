@@ -28,9 +28,9 @@ const router = createBrowserRouter(
   //similar to <routes>?
   // for homepage insert at top: <Route path="homepage" element={<HomePage />}></Route>
   createRoutesFromElements(
-    <Route path="/" element={<MainPages />}>
-      <Route index element={<HomePage />}></Route>
-      <Route path="homepage" element={<HomePage />}></Route>
+    <Route path="/" element={<MainPages/>}>
+      {/* <Route index element={<HomePage />}></Route> */}
+      <Route path="home" element={<HomePage />}></Route>
       <Route path="mainpagetext" element={<MainPageText />}></Route>
       <Route path="mainpagefile" element={<MainPageFile />}></Route>
       {/* <Route path="login" element={<LoginUseForm />}></Route> */}

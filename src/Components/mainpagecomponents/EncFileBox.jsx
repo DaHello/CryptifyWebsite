@@ -128,7 +128,7 @@ export const EncFileBox = () => {
         <input
           className="Browse"
           type="file"
-          hmtlFor="fileEnc"
+          htmlFor="fileEnc"
           onChange={(e) => {
             setFile(e.target.files[0]);
           }}

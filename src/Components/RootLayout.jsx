@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import LoginSignupButton from "./mainpagecomponents/LoginSignupButton";
 
 // styles:
 import "../styles/Login.css";
@@ -13,14 +14,10 @@ import "../styles/Login.css";
 export function MainPages() {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
-  const [currentUser, setCurrentUser] = useState(
-    //username:"",
-    //email:"",
-    //password:""
-  ); // state is an object, can have anything inside it
+  const [currentUser, setCurrentUser] = useState({}); // state is an object, can have anything inside it
   const [data, setData] = useState([]); // Store fetched data as an array of objects
-  //const [log, setLog] = useState([]); // Store fetched array of objects for logs for each user, 
-                                      // each user object has an array of log objects inside it
+  const [currentUserLoggedIn, setCurrentUserLoggedIn] = useState(false); // user starts out as guest
+  //const [log, setLog] = useState([]); // Store fetched array of objects for logs for each user,
 
   // Initialize useForm hook
   const {
@@ -30,86 +27,107 @@ export function MainPages() {
     reset,
   } = useForm();
 
+  // this will run once on mount
   useEffect(() => {
-    // fetch json file from server at address:
-    const fetchData = async () => {
+    const fetchData = async () => { // fetch json file from server at address
       const response = await fetch("http://localhost:8000/users"); // Replace with actual API call in a real app
-      setData( await response.json() ); // data is an array of objects, gotten from the json file
-      
+      setData(await response.json()); // data is an array of objects, gotten from the json file   
     };
-
+  
+    // For the logs portion of fetch, unless we decide to combine logs as an object inside each user object, so each user object would have an array of log objects inside it
     // const fetchLogs = async () => {
     //   const response = await fetch("http://localhost:8000/logs"); // fetch the logs from the address to be added to
     //   setLog( await response.json() );
     // }
 
-    fetchData(); // call the function to fetch the data
-    //fetchLogs(); // call the function to fetch the logs
+    fetchData() // fetch data for users
+    //fetchLogs(); // call the function to fetch logs
   }, []);
+
+  // useEffect(() => { // instead just use a 
+  //   if (currentUserLoggedIn) {
+  //     // Perform any side-effects here after successful user logon:
+  //     console.log(`${currentUser} is logged in!`);
+
+  //     // Reset currentUserLoggedIn state (so that useEffect doesn't keep running)
+  //     setCurrentUserLoggedIn(false);
+  //   }
+  // }, [currentUserLoggedIn]); // runs when a user is logged in, or currentUser state changes
 
   const toggleFormType = () => setIsLogin(!isLogin); // Toggle between login and register form
   const openForm = () => setShowForm(true); // Show form
   const closeForm = () => setShowForm(false); // Hide form
-
-  const handleLogin = (clientInfo) => { // pass data fetched from db.json
+  const userLoggedIn = () => { setCurrentUserLoggedIn(true); }; // set user logged in state to true:
+  
+  const handleLogin = (clientInfo) => {    
+    // pass data fetched from db.json
     const { username, password } = clientInfo; // object of data entered by client
-    const foundUser = data.find( // search data inside the users array for matching usrname and password
-      (user) => user.username === username && user.password === password
+    const foundUser = data.find(
+      // search data inside the users array for matching usrname and password
+      (data) => data.username === username && data.password === password
     );
-    if (foundUser) {
-      // if matching username and password was found:
-      // Old code: navigate('/dashboard', { state: { username } });
+    if (foundUser) { // if matching username and pass. found
       console.log(foundUser.username + " was found. Login successful.");
       closeForm(); // close the form
+      setCurrentUser({ username, password })
+      userLoggedIn(); // User successfully logged in
+      
 
-      // redirect to the page with their name and no login feature or sign up option.
     } else {
-      console.log(foundUser.username + " password or username incorrect or does not exist.")
+      console.log("Username or password incorrect or does not exist." );
       alert("Invalid username or password, or user does not exist.");
     }
   };
 
-  const handleRegister = (clientInfo) => { // pass info entered by user
+  const handleRegister = (clientInfo) => {   
+    // pass info entered by user
     const { username, email, password } = clientInfo; // break userInfo into object pattern of client entered data
     console.log(data); // AFTER running useEffect
 
     // Check if username or email exists already in data object from json
-    const userExists = data.some( (user) => { return user.username === username; } );
-    const emailExists = data.some( (user) => { return user.email === email } ); // boolean function to check if user exists with username, will return true if case
+    const userExists = data.some((data) => {
+      return data.username === username;
+    });
+    const emailExists = data.some((data) => {
+      return data.email === email;
+    }); // boolean function to check if user exists with username, will return true if case
 
-    if (userExists ) { // if username is in use
+    if (userExists) {
+      // if username is in use
       console.log(`${username} already exists.`);
       alert("Username already exists.");
-    } else if(emailExists) {
+    } else if (emailExists) {
       console.log(`${email} already in use.`);
       alert("Email already in use.");
     } else {
-      
       // Set the current user as this user, this data can be found AFTER running this function
-      setCurrentUser( {username, email, password} );
-
+      const runSetCurrentUser = () => {
+        setCurrentUser({ username, email, password });
+      };
+      runSetCurrentUser();
       // Simulate saving the updated users to db.json
-      saveToDbJson( {username, email, password} );
-  
+      saveToDbJson({ username, email, password });
+      console.log(currentUser); // verify currentUser updated
+
       alert("Account created successfully.");
       setShowForm(false); // Close the form after successful registration
-
-      // redirect to new RootLayoutPage after user is logged in:
-
-
       reset(); // Reset form fields (MIGHT CAUSE ISSUES WITH getting currentUser name)
+
+      // set state for isLoggedIn to true:
+      userLoggedIn();
     }
   };
 
   // Simulate saving users to db.json file (This json file holds two arrays of objects log and users)
   const saveToDbJson = async (newUser) => {
-
     // Calculate current user's id number from total users in db.json:
     const numUsers = data.length + 1;
-    console.log(`Current user id is: ${numUsers}. Which is the number of users as well.`);
+    console.log(
+      `Current user id is: ${numUsers}. Which is the number of users as well.`
+    );
 
     // add the current id number to the newUser:
-    newUser = {...newUser, id:`${numUsers}`};  // keep everything else in newUser, but update the id to be the string of numUsers
+    newUser = { ...newUser, id: `${numUsers}` }; // keep everything else in newUser, but update the id to be the string of numUsers
 
     // In a real app, you'd make a POST request to save the updated users to a backend.
     const response = await fetch("http://localhost:8000/users", {
@@ -133,19 +151,31 @@ export function MainPages() {
       <header className="globalHeader">
         <h1 className="logo">Cryptify</h1>
         <nav className="nav-links">
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/home">Home</NavLink>
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
-          <button className="openFormButton" type="button" onClick={openForm}>
-            Login or Signup
-          </button>
+
+          {/* Conditionally render the button based on login state */}
+          {currentUserLoggedIn ? (
+            // Show a button with the user's name that does nothing when clicked
+            <button className="loggedInButton" disabled>
+              {currentUser.username}
+            </button>
+          ) : (
+            // Normal Login/Signup button
+            <button className="openFormButton" type="button" onClick={openForm}>
+              Login or Signup
+            </button>
+          )}
+
+          {/* <button className="openFormButton" type="button" onClick={openForm}>Login or Signup</button> */}
           {/* active class */}
         </nav>
       </header>
 
-      {/* to output page components */}
+      {/* to output page components, can pass variables through context */}
       <main>
-        <Outlet></Outlet>
+        <Outlet context={currentUser.username} />
       </main>
 
       {/* Login Form to be displayed throughout different pages */}
@@ -154,7 +184,7 @@ export function MainPages() {
           <div className="wrapper" onClick={(e) => e.stopPropagation()}>
             <div className={`form-box ${isLogin ? "login" : "register"}`}>
               <form
-                onSubmit={handleSubmit(isLogin ? handleLogin : handleRegister)}
+                onSubmit={handleSubmit(isLogin ? handleLogin : handleRegister)} 
               >
                 <h1>{isLogin ? "Login" : "Register"}</h1>
 
@@ -215,7 +245,7 @@ export function MainPages() {
                   </div>
                 )}
 
-                {/* Submit button */}
+                {/* Submit button will show "login" or "register " */}
                 <button type="submit">{isLogin ? "Login" : "Register"}</button>
 
                 {/* Switch form link */}
@@ -224,7 +254,10 @@ export function MainPages() {
                     {isLogin
                       ? "Don't have an account?"
                       : "Already have an account?"}{" "}
-                    <button className="changeFormButton" onClick={toggleFormType}>
+                    <button
+                      className="changeFormButton"
+                      onClick={toggleFormType}
+                    >
                       {isLogin ? "Register" : "Login"}
                     </button>
                   </p>

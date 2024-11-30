@@ -1,32 +1,36 @@
 // src/components/HomePage.js
 import React from "react";
+
+// styles:
 import "../styles/HomePage.css";
 import "../styles/Login.css";
+import { useOutletContext } from "react-router-dom";
 
 export function HomePage() {
+  const currentUser = useOutletContext(); // use the outlet context to get the current user's username
+
   return (
     <PageWrapper>
-      <HeroSection>
+      <HeroSection currentUser={currentUser} >
         <HomePageContents />
-             </HeroSection>
+      </HeroSection>
       <AboutSection />
     </PageWrapper>
   );
 }
-
 
 function PageWrapper({ children }) {
   // use the parameter as a placholder for where html is injected from other functions
   return <div className="page-wrapper">{children}</div>;
 }
 
-function HeroSection({ contents }) {
+function HeroSection( {currentUser } ) {
   // This parameter is a placeholder for the contents to be displayed in this section
   //return <section className="hero-section">{contents}</section>;
-  //
+
   return (
     <section className="hero-section">
-      <h1 className="hero-title">Welcome to Cryptify</h1>
+      <h1 className="hero-title">{currentUser? `Welcome to Cryptify ${currentUser}!`: "Welcome to Cryptify"}</h1>
     </section>
   );
 }
