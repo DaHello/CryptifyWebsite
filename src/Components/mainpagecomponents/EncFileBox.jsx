@@ -118,7 +118,7 @@ export const EncFileBox = () => {
             setFile(e.target.files[0]);
           }}
         ></input>
-        <label for="inputKey">Key</label>
+        <label htmlFor="inputKey">Key</label>
 
         <input  id="inputKey" placeholder="Your password goes here..." className="inputKey" type="text" required value={key} onChange={(e) =>  setKeyFile(e.target.value)} ></input>
 

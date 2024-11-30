@@ -110,7 +110,7 @@ export const EdcFileBox = () => {
             }}
           ></input>
 
-          <label htmlfor="inputKey">Key</label>
+          <label htmlFor="inputKey">Key</label>
           <input
           placeholder="Your password goes here..."
             id ="inputKey" className="inputKey"

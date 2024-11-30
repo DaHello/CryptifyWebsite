@@ -7,11 +7,11 @@ import "../styles/Login.css";
 import { useOutletContext } from "react-router-dom";
 
 export function HomePage() {
-  const currentUser = useOutletContext(); // use the outlet context to get the current user's username
+  const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
 
   return (
     <PageWrapper>
-      <HeroSection currentUser={currentUser} >
+      <HeroSection currentUser={currentUsername} >
         <HomePageContents />
       </HeroSection>
       <AboutSection />
