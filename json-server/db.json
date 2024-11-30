@@ -13,23 +13,10 @@
       "password": "password456"
     },
     {
-      "0": {
-        "id": "1",
-        "username": "user1",
-        "email": "user1@mail.com",
-        "password": "password123"
-      },
-      "1": {
-        "username": "user2",
-        "email": "user2@mail.com",
-        "password": "password456"
-      },
-      "2": {
-        "username": "Bob",
-        "email": "Bob@gmail.com",
-        "password": "Password01!"
-      },
-      "id": "954f"
+      "id": "3",
+      "username": "Bob",
+      "email": "Bob@gmail.com",
+      "password": "kjfjbdskjdbfebf7378r"
     }
   ],
   "logs": [

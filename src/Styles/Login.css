@@ -45,6 +45,39 @@
     color: #00a78e;
 }
 
+/* login button */
+.openFormButton {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.openFormButton:hover {
+    color: #00a78e;
+}
+
+/*Login form button */
+.changeFormButton {
+    color: #10c680;
+    font-weight: bold;
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+.changeFormButton:hover {
+    color: #00a78e;
+    background: none;
+    box-shadow: none;
+    
+}
+
 /* Hero section styling */
 .hero-section {
     height: 100vh;
@@ -112,7 +145,7 @@
     color: #0fde8f;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     transition: height 0.3s ease;
 }
 
