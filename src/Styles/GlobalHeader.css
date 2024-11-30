@@ -1,5 +1,6 @@
 .globalHeader {
 
+  position:sticky;
   background-color: rgb(15, 15, 15);
   border-bottom: 2px solid #5a5a5a ;
   padding: 2em;

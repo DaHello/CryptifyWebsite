@@ -138,6 +138,7 @@ export function MainPages() {
       {/* to output page components */}
       <main>
         <Outlet></Outlet>
+
       </main>
 
       {/* Login Form to be displayed throughout different pages */}
