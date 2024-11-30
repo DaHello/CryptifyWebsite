@@ -216,7 +216,7 @@ export function MainPages() {
                     {isLogin
                       ? "Don't have an account?"
                       : "Already have an account?"}{" "}
-                    <button className="changeFormButton" href="#" onClick={toggleFormType}>
+                    <button className="changeFormButton" onClick={toggleFormType}>
                       {isLogin ? "Register" : "Login"}
                     </button>
                   </p>
