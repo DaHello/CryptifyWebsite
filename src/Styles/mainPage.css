@@ -271,3 +271,15 @@ input[type="file"]::file-selector-button:hover{
 
 
 
+footer{
+  text-align: center;
+  padding: 6em;
+  color :rgb(90, 90, 90);
+  border-top: #757575 solid 2px;
+  background-color: rgb(27, 27, 27);
+  
+}
+footer a{
+  text-decoration: none;
+  color: #01ffd5;
+}

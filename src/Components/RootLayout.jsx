@@ -144,9 +144,12 @@ export function MainPages() {
       </header>
 
       {/* to output page components */}
+      {/*Put your page if you want to */}
       <main>
         <Outlet></Outlet>
-
+        <footer>
+          <p>AR-CA-SA : <a href="https://github.com/AR-CA-SA">Github</a></p>
+          </footer>
       </main>
 
       {/* Login Form to be displayed throughout different pages */}
