@@ -1,25 +1,16 @@
 // src/App.js
 import React from "react";
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
-//import NavBar from "./components/NavBar"; // navigation bar
-//import Home from "./components/Home"; // about us and other info
-//import LoginPage from "./components/Login";
-//import Dashboard from "./components/Dashboard";
 
 //layout
 import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
-//import { UseForm } from "./components/mainpagecomponents/UseForm";
 import { HomePage } from "./components/homePage";
-//import { AuthForm } from "./components/mainpagecomponents/AuthForm";
-//import { LoginUseForm } from "./components/LoginUseForm";
 
 //css
 import "./styles/GlobalHeader.css";
 import "./styles/App.css";
-
-//import "./styles/Login.css";
 
 /* 
 this is where all react components that are web pages should be located 
