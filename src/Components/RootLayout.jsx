@@ -16,7 +16,6 @@ export function MainPages() {
   const [showForm, setShowForm] = useState(false); // State to show/hide form
   const [currentUser, setCurrentUser] = useState({}); // state is an object, can have anything inside it
   const [data, setData] = useState([]); // Store fetched data as an array of objects
-  //const [log, setLog] = useState([]); // Store fetched array of objects for logs for each user,
 
   // Initialize useForm hook
   const {
@@ -34,14 +33,7 @@ export function MainPages() {
       setData(await response.json()); // data is an array of objects, gotten from the json file
     };
 
-    // For the logs portion of fetch, unless we decide to combine logs as an object inside each user object, so each user object would have an array of log objects inside it
-    // const fetchLogs = async () => {
-    //   const response = await fetch("http://localhost:8000/logs"); // fetch the logs from the address to be added to
-    //   setLog( await response.json() );
-    // }
-
     fetchData(); // fetch data for users
-    //fetchLogs(); // call the function to fetch logs
   }, []);
 
   // useEffect(() => { // instead just use a
@@ -104,11 +96,10 @@ export function MainPages() {
       runSetCurrentUser();
       // Simulate saving the updated users to db.json
       saveToDbJson({ username, email, password });
-      console.log(currentUser); // verify currentUser updated
 
       alert("Account created successfully.");
       setShowForm(false); // Close the form after successful registration
-      reset(); // Reset form fields (MIGHT CAUSE ISSUES WITH getting currentUser name)
+      reset(); // reset the form fields
     }
   };
 
@@ -157,7 +148,7 @@ export function MainPages() {
         </nav>
       </header>
 
-      {/* to output page components, can pass variables through context */}
+      {/* to output page components, pass variables through context to be accessible by all components */}
       <main>
         <Outlet context={currentUser.username} />
         {/* to output page components */}
