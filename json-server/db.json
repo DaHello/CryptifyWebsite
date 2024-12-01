@@ -13,12 +13,6 @@
           "action": " user1 encrypted a file"
         }
       ]
-    },
-    {
-      "id": "2",
-      "username": "Bob",
-      "email": "Bob@gmail.com",
-      "password": "sbfs,b8384"
     }
   ],
   "logs": [
