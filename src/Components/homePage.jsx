@@ -51,22 +51,6 @@ function HeroSection() {
   );
 }
 
-// if we decide to add extra contents to the hompage
-function HomePageContents() {
-  return (
-    <section className="homepage-contents">
-      <div className="max-w-7xl">
-        <h2 className="text-3xl">
-          Extra Content
-        </h2>
-        <p>
-          Secure your digital life with ease.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function AboutSection() {
   return (
     <section id="about-section" className="about-section">

@@ -1,0 +1,12 @@
+.LogsMenu {
+    display: flex; /* Enables flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Optional: Aligns buttons in the center horizontally */
+  }
+  
+  .LogsMenu button {
+    font-size: 18px; /* Adjust the value to make the text bigger or smaller */
+    display: block; /* Makes each button take up the full width and stack vertically */
+    width: 40%; /* Optional: Makes the buttons fill the container's width */
+    margin-bottom: 10px; /* Optional: Adds some space between buttons */
+  }

@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import LoginSignupButton from "./mainpagecomponents/LoginSignupButton";
+import { LogsMenu } from "./LogsMenu";
 
 // styles:
 import "../styles/Login.css";
@@ -31,23 +32,19 @@ export function MainPages() {
       setData(await response.json()); // data is an array of objects, gotten from the json file
     };
 
-    fetchData(); // fetch data for users
+    fetchData(); // fetch users array from db.json
   }, []);
-
-  // useEffect(() => { // instead just use a
-  //   if (currentUserLoggedIn) {
-  //     // Perform any side-effects here after successful user logon:
-  //     console.log(`${currentUser} is logged in!`);
-
-  //     // Reset currentUserLoggedIn state (so that useEffect doesn't keep running)
-  //     setCurrentUserLoggedIn(false);
-  //   }
-  // }, [currentUserLoggedIn]); // runs when a user is logged in, or currentUser state changes
 
   const toggleFormType = () => setIsLogin(!isLogin); // Toggle between login and register form
   const openForm = () => setShowForm(true); // Show form
   const closeForm = () => setShowForm(false); // Hide form
-  const openOptions = () => setShowUserOptions(true) // show user options
+  const openOptions = () => { 
+    if (showUserOptions) { // if user options already opened
+      setShowUserOptions(false);
+    } else {
+      setShowUserOptions(true);
+    }
+  }
   const closeOptions = () => setShowUserOptions(false) // hide user options
 
   const handleLogin = (clientInfo) => {
@@ -114,7 +111,6 @@ export function MainPages() {
     // add the current id number to the newUser:
     newUser = { ...newUser, id: `${numUsers}` }; // keep everything else in newUser, but update the id to be the string of numUsers
 
-    // In a real app, you'd make a POST request to save the updated users to a backend.
     const response = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
@@ -153,6 +149,22 @@ export function MainPages() {
       {/* This is where all mainpagecomponents go (to outlet), can pass variables through to be accessible by all mainpagecomponents */}
       <main>
         <Outlet context={currentUser.username} />
+
+        {/* Conditional rendering for logs menu */}
+        {showUserOptions && (
+          <div className="overlay" onClick={closeOptions}>
+            <div className="wrapper" onClick={(e) => e.stopPropagation()}>
+              <div className="form-box">
+                <LogsMenu
+                  currentUsername={currentUser.username}
+                  uid={currentUser.id}
+                  closeOptions={closeOptions}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* to output page components */}
         {/*Put your page if you want to */}
         <footer className="footer">
@@ -255,10 +267,6 @@ export function MainPages() {
           </div>
         </div>
       )}
-
-      {/* {showUserOptions && ( // conditional
-        <LogsMenu currentUsername={currentUser.username} uid={currentUser.id} closeOptions={closeOptions}  />
-      )} */}
 
       {/* <ShowUserOptions context={currentUser.username} showUserOptions={showUserOptions} openOptions={openOptions} closeOptions={closeOptions} /> */}
 

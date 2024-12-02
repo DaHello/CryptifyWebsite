@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "crypto-browserify": "^3.12.1",
     "dropzone": "^6.0.0-beta.2",
+    "file-saver": "^2.0.5",
     "fs-js": "^1.0.6",
     "json": "^11.0.0",
     "json-server": "^1.0.0-beta.3",
