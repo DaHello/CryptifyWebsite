@@ -28,7 +28,7 @@ export function MainPages() {
   // this will run once on mount
   useEffect(() => {
     const fetchData = async () => {
-      // fetch json file from server at address
+      // fetch users from json server at address, this also fetches the logs
       const response = await fetch("http://localhost:8000/users"); // Replace with actual API call in a real app
       setData(await response.json()); // data is an array of objects, gotten from the json file
     };
@@ -143,7 +143,6 @@ export function MainPages() {
           <LoginSignupButton openForm={openForm}>
             {currentUser.username? `${currentUser.username}`: "Login or Signup"}
           </LoginSignupButton>
-          {/* <button className="openFormButton" type="button" onClick={openForm}>Login or Signup</button> */}
           {/* active class */}
         </nav>
       </header>
