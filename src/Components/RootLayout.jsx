@@ -159,7 +159,7 @@ export function MainPages() {
           <h1>Creators:</h1>
           <p>AR-CA-SA : <a href="https://github.com/AR-CA-SA">GitHub</a></p>
           <p>DaHello : <a href="https://github.com/DaHello">GitHub</a></p>
-          <p>ChangeMe : <a href="link">GitHub</a></p>
+          <p>TrinhT27 : <a href="https://github.com/TrinhT27">GitHub</a></p>
           <p>ChangeMe : <a href="link">GitHub</a></p>
           <p>ChangeMe : <a href="link">GitHub</a></p>
           <p>www.cryptify.com</p>
