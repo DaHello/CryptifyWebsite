@@ -5,7 +5,6 @@ import { useOutletContext } from "react-router-dom";
 // styles:
 import "../styles/HomePage.css";
 import "../styles/Login.css";
-//import "../styles/Test.css";
 
 export function HomePage() {
   const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
@@ -24,11 +23,7 @@ function PageWrapper({ children }) {
 }
 
 function HeroSection({ currentUsername }) {
-  // children is what goes inside of hero-section
   return (
-    // <section className="hero-section">
-    //   <h1 className="hero-title">{currentUsername? `Welcome, ${currentUsername}!`: "Welcome to Cryptify"}</h1>
-    // </section>
     <section className="hero-section">
       <div className="container">
         <h1 className="hero-title">
@@ -57,14 +52,13 @@ function HeroSection({ currentUsername }) {
   );
 }
 
-//display when you click homepage up top
+// if we decide to add extra contents to the hompage
 function HomePageContents() {
-  // this is what displays alongside AboutSection
   return (
     <section className="homepage-contents">
       <div className="max-w-7xl">
         <h2 className="text-3xl">
-          Welcome to Cryptify
+          Extra Content
         </h2>
         <p>
           Secure your digital life with ease.
@@ -73,43 +67,6 @@ function HomePageContents() {
     </section>
   );
 }
-
-function FeaturesSection() {
-  // Highlights Cryptify's core features
-  return (
-    <section className="features-section">
-      <div className="container">
-        <h2 className="text">
-          Why Choose Cryptify?
-        </h2>
-        <div className="grid">
-          <FeatureCard
-            title="Top-Notch Encryption"
-            description="Keep your files and communications secure with our cutting-edge encryption technology."
-          />
-          <FeatureCard
-            title="User-Friendly Interface"
-            description="Designed with simplicity in mind, making encryption accessible for everyone."
-          />
-          <FeatureCard
-            title="Cross-Platform Support"
-            description="Access your encrypted data from any device, anytime, anywhere."
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FeatureCard({ title, description }) {
-  return (
-    <div className="feature-card">
-      <h3 className="text-xl">{title}</h3>
-      <p className="mt-4">{description}</p>
-    </div>
-  );
-}
-
 
 function AboutSection() {
   return (
