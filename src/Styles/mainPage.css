@@ -3,6 +3,8 @@
   padding: 8em;
   display: flex;
   justify-content: space-around;
+  align-items: center; /* Ensure both components align vertically */
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
   background-color: rgb(0, 0, 0);
 }
 
@@ -127,8 +129,18 @@
 
 }
 
-.instructions  p{
+.instructions {
+  text-align: center;
   color: #717171;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+.instructions h1, .instructions h2, .instructions .title {
+  color: rgb(16, 166, 108); 
 }
 
 .fileHandlerBox:hover{
