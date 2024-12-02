@@ -31,17 +31,16 @@ function HeroSection({ currentUsername }) {
             ? `Welcome back, ${currentUsername}!`
             : "Welcome to Cryptify"}
         </h1>
-        <p>
+        <p className="hero-subtitle">
           {currentUsername
             ? "Continue your journey to secure your digital life."
             : "Your all-in-one platform for simple and secure encryption."}
         </p>
         {!currentUsername && (
           <button
-            className=""
+            className="enter-button"
             onClick={() => {
-              // Example action for login/signup
-              console.log("Sign Up or Log In clicked");
+              window.location.href = "/mainpagefile"; // Navigate to encryption page
             }}
           >
             Get Started
