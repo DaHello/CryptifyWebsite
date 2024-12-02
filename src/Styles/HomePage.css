@@ -43,42 +43,143 @@ body {
     margin-bottom: 1rem; /* Adds space below the subtitle */
     display: block; /* Ensures it's displayed on a new line */
   }
+  background-image: url('../images/cLogohome.png'); 
+  background-size: cover; 
+  background-position: center center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  height: 100%; 
+  width: 100%; 
+  margin: 0; 
+  padding: 0;
+  background-color: rgb(89, 111, 111); /* Fallback color matching the teal/gray theme */
+}
 
+.page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+               0 0 20px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+  max-width: 600px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+               0 0 20px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.enter-button {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(89, 111, 111);
+  font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 2rem;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+              0 0 20px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.enter-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7),
+              0 0 30px rgba(0, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Glow effects */
+.hero-title:hover,
+.hero-subtitle:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7),
+               0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* About Section */
+.about-section {
+  padding: 4rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-section p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.about-section h2:hover,
+.about-section p:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7),
+               0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .hero-title {
-    font-size: 4rem; /* Title size */
-    font-weight: bold;
-    margin-bottom: 1rem; /* Adds space between the title and subtitle */
+      font-size: 3.5rem;
   }
   
   .hero-subtitle {
-    font-size: 1.5rem; /* Subtitle size */
-    margin-top: 0; /* Removes any default margin */
-    margin-bottom: 1rem; /* Adds space below the subtitle */
-    display: block; /* Ensures it's displayed on a new line */
+      font-size: 1.2rem;
   }
   
-  
-  /* Glow effect for both title and subtitle */
-  .hero-section h1:hover,
-  .hero-section p:hover {
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.6); /* Glowing effect */
+  .enter-button {
+      font-size: 1rem;
+      padding: 0.6rem 1.5rem;
   }
-  
-  /* Glow effect for About Section */
-  .about-section h2,
-  .about-section p {
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  /* Glow effect on hover */
-  .about-section h2:hover,
-  .about-section p:hover {
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.6); /* Glowing effect */
-  }
-  
-  /* About Section Styling */
-  #about-section {
-    padding: 4rem 2rem;
-    background-color: transparent; /* Ensure no unwanted background color */
-    color: white; /* Text color for about section */
-  }
+}
