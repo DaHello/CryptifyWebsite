@@ -7,11 +7,9 @@ import "../styles/HomePage.css";
 import "../styles/Login.css";
 
 export function HomePage() {
-  const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
-
   return (
     <PageWrapper>
-      <HeroSection currentUsername={currentUsername}></HeroSection>
+      <HeroSection />
       <AboutSection />
     </PageWrapper>
   );
@@ -22,7 +20,9 @@ function PageWrapper({ children }) {
   return <div className="page-wrapper">{children}</div>;
 }
 
-function HeroSection({ currentUsername }) {
+function HeroSection() {
+  const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
+  
   return (
     <section className="hero-section">
       <div className="container">

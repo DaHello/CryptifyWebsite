@@ -4,23 +4,16 @@ import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import LoginSignupButton from "./mainpagecomponents/LoginSignupButton";
 
-//import HandleLogin from "../actionsDB.js"
-//import HandleRegister from "../actionsDB.js"
-//import getLogs from "../actionsDB.js"
-//import  from "../actionsDB.js"
-
 // styles:
 import "../styles/Login.css";
 
-//Route : the outlet elements tells the route element where and when to render
-//the child routes within the page
-
 // allows nested routes to render their element content
-export function MainPages() {
+export function MainPages() {  
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
   const [currentUser, setCurrentUser] = useState({}); // state is an object, can have anything inside it
   const [data, setData] = useState([]); // Store fetched data as an array of objects
+  const [showUserOptions, setShowUserOptions] = useState(false); // starts as false
 
   // Initialize useForm hook
   const {
@@ -54,6 +47,8 @@ export function MainPages() {
   const toggleFormType = () => setIsLogin(!isLogin); // Toggle between login and register form
   const openForm = () => setShowForm(true); // Show form
   const closeForm = () => setShowForm(false); // Hide form
+  const openOptions = () => setShowUserOptions(true) // show user options
+  const closeOptions = () => setShowUserOptions(false) // hide user options
 
   const handleLogin = (clientInfo) => {
     // pass data fetched from db.json
@@ -123,7 +118,7 @@ export function MainPages() {
     const response = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
-        users: "http://localhost:8000/users",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
     });
@@ -135,6 +130,9 @@ export function MainPages() {
     }
   };
 
+  //Route : the outlet elements tells the route element where and when to render
+  //the child routes within the page
+
   // THIS IS HEADER (where new pages are added to in, is also same as navigation bar)
   return (
     <div className="page-wrapper">
@@ -145,14 +143,14 @@ export function MainPages() {
           <NavLink to="mainpagetext">Text Encryption</NavLink>
           <NavLink to="mainpagefile">File Encryption</NavLink>
 
-          <LoginSignupButton openForm={openForm}>
+          <LoginSignupButton openForm={openForm} openOptions={openOptions} closeOptions={closeOptions} showUserOptions={showUserOptions} >
             {currentUser.username? `${currentUser.username}`: "Login or Signup"}
           </LoginSignupButton>
           {/* active class */}
         </nav>
       </header>
 
-      {/* to output page components, pass variables through context to be accessible by all components */}
+      {/* This is where all mainpagecomponents go (to outlet), can pass variables through to be accessible by all mainpagecomponents */}
       <main>
         <Outlet context={currentUser.username} />
         {/* to output page components */}
@@ -257,6 +255,13 @@ export function MainPages() {
           </div>
         </div>
       )}
+
+      {/* {showUserOptions && ( // conditional
+        <LogsMenu currentUsername={currentUser.username} uid={currentUser.id} closeOptions={closeOptions}  />
+      )} */}
+
+      {/* <ShowUserOptions context={currentUser.username} showUserOptions={showUserOptions} openOptions={openOptions} closeOptions={closeOptions} /> */}
+
     </div>
   );
 }
