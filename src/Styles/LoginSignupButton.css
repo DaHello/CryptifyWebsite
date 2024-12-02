@@ -1,4 +1,4 @@
-.fakeButton {
+.UserOptionsButton {
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
@@ -7,4 +7,7 @@
     background: none;
     border: none;
     color: white;
+}
+.UserOptionsButton:hover {
+    color: #00a78e;
 }

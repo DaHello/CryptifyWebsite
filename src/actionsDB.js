@@ -1,4 +1,4 @@
-import getCurrentDateTime12Hour from "../getDateAndTime.js";
+import { getCurrentDateTime } from "./getDateAndTime.js";
 
 // use this file to get specific info from the database, this is a mock server that we use to access the
 // db.json file (mock database), this imitates real practices for securely acessing a database
@@ -42,7 +42,7 @@ export async function fetchLogsById(id) {
     );
     const users = await response.json();
     if (users.length > 0) {
-      return users[0].logs; // Assuming usernames are unique
+      return users[id - 1].logs; // use user id minus one for the index of the array of users objects
     } else {
       throw new Error("User not found");
     }
@@ -52,20 +52,42 @@ export async function fetchLogsById(id) {
   }
 }
 // Usage
-//fetchLogsForUser("user1").then((logs) => console.log(logs));
+//fetchLogsById("user1").then((logs) => console.log(logs));
+
+export async function fetchTodaysLogsById(id) {
+  // get today's date:
+  const {date, time} = getCurrentDateTime(); // use only date
+  
+  // fetch logs for a user based on username
+  try {
+    const response = await fetch(`http://localhost:8000/users?id=${id}`);
+    const users = await response.json();
+    
+    const user = users[id - 1];
+    if (users.length > 0) { // if found
+    const todayLogs = user.logs.filter(log => log.date === date); // Filter logs for today's date
+    console.log(`Successfully Fetched todays logs: ${date} at ${time}`);
+    return todayLogs;
+    } else {
+      throw new Error("User not found");
+    }
+  } catch (error) {
+    console.error("Error fetching logs:", error);
+    return [];
+  }
+}
 
 async function addLogById(id, action) { // pass the action and user id
-  const { date, time } = getCurrentDateTime12Hour();
+  const { date, time } = getCurrentDateTime();
   console.log(`Log added for user with id: ${id}.`);
   console.log(`Date: ${date}`); // e.g., "Date: 12/01/2024"
   console.log(`Time: ${time}`); // e.g., "Time: 02:05:23 PM"
 
-  const newLog = {
-    uid:id, // may need to be a string (the id)
+  const newLog = { // format new log to be added to db
+    uid:"id", // may need to be a string (the id)
     dateNTime:`${date} at ${time}`,
-    action
+    action:`${action}`
   };
-
 
   // add to the logs array for a user by their id
   try {
@@ -78,7 +100,7 @@ async function addLogById(id, action) { // pass the action and user id
     const user = users[id - 1]; // user's index in array is their id minus one
 
     // Step 2: Update logs
-    const updatedLogs = [...user.logs, newLog]; // 
+    const updatedLogs = [...user.logs, newLog]; // add new log to existing log array
 
     // Step 3: Update the user's logs on the server
     const updateResponse = await fetch(`http://localhost:8000/users/${user.id}`, {
@@ -86,7 +108,7 @@ async function addLogById(id, action) { // pass the action and user id
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ logs: updatedLogs }),
+      body: JSON.stringify({ logs: updatedLogs }), // target the logs array inside json file with PATCH method
     });
 
     if (!updateResponse.ok) {
@@ -100,9 +122,9 @@ async function addLogById(id, action) { // pass the action and user id
 }
 
 // Usage example
-// addLogForUser("user1", {
+// addLogById("1", {
 //   uid: "1",
-//   date: "12/01/2024",
+//   dateNTime: "12/01/2024 at ",
 //   action: "user1 decrypted a file",
 // });
 

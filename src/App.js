@@ -12,6 +12,7 @@ import { HomePage } from "./components/homePage";
 import "./styles/GlobalHeader.css";
 import "./styles/App.css";
 
+
 /* 
 this is where all react components that are web pages should be located 
 each web page can have data sent from one to the other using {object/variable name}
@@ -40,7 +41,7 @@ const router = createBrowserRouter(
 
 export default function App() {
   return (
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     //provides the router that we created using the above function
   );
 }
