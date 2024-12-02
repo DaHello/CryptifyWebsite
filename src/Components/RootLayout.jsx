@@ -130,7 +130,7 @@ export function MainPages() {
     }
   };
 
-  // this is where new pages are added to the header
+  // THIS IS HEADER (where new pages are added to in, is also same as navigation bar)
   return (
     <div className="page-wrapper">
       <header className="globalHeader">
