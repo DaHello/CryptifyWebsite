@@ -4,6 +4,11 @@ import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import LoginSignupButton from "./mainpagecomponents/LoginSignupButton";
 
+//import HandleLogin from "../actionsDB.js"
+//import HandleRegister from "../actionsDB.js"
+//import getLogs from "../actionsDB.js"
+//import  from "../actionsDB.js"
+
 // styles:
 import "../styles/Login.css";
 

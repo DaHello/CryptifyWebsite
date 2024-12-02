@@ -7,10 +7,9 @@
       "password": "password123",
       "logs": [
         {
-          "id": "1",
-          "date": "11/28/2024",
-          "user": "user1",
-          "action": " user1 encrypted a file"
+          "uid": "1",
+          "dateNTime": "11/28/2024 at 02:05:23 PM",
+          "action": "You encrypted a file"
         }
       ]
     }
