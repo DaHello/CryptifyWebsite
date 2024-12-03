@@ -4,6 +4,7 @@ import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import LoginSignupButton from "./mainpagecomponents/LoginSignupButton";
 import { LogsMenu } from "./LogsMenu";
+import { useUser } from "./currentUserContext";
 
 // styles:
 import "../styles/Login.css";
@@ -12,7 +13,8 @@ import "../styles/Login.css";
 export function MainPages() {  
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
-  const [currentUser, setCurrentUser] = useState({}); // state is an object, can have anything inside it
+  // const [currentUser, setCurrentUser] = useUser(); // use user context
+  const { currentUser, loginUser, logoutUser } = useUser();
   const [data, setData] = useState([]); // Store fetched data as an array of objects
   const [showUserOptions, setShowUserOptions] = useState(false); // starts as false
 
@@ -50,15 +52,12 @@ export function MainPages() {
   const handleLogin = (clientInfo) => {
     // pass data fetched from db.json
     const { username, password } = clientInfo; // object of data entered by client
-    const foundUser = data.find(
-      // search data inside the users array for matching usrname and password
-      (data) => data.username === username && data.password === password
-    );
+    const foundUser = data.find( (data) => data.username === username && data.password === password );
     if (foundUser) {
       // if matching username and pass. found
       console.log(foundUser.username + " was found. Login successful.");
       closeForm(); // close the form
-      setCurrentUser({ username, password });
+      loginUser(foundUser); // save all user info to currentUser
     } else {
       console.log("Username or password incorrect or does not exist.");
       alert("Invalid username or password, or user does not exist.");
@@ -86,30 +85,25 @@ export function MainPages() {
       console.log(`${email} already in use.`);
       alert("Email already in use.");
     } else {
-      // Set the current user as this user, this data can be found AFTER running this function
-      const runSetCurrentUser = () => {
-        setCurrentUser({ username, email, password });
-      };
-      runSetCurrentUser();
-      // Simulate saving the updated users to db.json
-      saveToDbJson({ username, email, password });
-
+      const newUser = { username, email, password, id: `${data.length + 1}` };
+      loginUser(newUser); // Set the full user data as currentUser
+      saveToDbJson(newUser);
       alert("Account created successfully.");
-      setShowForm(false); // Close the form after successful registration
-      reset(); // reset the form fields
+      setShowForm(false);
+      reset();
     }
   };
 
   // Simulate saving users to db.json file (This json file holds two arrays of objects log and users)
   const saveToDbJson = async (newUser) => {
-    // Calculate current user's id number from total users in db.json:
-    const numUsers = data.length + 1;
-    console.log(
-      `Current user id is: ${numUsers}. Which is the number of users as well.`
-    );
+    // // Calculate current user's id number from total users in db.json:
+    // const numUsers = data.length + 1;
+    // console.log(
+    //   `Current user id is: ${numUsers}. Which is the number of users as well.`
+    // );
 
-    // add the current id number to the newUser:
-    newUser = { ...newUser, id: `${numUsers}` }; // keep everything else in newUser, but update the id to be the string of numUsers
+    // // add the current id number to the newUser:
+    // newUser = { ...newUser, id: `${numUsers}` }; // keep everything else in newUser, but update the id to be the string of numUsers
 
     const response = await fetch("http://localhost:8000/users", {
       method: "POST",
@@ -148,18 +142,14 @@ export function MainPages() {
 
       {/* This is where all mainpagecomponents go (to outlet), can pass variables through to be accessible by all mainpagecomponents */}
       <main>
-        <Outlet context={currentUser.username} />
+        <Outlet context={currentUser} />
 
         {/* Conditional rendering for logs menu */}
         {showUserOptions && (
           <div className="overlay" onClick={closeOptions}>
             <div className="wrapper" onClick={(e) => e.stopPropagation()}>
               <div className="form-box">
-                <LogsMenu
-                  currentUsername={currentUser.username}
-                  uid={currentUser.id}
-                  closeOptions={closeOptions}
-                />
+                <LogsMenu closeOptions={closeOptions} data={data} />
               </div>
             </div>
           </div>

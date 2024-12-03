@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { DecSubmit } from "./decButton";
 import sjcl from "sjcl";
-
-
+import { addLogById } from "../../actionsDB"; // to track logs
 
 
 function frombitArrayCodec(arr) { 

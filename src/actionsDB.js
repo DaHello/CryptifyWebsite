@@ -3,68 +3,53 @@ import { getCurrentDateTime } from "./getDateAndTime.js";
 // use this file to get specific info from the database, this is a mock server that we use to access the
 // db.json file (mock database), this imitates real practices for securely acessing a database
 
-// user info from client side is passed here when logging in:
-export async function handleLogin(formData) {
-  const username = formData.get("username");
-  const password = formData.get("password");
 
-  // Here you would typically validate the credentials and perform the login logic
-  // For this example, we'll just simulate a successful login
-  console.log(`Login attempt for user: ${username}`);
-
-  // Simulating an asynchronous operation
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return { success: true, message: `Welcome back, ${username}!` };
-}
-
-export async function handleRegister(formData) {
-  const username = formData.get("username");
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  // Here you would typically handle the registration logic
-  // For this example, we'll just simulate a successful registration
-  console.log(`Registration attempt for user: ${username}, email: ${email}`);
-
-  // Simulating an asynchronous operation
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return { success: true, message: `Account created for ${username}!` };
-}
+// const fetchData = async () => {
+//   // fetch users from json server at address, this also fetches the logs
+//   const response = await fetch("http://localhost:8000/users"); // Replace with actual API call in a real app
+//   const data = await response.json(); // data is an array of objects, gotten from the json file
+//   return data;
+// }
 
 // log objects from client side are passed via these server calls
 export async function fetchLogsById(id) {
   // fetch logs for a user based on username
   try {
     const response = await fetch(
-      `http://localhost:8000/users?id=${id}`
+      `http://localhost:8000/users?id=${String(id)}`
     );
     const users = await response.json();
-    if (users.length > 0) {
-      return users[id - 1].logs; // use user id minus one for the index of the array of users objects
+    const user = users.find( user => user.id === id ); // find a user who's id matches id
+
+    console.log(id);
+    if (!id) {
+      throw new Error("ID is required");
+    }
+
+    if (user) {
+      console.log(user.logs);
+      return user.logs; 
     } else {
       throw new Error("User not found");
     }
   } catch (error) {
     console.error("Error fetching logs:", error);
-    return [];
+    return []; // empty array
   }
 }
 // Usage
-//fetchLogsById("user1").then((logs) => console.log(logs));
+//fetchLogsById("1").then((logs) => console.log(logs));
 
 export async function fetchTodaysLogsById(id) {
   // get today's date:
-  const {date, time} = getCurrentDateTime(); // use only date
+  const {date, time} = getCurrentDateTime();
   
-  // fetch logs for a user based on username
   try {
-    const response = await fetch(`http://localhost:8000/users?id=${id}`);
+    const response = await fetch(`http://localhost:8000/users?id=${String(id)}`);
     const users = await response.json();
-    
-    const user = users[id - 1];
-    if (users.length > 0) { // if found
+    const user = users.find( user => user.id === id );
+
+    if (user) { // if found
     const todayLogs = user.logs.filter(log => log.date === date); // Filter logs for today's date
     console.log(`Successfully Fetched todays logs: ${date} at ${time}`);
     return todayLogs;
@@ -84,7 +69,7 @@ async function addLogById(id, action) { // pass the action and user id
   console.log(`Time: ${time}`); // e.g., "Time: 02:05:23 PM"
 
   const newLog = { // format new log to be added to db
-    uid:"id", // may need to be a string (the id)
+    uid:id, // may need to be a string (the id)
     dateNTime:`${date} at ${time}`,
     action:`${action}`
   };
@@ -92,7 +77,7 @@ async function addLogById(id, action) { // pass the action and user id
   // add to the logs array for a user by their id
   try {
     // Step 1: Fetch the user
-    const userResponse = await fetch(`http://localhost:8000/users?id=${id}`);
+    const userResponse = await fetch(`http://localhost:8000/users?id=${String(id)}`);
     const users = await userResponse.json();
     if (users.length === 0) {
       throw new Error("User id not found");

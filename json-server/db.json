@@ -7,11 +7,25 @@
       "password": "password123",
       "logs": [
         {
-          "uid":"1",
+          "uid": "1",
           "username": "user1",
-          "date": "11/28/2024",
-          "Time": "02:05:23 PM",
+          "date": "12/02/2024",
+          "time": "02:05:23 PM",
           "action": "user1 encrypted a file"
+        },
+        {
+          "uid": "1",
+          "username": "user1",
+          "date": "12/02/2024",
+          "time": "02:05:23 PM",
+          "action": "user1 decrypted a file"
+        },
+        {
+          "uid": "1",
+          "username": "user1",
+          "date": "12/02/2024",
+          "time": "02:05:23 PM",
+          "action": "user1 encrypted text"
         }
       ]
     }

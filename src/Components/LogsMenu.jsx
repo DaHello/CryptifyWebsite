@@ -1,53 +1,65 @@
 import { fetchLogsById, fetchTodaysLogsById } from "../actionsDB";
-import { addLogById } from "../actionsDB";
+import { useUser } from "./currentUserContext";
+import { getCurrentDateTime } from "../getDateAndTime";
 
 import "../styles/LogsMenu.css";
 
-export function LogsMenu({ currentUsername, uid, closeOptions }) {
-  // pass username and uid from Outlet in RootLayout.jsx
-  if ({ currentUsername }) {
-    // a user is logged in:
-    // fetch ONLY the logs from the current user, search for the current user by id.
-    // how to get current user id? Find the user's log by matching searching the array of objects
-    function downloadUserLogsToday() {
-      // menu option
-      const logsToday = fetchTodaysLogsById(uid);
+export function LogsMenu({ closeOptions, data }) {
+  const { currentUser, logoutUser } = useUser();
 
-      // download the logs by text
+  // Helper function to create and download a text file
+  function downloadTextFile(filename, content) {
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // if current user is logged in:
+  if (currentUser.username) {
+
+    // Fetch and download today's logs
+    async function downloadUserLogsToday() {
+      const { date, time } = getCurrentDateTime();
+      try {
+        console.log(currentUser);
+        const logsToday = await fetchTodaysLogsById(currentUser.id);
+        const logsText = JSON.stringify(logsToday, null, 2); // Convert to JSON string
+        downloadTextFile(
+          `todays_logs_${currentUser.username}-${date}-${time}.txt`, logsText);
+      } catch (error) {
+        console.error("Failed to download today's logs:", error);
+      }
     }
 
-    function downloadAllUserLogs() {
-      const logsAll = fetchLogsById(uid);
-
-      //download the logs by text file
+    // download all user logs
+    async function downloadAllUserLogs() {
+      const { date, time } = getCurrentDateTime();
+      try {
+        console.log(currentUser);
+        const logsAll = await fetchLogsById(currentUser.id);
+        const logsText = JSON.stringify(logsAll, null, 2); // Convert to JSON string
+        downloadTextFile(`all_logs_${currentUser.username}-${date}-${time}.txt`, logsText);
+      } catch (error) {
+        console.error("Failed to download all logs:", error);
+      }
     }
 
-    // this needs to be improved, looks terrible
     return (
       <div className="LogsMenu">
-        <h1>{currentUsername}'s Logs:</h1>
+        <h1>{currentUser.username}'s Logs:</h1>
         <button onClick={downloadUserLogsToday}>Today's Logs</button>
         <button onClick={downloadAllUserLogs}>All Logs</button>
+        {/* <button onClick={logoutUser}>Logout</button> */}
         <button onClick={closeOptions}>Close</button>
       </div>
     );
   } else {
-    // not signed in (guest mode): MAY NOT SUPPORT THIS
-
-    // function getLogsGuest() {
-    //     return fetch
-    // }
-
-    return (
-      <div className="LogsMenu">
-        <p>NOTHING SUPPOSED TO HAPPEN</p>
-      </div>
-    );
+    console.log("need to be logged in to download user logs.");
   }
-
-  // menu:
-  //    if no user message: login to save your logs permanently!! (save Guest Logs to the local storage)
-  //    else {
-  //          download today's logs (get logs by date and user-id (uid)   )
-  //          donwload all logs (download all logs for uid)
 }

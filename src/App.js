@@ -7,6 +7,7 @@ import { MainPages } from "./components/RootLayout";
 import { MainPageText } from "./components/mainpagetext";
 import { MainPageFile } from "./components/mainpagefile";
 import { HomePage } from "./components/homePage";
+import { UserProvider } from "./components/currentUserContext";
 
 //css
 import "./styles/GlobalHeader.css";
@@ -41,7 +42,9 @@ const router = createBrowserRouter(
 
 export default function App() {
   return (
+    <UserProvider>
       <RouterProvider router={router} />
+    </UserProvider>
     //provides the router that we created using the above function
   );
 }

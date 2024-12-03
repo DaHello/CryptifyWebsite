@@ -21,22 +21,22 @@ function PageWrapper({ children }) {
 }
 
 function HeroSection() {
-  const currentUsername = useOutletContext(); // use the outlet context to get the current user's username
+  const currentUser = useOutletContext(); // use the outlet context to get the current user's username
   
   return (
     <section className="hero-section">
       <div className="container">
         <h1 className="hero-title">
-          {currentUsername
-            ? `Welcome back, ${currentUsername}!`
+          {currentUser.username
+            ? `Welcome back, ${currentUser.username}!`
             : "Welcome to Cryptify"}
         </h1>
         <p className="hero-subtitle">
-          {currentUsername
+          {currentUser.username
             ? "Continue your journey to secure your digital life."
             : "Your all-in-one platform for simple and secure encryption."}
         </p>
-        {!currentUsername && (
+        {!currentUser.username && (
           <button
             className="enter-button"
             onClick={() => {
