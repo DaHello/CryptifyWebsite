@@ -28,6 +28,12 @@
           "action": "user1 encrypted text"
         }
       ]
+    },
+    {
+      "id": "2",
+      "username": "ca",
+      "email": "dadadad@g.com",
+      "password": "1234"
     }
   ]
 }
