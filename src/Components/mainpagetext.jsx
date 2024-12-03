@@ -17,7 +17,7 @@ export function MainPageText() {
   }
 
   return (
-    <div className="container">
+    <div className="containerTextEnc">
       {/* <Header></Header> */}
       <EncForm>Encryption</EncForm>
       <DecForm>Decryption</DecForm>

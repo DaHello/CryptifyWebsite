@@ -62,9 +62,6 @@ export async function fetchTodaysLogsById(id) {
   }
 }
 
-// e.g. for when user pushes encrypt button for text:
-// addLogById(currentUser.id, `${currenUser.username} encrypted text.`);
-
 export async function addLogById(id, action) { // pass the action and user id
   const { date, time } = getCurrentDateTime();
   console.log(`Log added for user with id: ${id}.`);
@@ -85,8 +82,15 @@ export async function addLogById(id, action) { // pass the action and user id
     if (users.length === 0) {
       throw new Error("User id not found");
     }
-    const user = users[id - 1]; // user's index in array is their id minus one
-
+    const user = users.find( user => user.id === id ); // match user id to user
+    if (user) { // if found
+      const todayLogs = user.logs.filter(log => log.date === date); // Filter logs for today's date
+      console.log(`Successfully Fetched todays logs: ${date} at ${time}`);
+      return todayLogs;
+      } else {
+        throw new Error("User not found");
+      }
+    
     // Step 2: Update logs
     const updatedLogs = [...user.logs, newLog]; // add new log to existing log array
 
