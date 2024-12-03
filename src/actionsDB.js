@@ -62,7 +62,10 @@ export async function fetchTodaysLogsById(id) {
   }
 }
 
-async function addLogById(id, action) { // pass the action and user id
+// e.g. for when user pushes encrypt button for text:
+// addLogById(currentUser.id, `${currenUser.username} encrypted text.`);
+
+export async function addLogById(id, action) { // pass the action and user id
   const { date, time } = getCurrentDateTime();
   console.log(`Log added for user with id: ${id}.`);
   console.log(`Date: ${date}`); // e.g., "Date: 12/01/2024"
@@ -88,7 +91,7 @@ async function addLogById(id, action) { // pass the action and user id
     const updatedLogs = [...user.logs, newLog]; // add new log to existing log array
 
     // Step 3: Update the user's logs on the server
-    const updateResponse = await fetch(`http://localhost:8000/users/${user.id}`, {
+    const updateResponse = await fetch(`http://localhost:8000/users/${String(user.id)}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
