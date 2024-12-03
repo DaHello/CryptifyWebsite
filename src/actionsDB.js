@@ -62,7 +62,7 @@ export async function fetchTodaysLogsById(id) {
   }
 }
 
-async function addLogById(id, action) { // pass the action and user id
+export async function addLogById(id, action) { // pass the action and user id
   const { date, time } = getCurrentDateTime();
   console.log(`Log added for user with id: ${id}.`);
   console.log(`Date: ${date}`); // e.g., "Date: 12/01/2024"
@@ -82,13 +82,20 @@ async function addLogById(id, action) { // pass the action and user id
     if (users.length === 0) {
       throw new Error("User id not found");
     }
-    const user = users[id - 1]; // user's index in array is their id minus one
-
+    const user = users.find( user => user.id === id ); // match user id to user
+    if (user) { // if found
+      const todayLogs = user.logs.filter(log => log.date === date); // Filter logs for today's date
+      console.log(`Successfully Fetched todays logs: ${date} at ${time}`);
+      return todayLogs;
+      } else {
+        throw new Error("User not found");
+      }
+    
     // Step 2: Update logs
     const updatedLogs = [...user.logs, newLog]; // add new log to existing log array
 
     // Step 3: Update the user's logs on the server
-    const updateResponse = await fetch(`http://localhost:8000/users/${user.id}`, {
+    const updateResponse = await fetch(`http://localhost:8000/users/${String(user.id)}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
