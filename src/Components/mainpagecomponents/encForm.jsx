@@ -103,6 +103,7 @@ export const EncForm = () => {
 
   async function handleSubmit(e) {
     const { currentUser } = UserProvider();
+    console.log(currentUser);
     e.preventDefault();
 
     const text_key = { text, key };
