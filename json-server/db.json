@@ -12,42 +12,56 @@
           "date": "12/02/2024",
           "time": "02:05:23 PM",
           "action": "user1 encrypted a file"
-        },
-        {
-          "uid": "1",
-          "username": "user1",
-          "date": "12/02/2024",
-          "time": "02:05:23 PM",
-          "action": "user1 decrypted a file"
-        },
-        {
-          "uid": "1",
-          "username": "user1",
-          "date": "12/02/2024",
-          "time": "02:05:23 PM",
-          "action": "user1 encrypted text"
-        },
-        {
-          "uid": "1",
-          "username": "user1",
-          "date": "12/04/2024",
-          "time": "12:33:56 PM",
-          "action": "user1 encrypted text"
         }
       ]
     },
     {
       "id": "2",
       "username": "Bob",
-      "email": "Bob@gmail.com",
+      "email": "Bobby@gmail.com",
       "password": "123",
       "logs": [
         {
           "uid": "2",
           "username": "Bob",
           "date": "12/04/2024",
-          "time": "12:44:39 PM",
+          "time": "4:17:20 PM",
           "action": "Bob encrypted text"
+        },
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "4:17:27 PM",
+          "action": "Bob decrypted text"
+        },
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "4:17:37 PM",
+          "action": "Bob encrypted a text file"
+        },
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "4:19:06 PM",
+          "action": "Bob decrypted a text file"
+        },
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "4:19:18 PM",
+          "action": "Bob encrypted a file"
+        },
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "4:19:36 PM",
+          "action": "Bob decrypted a file"
         }
       ]
     }

@@ -1,6 +1,6 @@
 import { DecForm } from "./mainpagecomponents/decForm";
 import { EncForm } from "./mainpagecomponents/encForm";
-import { useUser } from "./currentUserContext"; // to access user info
+import { useUser } from "./currentUserContext";
 
 import "../styles/mainPage.css";
 
@@ -19,8 +19,8 @@ export function MainPageText() {
   return (
     <div className="containerTextEnc">
       {/* <Header></Header> */}
-      <EncForm currentUser={currentUser} >Encryption</EncForm>
-      <DecForm currentUser={currentUser} >Decryption</DecForm>
+      <EncForm currentUser={currentUser}>Encryption</EncForm>
+      <DecForm currentUser={currentUser}>Decryption</DecForm>
     </div>
   );
 }

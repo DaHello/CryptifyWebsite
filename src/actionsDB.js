@@ -11,7 +11,7 @@ import { getCurrentDateTime } from "./getDateAndTime.js";
 // }
 
 // log objects from client side are passed via these server calls
-export async function fetchLogsById(currentUser) {
+export async function fetchLogsByUser(currentUser) {
   // fetch logs for a user based on username
   try {
     const response = await fetch(
@@ -36,7 +36,7 @@ export async function fetchLogsById(currentUser) {
   }
 }
 
-export async function fetchTodaysLogsById(currentUser) {
+export async function fetchTodaysLogsByUser(currentUser) {
   // get today's date:
   const { date, time } = getCurrentDateTime();
 
@@ -46,6 +46,7 @@ export async function fetchTodaysLogsById(currentUser) {
     ); // fetches an array if the object
     const user = await response.json();
     // console.log(user[id - 1]); // test
+    console.log(user);
 
     if (user[0]) {
       // if found

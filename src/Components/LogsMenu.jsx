@@ -1,4 +1,4 @@
-import { fetchLogsById, fetchTodaysLogsById } from "../actionsDB";
+import { fetchLogsByUser, fetchTodaysLogsByUser } from "../actionsDB";
 import { useUser } from "./currentUserContext";
 import { getCurrentDateTime } from "../getDateAndTime";
 
@@ -28,7 +28,7 @@ export function LogsMenu({ closeOptions, data }) {
       const { date, time } = getCurrentDateTime();
       try {
         console.log(currentUser);
-        const logsToday = await fetchTodaysLogsById(currentUser.id);
+        const logsToday = await fetchTodaysLogsByUser(currentUser);
         const logsText = JSON.stringify(logsToday, null, 2); // Convert to JSON string
         downloadTextFile(
           `todays_logs_${currentUser.username}-${date}-${time}.txt`, logsText);
@@ -42,7 +42,7 @@ export function LogsMenu({ closeOptions, data }) {
       const { date, time } = getCurrentDateTime();
       try {
         console.log(currentUser);
-        const logsAll = await fetchLogsById(currentUser.id);
+        const logsAll = await fetchLogsByUser(currentUser.id);
         const logsText = JSON.stringify(logsAll, null, 2); // Convert to JSON string
         downloadTextFile(`all_logs_${currentUser.username}-${date}-${time}.txt`, logsText);
       } catch (error) {

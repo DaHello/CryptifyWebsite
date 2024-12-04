@@ -1,10 +1,11 @@
 import { DecSubmit } from "./decButton";
-import "../../styles/mainPage.css";
 import React, { useState } from "react";
+import { addLogByUser } from "../../actionsDB";
 
+import "../../styles/mainPage.css";
 
 // everything is nested inside of decForm, so this whole file is just the DecForm
-export const DecForm = () =>{
+export const DecForm = ({ currentUser }) =>{
   const [textDec, setTextDec] = useState("");
   const [keyDec, setKeyDec] = useState("");
   const [outputDec, setOutPutDec] = useState("");
@@ -64,6 +65,12 @@ export const DecForm = () =>{
   }
   async function handleSubmitDec(e) {
     e.preventDefault()
+
+    if (currentUser.username) { // if signed in:
+      //console.log(currentUser); // test
+      addLogByUser(currentUser, `${currentUser.username} decrypted text`); // add log for current user to db.json
+    }
+
     const dectext_key = { textDec, keyDec };
     const decrypted = await decryptData(dectext_key.textDec, dectext_key.keyDec)
 

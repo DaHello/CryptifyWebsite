@@ -103,8 +103,8 @@ export const EncForm = ({currentUser}) => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (currentUser) {
-      console.log(currentUser);
+    if (currentUser.username) { // if signed in:
+      //console.log(currentUser); // test
       addLogByUser(currentUser, `${currentUser.username} encrypted text`); // add log for current user to db.json
     }
     

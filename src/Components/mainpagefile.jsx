@@ -1,6 +1,6 @@
 import { EncFileBox } from "./mainpagecomponents/EncFileBox";
 import { EdcFileBox } from "./mainpagecomponents/DecFileBox";
-import { useUser } from "./currentUserContext"; // to use the user name
+import { useUser } from "./currentUserContext";
 
 import "../styles/mainPage.css";
 
@@ -16,9 +16,8 @@ export function MainPageFile() {
 
   return (
     <div className="containerFile">
-      <EncFileBox></EncFileBox>
-
-      <EdcFileBox></EdcFileBox>
+      <EncFileBox currentUser={currentUser}></EncFileBox>
+      <EdcFileBox currentUser={currentUser}></EdcFileBox>
     </div>
   );
 }

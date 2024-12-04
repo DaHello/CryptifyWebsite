@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { EncSubmit } from "./encButton";
 import sjcl from "sjcl";
+import { addLogByUser } from "../../actionsDB";
 
 function toBitArrayCodec(bytes){
   var out = [], i, tmp=0;
@@ -33,11 +34,7 @@ function frombitArrayCodec(arr) {
 
 
 
-
-
-
-
-export const EncFileBox = () => {
+export const EncFileBox = ({currentUser}) => {
   const [file, setFile] = useState(null);
 
   const [key, setKeyFile] = useState("");
@@ -62,21 +59,27 @@ export const EncFileBox = () => {
 
 
         if(file.type.startsWith('text')){
+          
+          
           console.log(text)
           const dataEncrypted = sjcl.encrypt(key,text)
       
           console.log(dataEncrypted)
           const dataDecrypted = sjcl.decrypt(key,dataEncrypted)
-          console.log(dataDecrypted)
+          console.log(dataDecrypted) // verify can decrypt
           const blob = new Blob([dataEncrypted], {type: file.type})
           setFileName(file.name);
+
+          if (currentUser.username) { // if signed in:
+            //console.log(currentUser); //test
+            addLogByUser(currentUser, `${currentUser.username} encrypted a text file`); // add log for current user to db.json
+          }
 
           const url = URL.createObjectURL(blob)
           setEncryptedFileUrl(url)
       
-  
 
-        }else{
+        } else {
 
           const bytes = new Uint8Array(text)
           const bits = toBitArrayCodec(bytes)
@@ -85,6 +88,11 @@ export const EncFileBox = () => {
       
           const blob = new Blob([dataEncrypted], {type: file.type})
           setFileName(file.name);
+
+          if (currentUser.username) { // if signed in:
+            //console.log(currentUser); //test
+            addLogByUser(currentUser, `${currentUser.username} encrypted a file`); // add log for current user to db.json
+          }
 
           const url = URL.createObjectURL(blob)
           setEncryptedFileUrl(url)

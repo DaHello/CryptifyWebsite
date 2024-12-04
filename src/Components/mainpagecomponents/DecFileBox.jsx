@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { DecSubmit } from "./decButton";
 import sjcl from "sjcl";
-import { addLogById } from "../../actionsDB"; // to track logs
+import { addLogByUser } from "../../actionsDB"; // to track logs
 
 
 function frombitArrayCodec(arr) { 
@@ -17,7 +17,7 @@ function frombitArrayCodec(arr) {
   return out;
 }
 
-export const EdcFileBox = () => {
+export const EdcFileBox = ({ currentUser }) => {
   
   const [file, setFile] = useState(null);
 
@@ -34,9 +34,6 @@ export const EdcFileBox = () => {
         const decData = e.target.result;
 
 
-      
-
-  
 
 
         if(file.type.startsWith('text')){
@@ -46,10 +43,15 @@ export const EdcFileBox = () => {
             const blob = new Blob([dataDecrypted], { decData: file.type });
             setFileName(file.name);
 
+            if (currentUser.username) { // if signed in:
+              //console.log(currentUser); //test
+              addLogByUser(currentUser, `${currentUser.username} decrypted a text file`); // add log for current user to db.json
+            }
+
             const url = URL.createObjectURL(blob);
             setDecryptedFileUrl(url);
           }catch(error){
-            alert("Please, make sure you are using the correct password")
+            alert("Please, make sure you are using the correct key or file.")
           }
 
         
@@ -58,22 +60,23 @@ export const EdcFileBox = () => {
 
           try{
           const dataDecrypted64 = sjcl.decrypt(key, decData)
-
           const dataDecrypted = sjcl.codec.base64.toBits(dataDecrypted64)
           const byteNumbers = frombitArrayCodec(dataDecrypted)
           const byteArray = new Uint8Array(byteNumbers)
-   
-
 
      
-
           const blob = new Blob([byteArray], { type : file.type });
           setFileName(file.name);
+
+          if (currentUser.username) { // if signed in:
+            //console.log(currentUser); //test
+            addLogByUser(currentUser, `${currentUser.username} decrypted a file`); // add log for current user to db.json
+          }
 
           const url = URL.createObjectURL(blob);
           setDecryptedFileUrl(url);
           }catch(error){
-            alert("Please, make sure you are using the correct password")
+            alert("Please, make sure you are using the correct key or file.")
           }
 
         
