@@ -13,8 +13,7 @@ import "../styles/Login.css";
 export function MainPages() {  
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register
   const [showForm, setShowForm] = useState(false); // State to show/hide form
-  // const [currentUser, setCurrentUser] = useUser(); // use user context
-  const { currentUser, loginUser, logoutUser } = useUser();
+  const { currentUser, loginUser } = useUser(); // not using lofout function
   const [data, setData] = useState([]); // Store fetched data as an array of objects
   const [showUserOptions, setShowUserOptions] = useState(false); // starts as false
 
@@ -85,7 +84,7 @@ export function MainPages() {
       console.log(`${email} already in use.`);
       alert("Email already in use.");
     } else {
-      const newUser = { username, email, password, id: `${data.length + 1}` };
+      const newUser = { username, email, password, id: `${data.length + 1}`, logs:[] };
       loginUser(newUser); // Set the full user data as currentUser
       saveToDbJson(newUser);
       alert("Account created successfully.");
@@ -96,16 +95,7 @@ export function MainPages() {
 
   // Simulate saving users to db.json file (This json file holds two arrays of objects log and users)
   const saveToDbJson = async (newUser) => {
-    // // Calculate current user's id number from total users in db.json:
-    // const numUsers = data.length + 1;
-    // console.log(
-    //   `Current user id is: ${numUsers}. Which is the number of users as well.`
-    // );
-
-    // // add the current id number to the newUser:
-    // newUser = { ...newUser, id: `${numUsers}` }; // keep everything else in newUser, but update the id to be the string of numUsers
-
-    const response = await fetch("http://localhost:8000/users", {
+    const response = await fetch("http://localhost:8000/users", { // fetch request with POST method to add to users array of objects
       method: "POST",
       headers: {
         "Content-Type": "application/json",

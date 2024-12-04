@@ -5,7 +5,7 @@ import { getCurrentDateTime } from "../getDateAndTime";
 import "../styles/LogsMenu.css";
 
 export function LogsMenu({ closeOptions, data }) {
-  const { currentUser, logoutUser } = useUser();
+  const { currentUser } = useUser();
 
   // Helper function to create and download a text file
   function downloadTextFile(filename, content) {
@@ -55,7 +55,6 @@ export function LogsMenu({ closeOptions, data }) {
         <h1>{currentUser.username}'s Logs:</h1>
         <button onClick={downloadUserLogsToday}>Today's Logs</button>
         <button onClick={downloadAllUserLogs}>All Logs</button>
-        {/* <button onClick={logoutUser}>Logout</button> */}
         <button onClick={closeOptions}>Close</button>
       </div>
     );

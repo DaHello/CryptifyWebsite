@@ -1,12 +1,11 @@
 import { EncSubmit } from "./encButton";
 import React, { useState } from "react";
-import { addLogById } from "../../actionsDB";
-import { UserProvider } from "../currentUserContext";
+import { addLogByUser } from "../../actionsDB";
 
 import "../../styles/mainPage.css";
 
 // everything is nested inside of EncForm, so this whole file is just the EncForm
-export const EncForm = () => {
+export const EncForm = ({currentUser}) => {
   const [text, setText] = useState("");
   const [key, setKey] = useState("");
   const [outPutT, setOPT] = useState(""); 
@@ -102,16 +101,16 @@ export const EncForm = () => {
     );
 
   async function handleSubmit(e) {
-    const { currentUser } = UserProvider();
-    console.log(currentUser);
     e.preventDefault();
 
+    if (currentUser) {
+      console.log(currentUser);
+      addLogByUser(currentUser, `${currentUser.username} encrypted text`); // add log for current user to db.json
+    }
+    
     const text_key = { text, key };
     const encrypted = await encryptData(text_key.text, text_key.key);
     setOPT(encrypted); 
-
-    addLogById(currentUser.id, `${currentUser.username} encrypted text`); // add log for current user to db.json
-
 
     //const decrypted = await decryptData(encrypted, text_key.key);
 

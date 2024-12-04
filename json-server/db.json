@@ -26,14 +26,30 @@
           "date": "12/02/2024",
           "time": "02:05:23 PM",
           "action": "user1 encrypted text"
+        },
+        {
+          "uid": "1",
+          "username": "user1",
+          "date": "12/04/2024",
+          "time": "12:33:56 PM",
+          "action": "user1 encrypted text"
         }
       ]
     },
     {
       "id": "2",
-      "username": "ca",
-      "email": "dadadad@g.com",
-      "password": "1234"
+      "username": "Bob",
+      "email": "Bob@gmail.com",
+      "password": "123",
+      "logs": [
+        {
+          "uid": "2",
+          "username": "Bob",
+          "date": "12/04/2024",
+          "time": "12:44:39 PM",
+          "action": "Bob encrypted text"
+        }
+      ]
     }
   ]
 }
