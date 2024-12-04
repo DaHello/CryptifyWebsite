@@ -1,3 +1,8 @@
+// this jsx file is for later on down the road, when we decide to continue working on this project
+// and will not be shown or mentioned in the presentation.
+
+// THESE CHANGED ARE YET TO COME :)
+
 import React, { useState, useEffect } from "react";
 import "../styles/History.css";
 // import EventEmitter from "./mainpagecomponents/EventEmitter";
