@@ -21,7 +21,8 @@ Then start the web site, which will fetch the file hosted on the json server:
 
 
 
-## Default React Readme:
+# Default React Readme:
+This info is for the default React App creation
 
 # Getting Started with Create React App
 
